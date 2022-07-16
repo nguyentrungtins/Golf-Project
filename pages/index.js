@@ -14,8 +14,8 @@ export default function Home() {
 
             <main>
                 <HomeSection />
-                <AboutUsSection />
-                <BestSellersSection />
+                {/* <AboutUsSection />
+                <BestSellersSection /> */}
             </main>
 
             <footer></footer>

@@ -7,27 +7,29 @@
 }
 .content {
     display: flex;
-    margin-top: 15vh;
+    height: 80%;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+
     color: white;
     h1 {
         font-family: 'Lora', serif;
 
         font-weight: 100;
         text-align: center;
+        margin: 0;
+
         @include breakpoint(sm) {
-            font-size: 64px;
-            padding: 0 2vw 0 2vw;
+            font-size: 54px;
+            padding: 0 10vw 0 10vw;
         }
         @include breakpoint(lg) {
             font-size: 74px;
-            padding: 0 25vw 0 25vw;
+            padding: 0 25% 0 25%;
         }
     }
     button {
-        height: 67px;
-        width: 217px;
         border-radius: 10px;
         border: none;
         cursor: pointer;
@@ -43,8 +45,16 @@
             border: none;
             color: #000;
         }
+
         @include breakpoint(sm) {
-            margin-top: 2vh;
+            height: 57px;
+            width: 207px;
+            margin-top: 3vh;
+        }
+        @include breakpoint(lg) {
+            height: 67px;
+            width: 217px;
+            margin-top: 5vh;
         }
     }
 }

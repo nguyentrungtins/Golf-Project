@@ -32,12 +32,16 @@ const Navbar = () => {
                 <li className={styles.tag}>Sản Phẩm</li>
                 <li className={styles.tag}>Khóa Học</li>
                 <li>
-                    <Image
-                        src={Logo}
-                        alt="Logo Image"
-                        width="58px"
-                        height="80px"
-                    />
+                    <div className={styles.logo}>
+                        <Image
+                            src={Logo}
+                            alt="Logo Image"
+                            width={58}
+                            height={64}
+                            layout="fixed"
+                        />
+                        <p>CGV</p>
+                    </div>
                 </li>
                 <li className={styles.tag}>Khuyến Mãi</li>
                 <li className={styles.tag}>Tin Tức</li>
