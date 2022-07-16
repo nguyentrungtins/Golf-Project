@@ -1,6 +1,91 @@
+@import '../../styles/mixin';
 .bg {
     width: 100vw;
     height: 100vh;
     background-image: url('../../public/bgHomePage.png');
     background-size: cover;
+}
+.content {
+    display: flex;
+    margin-top: 15vh;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    h1 {
+        font-family: 'Lora', serif;
+
+        font-weight: 100;
+        text-align: center;
+        @include breakpoint(sm) {
+            font-size: 64px;
+            padding: 0 2vw 0 2vw;
+        }
+        @include breakpoint(lg) {
+            font-size: 74px;
+            padding: 0 25vw 0 25vw;
+        }
+    }
+    button {
+        height: 67px;
+        width: 217px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        font-family: 'Montserrat', sans-serif;
+        background-color: rgba($color: #fff, $alpha: 0.2);
+        border: 1px solid #fff;
+        color: #fff;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 300ms ease-in-out;
+        &:hover {
+            background-color: rgba($color: #fff, $alpha: 0.74);
+            border: none;
+            color: #000;
+        }
+        @include breakpoint(sm) {
+            margin-top: 5vh;
+        }
+    }
+}
+.scrollDown {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto 0;
+    color: rgba($color: #fff, $alpha: 0.86);
+    p {
+        position: relative;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    div {
+        position: relative;
+        text-align: center;
+        margin-bottom: 15px;
+        -webkit-animation: bounce 2s infinite 2s;
+    }
+}
+
+@keyframes bounce {
+    0%,
+    100%,
+    20%,
+    50%,
+    80% {
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0);
+    }
+    40% {
+        -webkit-transform: translateY(-10px);
+        -ms-transform: translateY(-10px);
+        transform: translateY(-10px);
+    }
+    60% {
+        -webkit-transform: translateY(-5px);
+        -ms-transform: translateY(-5px);
+        transform: translateY(-5px);
+    }
 }
