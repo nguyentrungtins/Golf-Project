@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import HomePage from '../components/Home/HomePage.jsx';
+import HomeSection from '../components/Home/HomeSection.jsx';
 
 export default function Home() {
     return (
@@ -11,7 +11,7 @@ export default function Home() {
             </Head>
 
             <main>
-                <HomePage />
+                <HomeSection />
             </main>
 
             <footer></footer>
