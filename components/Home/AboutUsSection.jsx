@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { BsArrowRight } from 'react-icons/bs';
-import styles from '../../styles/AboutUs.module.scss';
+import styles from './AboutUsSection.module.scss';
 
 const AboutUs = () => (
     <div className={styles.container}>

@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import HomeSection from '../components/Home/HomeSection.jsx';
+import AboutUsSection from '../components/Home/AboutUsSection';
+import BestSellersSection from '../components/Home/BestSellersSection';
 
 export default function Home() {
     return (
@@ -12,6 +14,8 @@ export default function Home() {
 
             <main>
                 <HomeSection />
+                <AboutUsSection />
+                <BestSellersSection />
             </main>
 
             <footer></footer>
