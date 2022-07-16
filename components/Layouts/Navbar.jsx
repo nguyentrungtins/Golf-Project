@@ -1,12 +1,13 @@
 import styles from './Navbar.module.scss';
 import Image from 'next/image';
 import Logo from '../../public/Logo.png';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import classnames from 'classnames';
-
+let lastScroll = 0;
 const Navbar = () => {
     const [hambergerToggle, setHambergerToggle] = useState(false);
-
+    const [scrollPositon, setscrollPositon] = useState(true);
+    const [positionOnTop, setpositionOnTop] = useState(true);
     const hambergerHandler = (e) => {
         setHambergerToggle(!hambergerToggle);
     };
@@ -23,8 +24,32 @@ const Navbar = () => {
 
     const isNavActive = classnames(
         styles.nav,
+        scrollPositon & !positionOnTop ? styles.scrollUp : '',
+        !scrollPositon & !positionOnTop ? styles.scrollDown : '',
         hambergerToggle ? styles.active : ''
     );
+    const scrollHandler = () => {
+        const currentScroll = window.scrollY;
+
+        if (currentScroll <= 100) {
+            setpositionOnTop(true);
+            return;
+        } else if (currentScroll < lastScroll) {
+            setscrollPositon(true);
+            setpositionOnTop(false);
+            console.log('scroll up');
+        } else if (currentScroll >= lastScroll) {
+            setscrollPositon(false);
+            setpositionOnTop(false);
+            console.log('scroll down');
+        }
+        console.log('current', currentScroll);
+        console.log('last', lastScroll);
+        lastScroll = currentScroll;
+    };
+    useEffect(() => {
+        window.addEventListener('scroll', scrollHandler);
+    }, []);
     return (
         <div className={isNavActive}>
             <ul className={styles.navItem}>
