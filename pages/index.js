@@ -6,6 +6,7 @@ import Golf3dSection from '../components/Home/Golf3dSection';
 import BookSection from '../components/Home/BookSection';
 import FooterSection from '../components/Layouts/Footer';
 
+import Navbar from '../components/Layouts/Navbar.jsx';
 export default function Home() {
     return (
         <div>
@@ -14,7 +15,7 @@ export default function Home() {
                 <meta name="description" content="Golf" />
                 <link rel="icon" href="/favicon.ico" crossOrigin />
             </Head>
-
+            <Navbar></Navbar>
             <main>
                 <HomeSection />
                 <AboutUsSection />

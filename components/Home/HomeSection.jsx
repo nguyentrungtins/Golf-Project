@@ -5,7 +5,6 @@ import Image from 'next/image';
 const HomePage = () => {
     return (
         <div className={styles.bg}>
-            <Navbar></Navbar>
             <div className={styles.content}>
                 <h1>World Class Golf Instruction</h1>
                 <button>EXPLORE NOW</button>
