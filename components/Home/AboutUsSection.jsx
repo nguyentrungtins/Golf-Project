@@ -4,23 +4,23 @@ import styles from './AboutUsSection.module.scss';
 
 const AboutUs = () => (
     <div className={styles.container}>
+        {/* TITLE */}
         <div className={styles.title}>
-            <p className={styles.titleElement}>Fortifies you.</p>
-            <p className={styles.titleElement}>Its Best, believe in.</p>
+            <p>Fortifies you.</p>
+            <p>Its Best, believe in.</p>
         </div>
 
+        {/* CONTENT */}
         <div className={styles.content}>
-            <div className={[styles.image].join(' ')}>
-                <Image
-                    src="/images/about-us/1.png"
-                    alt="about-us-image"
-                    width={484}
-                    height={588}
-                    layout="intrinsic"
-                />
-            </div>
+            <Image
+                src="/images/about-us/1.png"
+                alt="about-us-image"
+                width={484}
+                height={588}
+                layout="intrinsic"
+            />
 
-            <div className={[styles.info].join(' ')}>
+            <div className={styles.info}>
                 <p className={styles.infoHeader}>OUR STORY</p>
                 <h2 className={styles.infoTitle}>About Us</h2>
                 <p className={styles.infoDesc}>
@@ -31,9 +31,9 @@ const AboutUs = () => (
                     pretium.
                 </p>
 
-                <div className={styles.nextbtn}>
-                    <BsArrowRight />
-                </div>
+                <button className={styles.nextbtn}>
+                    <BsArrowRight className={styles.nextBtnIcon} />
+                </button>
             </div>
         </div>
     </div>

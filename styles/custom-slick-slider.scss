@@ -1,0 +1,16 @@
+@import './styles/mixin';
+
+.slick-slide > div {
+    margin: 0 2rem;
+}
+.slick-list {
+    padding: 3.375rem 0;
+    @include breakpoint(sm) {
+        width: 100%;
+        margin: 0;
+    }
+    @include breakpoint(lg) {
+        width: inherit;
+        margin: 0 -2rem;
+    }
+}
