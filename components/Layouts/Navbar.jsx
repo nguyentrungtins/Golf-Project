@@ -53,9 +53,22 @@ const Navbar = () => {
     return (
         <div className={isNavActive}>
             <ul className={styles.navItem}>
-                <li className={styles.tag}>Dịch Vụ</li>
-                <li className={styles.tag}>Sản Phẩm</li>
-                <li className={styles.tag}>Khóa Học</li>
+                <li className={styles.tag}>
+                    <a href="#">Dịch Vụ</a>
+                    {/* <ul className={styles.subLink}>
+                        <li>Dich Vu A</li>
+                        <li>Dich Vu A</li>
+                        <li>Dich Vu A</li>
+                        <li>Dich Vu A</li>
+                        <li>Dich Vu A</li>
+                    </ul> */}
+                </li>
+                <li className={styles.tag}>
+                    <a href="#">Sản Phẩm</a>
+                </li>
+                <li className={styles.tag}>
+                    <a href="#">Khóa Học</a>
+                </li>
                 <li>
                     <div className={styles.logo}>
                         <Image
@@ -68,9 +81,15 @@ const Navbar = () => {
                         <p>CGV</p>
                     </div>
                 </li>
-                <li className={styles.tag}>Khuyến Mãi</li>
-                <li className={styles.tag}>Tin Tức</li>
-                <li className={styles.tag}>Chúng Tôi</li>
+                <li className={styles.tag}>
+                    <a href="#">Khuyến Mãi</a>
+                </li>
+                <li className={styles.tag}>
+                    <a href="#">Tin Tức</a>
+                </li>
+                <li className={styles.tag}>
+                    <a href="#">Chúng Tôi</a>
+                </li>
                 <li className={hambergerStyles} onClick={hambergerHandler}>
                     <span></span>
                     <span></span>
