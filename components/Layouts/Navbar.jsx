@@ -3,6 +3,8 @@ import Image from 'next/image';
 import Logo from '../../public/Logo.png';
 import { useState, useEffect } from 'react';
 import classnames from 'classnames';
+import SublinkNav from './SubLinkNav';
+import NavLink from './NavLink';
 let lastScroll = 0;
 const Navbar = () => {
     const [hambergerToggle, setHambergerToggle] = useState(false);
@@ -50,25 +52,41 @@ const Navbar = () => {
     useEffect(() => {
         window.addEventListener('scroll', scrollHandler);
     }, []);
+
     return (
         <div className={isNavActive}>
             <ul className={styles.navItem}>
-                <li className={styles.tag}>
+                {/* <li
+                    className={styles.tag}
+                    onMouseOver={navLinkMouseInHandler}
+                    onMouseOut={navLinkMouseOutHandler}
+                >
                     <a href="#">Dịch Vụ</a>
-                    {/* <ul className={styles.subLink}>
-                        <li>Dich Vu A</li>
-                        <li>Dich Vu A</li>
-                        <li>Dich Vu A</li>
-                        <li>Dich Vu A</li>
-                        <li>Dich Vu A</li>
-                    </ul> */}
-                </li>
-                <li className={styles.tag}>
-                    <a href="#">Sản Phẩm</a>
-                </li>
-                <li className={styles.tag}>
-                    <a href="#">Khóa Học</a>
-                </li>
+                    {navLinkHover && (
+                        <SublinkNav
+                            subLinkPosition={'one'}
+                            isHover={navLinkHover}
+                        />
+                    )}
+                </li> */}
+                <NavLink
+                    name={'Dịch Vụ'}
+                    position={'one'}
+                    isOnTop={positionOnTop}
+                />
+
+                <NavLink
+                    name={'Sản Phẩm'}
+                    position={'two'}
+                    isOnTop={positionOnTop}
+                />
+
+                <NavLink
+                    name={'Khóa Học'}
+                    position={'three'}
+                    isOnTop={positionOnTop}
+                />
+
                 <li>
                     <div className={styles.logo}>
                         <Image
