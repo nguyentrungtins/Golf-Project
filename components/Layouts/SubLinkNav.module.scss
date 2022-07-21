@@ -4,25 +4,49 @@
     left: 10%;
     background-color: #00463b;
     border-radius: 5px;
-    padding: 0 20px 0 20px;
+    padding: 0 10px 0 10px;
     &.onTop {
-        background-color: #858585;
+        background-color: rgba($color: #858585, $alpha: 0.95);
+        .item {
+            &:hover {
+                background-color: #737373;
+            }
+        }
         > li > ul {
-            background-color: #858585;
+            background-color: rgba($color: #858585, $alpha: 0.95);
+
+            > li {
+                &:hover {
+                    background-color: #737373;
+                }
+            }
         }
     }
+    // .item:nth-of-type(1) {
+    //     color: red;
+    // }
     .item {
         margin: 0;
         color: #fff;
         text-align: start;
-        height: 30px;
         padding: 20px;
         display: flex;
         align-items: center;
         text-overflow: ellipsis;
         white-space: nowrap;
+        padding: 10px 20px 10px 20px;
         // position: absolute;
+        border-radius: 5px;
         position: relative;
+        &:nth-of-type(1) {
+            margin-top: 5px;
+        }
+        &:nth-last-of-type(1) {
+            margin-bottom: 5px;
+        }
+        &:hover {
+            background-color: #005447;
+        }
     }
     &.active {
         display: flex;
@@ -43,7 +67,7 @@
         }
     }
     &.two {
-        left: 20.5%;
+        left: 18%;
         width: 200px;
         .wrapper {
             position: absolute;
@@ -55,7 +79,7 @@
         }
     }
     &.three {
-        left: 30.5%;
+        left: 28%;
         .wrapper {
             position: absolute;
             left: 0;
@@ -83,7 +107,7 @@
 .subLinkLV2 {
     position: absolute;
     top: 0;
-    left: 115%;
+    left: 110%;
     background-color: #00463b;
     display: flex;
     flex-direction: column;
@@ -93,7 +117,7 @@
 
     animation: rotateMenu2 400ms ease-in-out forwards;
     transform-origin: top center;
-    padding: 0 20px 0 20px;
+    padding: 0 10px 0 10px;
     border-radius: 5px;
     @keyframes rotateMenu2 {
         0% {
@@ -110,14 +134,26 @@
             transform: translateX(0px);
         }
     }
-    > li {
-        padding: 10px;
+    .subLVItem {
+        padding: 10px 20px 10px 20px;
+        border-radius: 5px;
+        width: 100%;
+        &:nth-of-type(1) {
+            margin-top: 5px;
+        }
+        &:nth-last-of-type(1) {
+            margin-bottom: 5px;
+        }
+        &:hover {
+            background-color: #005447;
+        }
     }
+
     > .wrapper2 {
         position: absolute;
         left: -40px;
         top: 0;
-        width: 80px;
+        width: 60px;
         height: 100%;
         opacity: 0;
     }

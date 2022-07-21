@@ -19,7 +19,6 @@ const NavLink = ({ position, name, isOnTop }) => {
             onMouseEnter={navLinkMouseInHandler}
             onMouseLeave={navLinkMouseOutHandler}
         >
-            <div className={styles.navLinkWrapper}></div>
             <a href="#">{name}</a>
             {navLinkHover && (
                 <SublinkNav

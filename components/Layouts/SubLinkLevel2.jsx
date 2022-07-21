@@ -14,7 +14,7 @@ const SubLinkLevel2 = ({ name, subName }) => {
     };
     if (subName.length > 0) {
         subLinkLV2 = subName.map((e) => {
-            return <li>{e}</li>;
+            return <li className={styles.subLVItem}>{e}</li>;
         });
     }
     return (
