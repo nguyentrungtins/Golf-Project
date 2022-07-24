@@ -44,12 +44,26 @@
                     color: rgba(255, 255, 255, 0.8);
                     margin-bottom: 1.4rem;
                     line-height: 1.6rem;
+                    @include breakpoint(sm) {
+                        text-align: center;
+                    }
+
+                    @include breakpoint(lg) {
+                        text-align: left;
+                    }
                 }
 
                 .body {
                     font-size: 0.875rem;
                     color: rgba(255, 255, 255, 0.6);
                     line-height: 1.8;
+                    @include breakpoint(sm) {
+                        text-align: center;
+                    }
+
+                    @include breakpoint(lg) {
+                        text-align: left;
+                    }
                 }
 
                 .aboutUs {
@@ -68,6 +82,14 @@
                             transition: all ease-out 0.3s;
                             cursor: pointer;
                         }
+
+                        @include breakpoint(sm) {
+                            text-align: center;
+                        }
+
+                        @include breakpoint(lg) {
+                            text-align: left;
+                        }
                     }
                 }
 
@@ -83,18 +105,42 @@
                             margin-bottom: 2rem;
                         }
 
-                        span {
+                        @include breakpoint(sm) {
+                            text-align: center;
+                        }
+
+                        @include breakpoint(lg) {
+                            text-align: left;
+                        }
+
+                        .infoIcon {
                             font-size: 1rem;
                             margin-right: 1.2rem;
                             position: relative;
                         }
 
                         .socialIcon {
-                            font-size: 1.2rem;
+                            &:nth-of-type(1) {
+                                @include breakpoint(sm) {
+                                    margin-right: 2.4rem;
+                                }
+
+                                @include breakpoint(lg) {
+                                    margin-right: 1.2rem;
+                                }
+                            }
                             &:hover {
                                 color: rgba(255, 255, 255, 0.8);
                                 transition: all ease-out 0.3s;
                                 cursor: pointer;
+                            }
+
+                            @include breakpoint(sm) {
+                                font-size: 1.6rem;
+                            }
+
+                            @include breakpoint(lg) {
+                                font-size: 1.2rem;
                             }
                         }
                     }

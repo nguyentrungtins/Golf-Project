@@ -141,16 +141,11 @@
         }
 
         .image {
+            @include breakpoint(sm) {
+                width: 100%;
+            }
             @include breakpoint(lg) {
                 width: 60%;
-            }
-            & > span {
-                display: block !important;
-                height: auto !important;
-                & > img {
-                    max-height: 200% !important;
-                    height: auto !important;
-                }
             }
         }
     }

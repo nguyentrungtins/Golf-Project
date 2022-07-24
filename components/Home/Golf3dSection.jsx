@@ -26,9 +26,9 @@ const Golf3dSection = () => {
                     <Image
                         src="/images/golf-3d/1.png"
                         alt="golf 3d image"
+                        width={544}
+                        height={410}
                         layout="responsive"
-                        width={648}
-                        height={488}
                     />
                 </div>
             </div>
@@ -39,8 +39,9 @@ const Golf3dSection = () => {
                     <Image
                         src="/images/golf-3d/2.png"
                         alt="golf 3d image"
-                        width={648}
-                        height={493}
+                        width={524}
+                        height={399}
+                        layout="responsive"
                     />
                 </div>
                 <div className={[styles.text, styles.right].join(' ')}>

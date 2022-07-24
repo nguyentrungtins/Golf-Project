@@ -16,6 +16,7 @@ const FooterSection = () => {
                         </div>
                     </div>
                     <div className={styles.col}>
+                        <div className={styles.title}>Vol de Nuitt</div>
                         <ul className={styles.aboutUs}>
                             <li>
                                 <a href="#">Out Story</a>
@@ -32,22 +33,32 @@ const FooterSection = () => {
                         </ul>
                     </div>
                     <div className={styles.col}>
+                        <div className={styles.title}>Vol de Nuitt</div>
                         <ul className={styles.info}>
                             <li>
-                                <span style={{ top: '0.188rem' }}>
+                                <span
+                                    className={styles.infoIcon}
+                                    style={{ top: '0.188rem' }}
+                                >
                                     <HiOutlineLocationMarker />
                                 </span>
                                 9400 Canal St. Green Bay, WI 54302, Lorem Ipsum
                                 Dolor Sit
                             </li>
                             <li>
-                                <span style={{ top: '0.188rem' }}>
+                                <span
+                                    className={styles.infoIcon}
+                                    style={{ top: '0.188rem' }}
+                                >
                                     <BsTelephone />
                                 </span>
                                 +33 6 72 53 12 75
                             </li>
                             <li>
-                                <span style={{ top: '0.188rem' }}>
+                                <span
+                                    className={styles.infoIcon}
+                                    style={{ top: '0.188rem' }}
+                                >
                                     <FiMail />
                                 </span>
                                 voldenuitt@contact.com
