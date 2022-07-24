@@ -3,6 +3,8 @@ import Image from 'next/image';
 import Logo from '../../public/Logo.png';
 import { useState, useEffect } from 'react';
 import classnames from 'classnames';
+import SublinkNav from './SubLinkNav';
+import NavLink from './NavLink';
 let lastScroll = 0;
 const Navbar = () => {
     const [hambergerToggle, setHambergerToggle] = useState(false);
@@ -50,12 +52,41 @@ const Navbar = () => {
     useEffect(() => {
         window.addEventListener('scroll', scrollHandler);
     }, []);
+
     return (
         <div className={isNavActive}>
             <ul className={styles.navItem}>
-                <li className={styles.tag}>Dịch Vụ</li>
-                <li className={styles.tag}>Sản Phẩm</li>
-                <li className={styles.tag}>Khóa Học</li>
+                {/* <li
+                    className={styles.tag}
+                    onMouseOver={navLinkMouseInHandler}
+                    onMouseOut={navLinkMouseOutHandler}
+                >
+                    <a href="#">Dịch Vụ</a>
+                    {navLinkHover && (
+                        <SublinkNav
+                            subLinkPosition={'one'}
+                            isHover={navLinkHover}
+                        />
+                    )}
+                </li> */}
+                <NavLink
+                    name={'Dịch Vụ'}
+                    position={'one'}
+                    isOnTop={positionOnTop}
+                />
+
+                <NavLink
+                    name={'Sản Phẩm'}
+                    position={'two'}
+                    isOnTop={positionOnTop}
+                />
+
+                <NavLink
+                    name={'Khóa Học'}
+                    position={'three'}
+                    isOnTop={positionOnTop}
+                />
+
                 <li>
                     <div className={styles.logo}>
                         <Image
@@ -68,9 +99,15 @@ const Navbar = () => {
                         <p>CGV</p>
                     </div>
                 </li>
-                <li className={styles.tag}>Khuyến Mãi</li>
-                <li className={styles.tag}>Tin Tức</li>
-                <li className={styles.tag}>Chúng Tôi</li>
+                <li className={styles.tag}>
+                    <a href="#">Khuyến Mãi</a>
+                </li>
+                <li className={styles.tag}>
+                    <a href="#">Tin Tức</a>
+                </li>
+                <li className={styles.tag}>
+                    <a href="#">Chúng Tôi</a>
+                </li>
                 <li className={hambergerStyles} onClick={hambergerHandler}>
                     <span></span>
                     <span></span>

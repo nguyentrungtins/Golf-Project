@@ -13,8 +13,7 @@
         transform: translate3d(0, -100%, 0);
     }
     &.scrollUp {
-        background-color: rgba($color: #1e1e1e, $alpha: 1);
-        filter: drop-shadow(0 -10px 20px rgb(170, 170, 170));
+        background-color: rgba($color: #00463b, $alpha: 1);
     }
 }
 
@@ -31,7 +30,7 @@
         gap: auto;
     }
 
-    li {
+    > li {
         width: 100px;
         font-family: 'Montserrat', serif;
         color: rgba($color: #fff, $alpha: 0.8);
@@ -45,6 +44,7 @@
             margin-left: 6%;
         }
         transition: all 300ms ease-in-out;
+
         &.tag {
             &:hover {
                 color: #fff;
@@ -53,7 +53,19 @@
                 display: none;
             }
             @include breakpoint(lg) {
-                display: block;
+                display: flex;
+                align-items: center;
+                min-height: 50px;
+                &:nth-of-type(1),
+                &:nth-of-type(2),
+                &:nth-of-type(3) {
+                    justify-content: flex-start;
+                }
+                &:nth-of-type(5),
+                &:nth-of-type(6),
+                &:nth-of-type(7) {
+                    justify-content: flex-end;
+                }
             }
         }
         div {
@@ -78,7 +90,6 @@
                     flex-direction: column;
                     justify-content: space-around;
                     padding-top: 3px;
-
                     p {
                         color: white;
                         font-size: 13px;
@@ -178,7 +189,6 @@
     li:nth-child(5) {
         transition: all 0.5s ease 0.8s;
     }
-
     li:nth-child(6) {
         transition: all 0.5s ease 1s;
         margin: 0;
