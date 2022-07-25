@@ -13,7 +13,7 @@ const BestSellers = () => {
         <div className={styles.container}>
             {/* HEADER */}
             <div className={styles.header}>
-                <h3 className={styles.mainHeader}>Best Sellers</h3>
+                <h2 className={styles.mainHeader}>Best Sellers</h2>
                 <p className={styles.subHeader}>
                     We provide products about golf
                 </p>

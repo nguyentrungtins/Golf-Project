@@ -1,11 +1,20 @@
 import Image from 'next/image';
 import styles from './ListProductSection.module.scss';
+import Button from '../Button';
+import { BsArrowRight } from 'react-icons/bs';
 
 const ListProductSection = () => {
     return (
         <div className={styles.wrapper}>
             <h3>Sản phẩm</h3>
             {/* BUTTONS */}
+            <Button
+                className="custom"
+                // leftIcon={<BsArrowRight />}
+                // rightIcon={<BsArrowRight />}
+            >
+                Explore now
+            </Button>
             {/* LIST PRODUCTS */}
             <div className={styles.row}>
                 <div className={styles.col}>
