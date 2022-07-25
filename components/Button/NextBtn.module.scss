@@ -1,0 +1,34 @@
+@import '../../styles/mixin';
+
+.nextBtnWrap {
+    display: flex;
+    @include breakpoint(sm) {
+        justify-content: start;
+    }
+
+    @include breakpoint(lg) {
+        margin-top: 0;
+        justify-content: start;
+    }
+
+    .nextbtn {
+        color: rgba($color: #fff, $alpha: 0.7);
+        padding: 1.2rem 1.2rem 0.95rem 1.2rem;
+        border-radius: 50%;
+        border: 0.063rem solid rgba($color: #fff, $alpha: 0.7);
+        background-color: rgba($color: #fff, $alpha: 0);
+
+        &:hover {
+            color: rgba($color: #000, $alpha: 0.7);
+            border: 1px solid rgba($color: #000, $alpha: 0.7);
+            background-color: rgba($color: #fff, $alpha: 0.7);
+            cursor: pointer;
+            transition: all linear 0.3s;
+            will-change: color, background-color;
+        }
+
+        .nextBtnIcon {
+            font-size: 1.4rem;
+        }
+    }
+}
