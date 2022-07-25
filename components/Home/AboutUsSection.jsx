@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { BsArrowRight } from 'react-icons/bs';
 import styles from './AboutUsSection.module.scss';
 
@@ -32,10 +33,11 @@ const AboutUs = () => (
                     tincidunt. Nec feugiat nisl pretium fusce id velit ut tortor
                     pretium.
                 </p>
-
-                <button className={styles.nextbtn}>
-                    <BsArrowRight className={styles.nextBtnIcon} />
-                </button>
+                <Link href="/about-us">
+                    <button className={styles.nextbtn}>
+                        <BsArrowRight className={styles.nextBtnIcon} />
+                    </button>
+                </Link>
             </div>
         </div>
     </div>

@@ -5,8 +5,9 @@ import { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import SublinkNav from './SubLinkNav';
 import NavLink from './NavLink';
-let lastScroll = 0;
+import Link from 'next/link';
 const Navbar = ({ isNavTrans = false }) => {
+    let lastScroll = 0;
     const [hambergerToggle, setHambergerToggle] = useState(false);
     const [scrollPositon, setscrollPositon] = useState(true);
     const [positionOnTop, setpositionOnTop] = useState(true);
@@ -62,57 +63,53 @@ const Navbar = ({ isNavTrans = false }) => {
     return (
         <div className={isNavActive}>
             <ul className={styles.navItem}>
-                {/* <li
-                    className={styles.tag}
-                    onMouseOver={navLinkMouseInHandler}
-                    onMouseOut={navLinkMouseOutHandler}
-                >
-                    <a href="#">Dịch Vụ</a>
-                    {navLinkHover && (
-                        <SublinkNav
-                            subLinkPosition={'one'}
-                            isHover={navLinkHover}
-                        />
-                    )}
-                </li> */}
                 <NavLink
                     name={'Dịch Vụ'}
                     position={'one'}
                     isOnTop={isNavTrans ? positionOnTop : false}
+                    href={'/#services'}
                 />
 
                 <NavLink
                     name={'Sản Phẩm'}
                     position={'two'}
                     isOnTop={isNavTrans ? positionOnTop : false}
+                    href={'/products'}
                 />
 
                 <NavLink
                     name={'Khóa Học'}
                     position={'three'}
                     isOnTop={isNavTrans ? positionOnTop : false}
+                    href={'/services'}
                 />
 
                 <li>
-                    <div className={styles.logo}>
-                        <Image
-                            src={Logo}
-                            alt="Logo Image"
-                            width={58}
-                            height={64}
-                            layout="fixed"
-                        />
-                        <p>CGV</p>
-                    </div>
+                    <Link href="/">
+                        <div className={styles.logo}>
+                            <Image
+                                src={Logo}
+                                alt="Logo Image"
+                                width={58}
+                                height={64}
+                                layout="fixed"
+                            />
+                            <p>CGV</p>
+                        </div>
+                    </Link>
                 </li>
                 <li className={styles.tag}>
-                    <a href="#">Khuyến Mãi</a>
+                    <Link href="/">
+                        <a>Khuyến Mãi</a>
+                    </Link>
                 </li>
                 <li className={styles.tag}>
                     <a href="#">Tin Tức</a>
                 </li>
                 <li className={styles.tag}>
-                    <a href="#">Chúng Tôi</a>
+                    <Link href="/about-us">
+                        <a href="#">Chúng Tôi</a>
+                    </Link>
                 </li>
                 <li className={hambergerStyles} onClick={hambergerHandler}>
                     <span></span>

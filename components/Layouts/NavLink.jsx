@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import SublinkNav from './SubLinkNav';
 import styles from './Navbar.module.scss';
-
-const NavLink = ({ position, name, isOnTop }) => {
+import Link from 'next/link';
+const NavLink = ({ position, name, isOnTop, href }) => {
     const [navLinkHover, setNavLinkHover] = useState(false);
 
     const navLinkMouseInHandler = () => {
@@ -19,7 +19,9 @@ const NavLink = ({ position, name, isOnTop }) => {
             onMouseEnter={navLinkMouseInHandler}
             onMouseLeave={navLinkMouseOutHandler}
         >
-            <a href="#">{name}</a>
+            <Link href={href}>
+                <a>{name}</a>
+            </Link>
             {navLinkHover && (
                 <SublinkNav
                     subLinkPosition={position}
