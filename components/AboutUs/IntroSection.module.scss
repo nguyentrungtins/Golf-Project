@@ -23,6 +23,8 @@
         font-size: var(--title-font-size);
         font-weight: var(--title-font-weight);
         text-align: center;
+        color: var(--text-color);
+
         @include breakpoint(sm) {
         }
         @include breakpoint(lg) {

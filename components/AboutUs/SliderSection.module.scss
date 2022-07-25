@@ -5,10 +5,13 @@
 
     @include breakpoint(sm) {
         padding-top: calc(var(--margin-standard-sm) / 2);
+        width: 90%;
+        margin: 0 auto;
     }
 
     @include breakpoint(lg) {
         padding-top: calc(var(--margin-standard-lg) / 2);
+        width: initial;
     }
 
     .sliderInner {
@@ -31,7 +34,7 @@
 
         .prevIcon {
             @include breakpoint(sm) {
-                left: 0rem;
+                left: -1rem;
             }
 
             @include breakpoint(lg) {
@@ -41,7 +44,7 @@
 
         .nextIcon {
             @include breakpoint(sm) {
-                right: 0rem;
+                right: -1rem;
             }
 
             @include breakpoint(lg) {

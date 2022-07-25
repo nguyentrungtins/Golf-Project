@@ -8,10 +8,12 @@
 
     @include breakpoint(sm) {
         padding-top: var(--margin-standard-sm);
+        padding-bottom: var(--margin-standard-sm);
     }
 
     @include breakpoint(lg) {
         padding-top: var(--margin-standard-lg);
+        padding-bottom: var(--margin-standard-lg);
     }
 
     // HEADER
