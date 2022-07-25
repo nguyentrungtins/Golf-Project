@@ -1,20 +1,29 @@
 import Image from 'next/image';
 import styles from './ListProductSection.module.scss';
 import Button from '../Button';
-import { BsArrowRight } from 'react-icons/bs';
+import { ImSortAmountDesc, ImSortAmountAsc } from 'react-icons/im';
+import { TbDiscount } from 'react-icons/tb';
+import { CgArrowLongRight } from 'react-icons/cg';
+import { BsChevronDown } from 'react-icons/bs';
 
 const ListProductSection = () => {
     return (
         <div className={styles.wrapper}>
             <h3>Sản phẩm</h3>
             {/* BUTTONS */}
-            <Button
-                className="custom"
-                // leftIcon={<BsArrowRight />}
-                // rightIcon={<BsArrowRight />}
-            >
-                Explore now
-            </Button>
+            <div className={styles.btns}>
+                <Button
+                    // className="custom"
+                    active
+                    leftIcon={<ImSortAmountDesc />}
+                    // rightIcon={<BsArrowRight />}
+                >
+                    Giá cao - thấp
+                </Button>
+                <Button leftIcon={<ImSortAmountAsc />}>Giá thấp - cao</Button>
+                <Button leftIcon={<TbDiscount />}>Khuyến mãi</Button>
+            </div>
+
             {/* LIST PRODUCTS */}
             <div className={styles.row}>
                 <div className={styles.col}>
@@ -248,6 +257,12 @@ const ListProductSection = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div className={styles.btnSeeMore}>
+                <Button rounded rightIcon={<BsChevronDown />}>
+                    Xem thêm
+                </Button>
             </div>
         </div>
     );

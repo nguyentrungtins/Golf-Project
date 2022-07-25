@@ -2,6 +2,9 @@ import styles from './CourseSection.module.scss';
 import Image from 'next/image';
 import Img1 from '../../public/img1.png';
 import Img2 from '../../public/img2.png';
+
+import Button from '../Button';
+import { BsArrowRight } from 'react-icons/bs';
 import NextBtn from '../Button/NextBtn';
 const CourseSection = () => {
     return (
@@ -15,7 +18,9 @@ const CourseSection = () => {
                     tincidunt. Interdum consectetur libero id faucibus nisl
                     tincidunt.
                 </p>
-                <NextBtn />
+                <div>
+                    <Button gtheme circle rightIcon={<BsArrowRight />}></Button>
+                </div>
             </div>
             <div className={styles.image}>
                 <div className={styles.img1}>

@@ -83,14 +83,27 @@
                 font-size: 2.25rem;
                 color: rgba(0, 0, 0, 0.8);
                 font-weight: 400;
-                margin: 2rem 0;
+                @include breakpoint(sm) {
+                    margin: calc(var(--margin-standard-sm) / 2) 0;
+                }
+
+                @include breakpoint(lg) {
+                    margin: calc(var(--margin-standard-lg) / 2) 0;
+                }
             }
 
             .infoDesc {
                 font-size: 1rem;
                 color: rgba(0, 0, 0, 0.6);
-                margin: 0;
                 line-height: 1.8;
+
+                @include breakpoint(sm) {
+                    margin-bottom: calc(var(--margin-standard-sm) / 2);
+                }
+
+                @include breakpoint(lg) {
+                    margin-bottom: calc(var(--margin-standard-lg) / 2);
+                }
             }
 
             .nextbtn {

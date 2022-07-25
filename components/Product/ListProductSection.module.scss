@@ -1,26 +1,75 @@
+@import '../../styles/mixin';
+
 .wrapper {
-    width: var(--width-wrapper);
-    margin: 0 auto;
-    padding-top: calc(var(--header-navbar-height) + var(--margin-standard-lg));
+    @include breakpoint(sm) {
+        width: 100%;
+        padding-top: calc(
+            var(--header-navbar-height) + var(--margin-standard-sm)
+        );
+    }
+
+    @include breakpoint(lg) {
+        width: var(--width-wrapper);
+        margin: 0 auto;
+        padding-top: calc(
+            var(--header-navbar-height) + var(--margin-standard-lg)
+        );
+    }
 
     h3 {
         font-size: var(--title-font-size);
         font-weight: var(--title-font-weight);
         text-align: center;
-        margin-bottom: calc(var(--margin-standard-lg) / 2);
+        @include breakpoint(sm) {
+            margin-bottom: calc(var(--margin-standard-sm) / 2);
+        }
+
+        @include breakpoint(lg) {
+            margin-bottom: calc(var(--margin-standard-lg) / 2);
+        }
+    }
+}
+
+.btns {
+    display: flex;
+    button:nth-of-type(2),
+    button:nth-of-type(3) {
+        margin-left: 0.75rem;
+    }
+
+    @include breakpoint(sm) {
+        padding: 0 1rem;
+    }
+
+    @include breakpoint(lg) {
+        padding: 0;
     }
 }
 
 .row {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 -1rem;
+    @include breakpoint(sm) {
+        margin: calc(var(--margin-standard-sm) / 2) 0 0;
+    }
+
+    @include breakpoint(lg) {
+        margin: calc(var(--margin-standard-lg) / 2) -1rem 0;
+    }
 }
 
 .col {
-    width: 25%;
-    padding: 0 1rem;
-    margin-bottom: calc(var(--margin-standard-lg) / 2);
+    @include breakpoint(sm) {
+        width: 50%;
+        padding: 0 1rem;
+        margin-bottom: calc(var(--margin-standard-sm) / 2);
+    }
+
+    @include breakpoint(lg) {
+        width: 25%;
+        padding: 0 1rem;
+        margin-bottom: calc(var(--margin-standard-lg) / 2);
+    }
 }
 
 .sliderItem {
@@ -28,8 +77,8 @@
     position: relative;
 
     &:hover {
-        transform: scale(1.08);
-        transition: all ease-out 0.4s;
+        transform: scale(1.06);
+        transition: all ease-out 0.3s;
     }
 
     .info {
@@ -59,6 +108,15 @@
             font-size: 0.875rem;
             font-weight: 600;
 
+            @include breakpoint(sm) {
+                flex-direction: column-reverse;
+                align-items: start;
+            }
+
+            @include breakpoint(lg) {
+                flex-direction: row;
+            }
+
             .currPrice {
                 color: var(--red-color);
             }
@@ -82,26 +140,37 @@
 
         .discount {
             position: absolute;
-            top: 16px;
-            left: -4px;
+            top: 1rem;
+            left: -0.25rem;
             font-size: 0.75rem;
             background-color: var(--red-color);
             color: var(--white-color);
-            border-top-right-radius: 4px;
-            border-bottom-right-radius: 4px;
-            padding: 0 4px;
+            border-top-right-radius: 0.25rem;
+            border-bottom-right-radius: 0.25rem;
+            padding: 0 0.25rem;
             height: 1.6rem;
             line-height: 1.6rem;
 
             &::after {
                 content: '';
                 display: block;
-                border-top: 4px solid var(--red-color);
-                border-left: 4px solid transparent;
+                border-top: 0.25rem solid var(--red-color);
+                border-left: 0.25rem solid transparent;
                 position: absolute;
                 top: 100%;
                 left: 0;
             }
         }
+    }
+}
+
+.btnSeeMore {
+    text-align: center;
+    @include breakpoint(sm) {
+        margin-bottom: var(--margin-standard-sm);
+    }
+
+    @include breakpoint(lg) {
+        margin-bottom: var(--margin-standard-lg);
     }
 }

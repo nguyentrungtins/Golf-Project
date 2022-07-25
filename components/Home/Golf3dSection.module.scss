@@ -48,11 +48,12 @@
 
         .text.left {
             @include breakpoint(sm) {
-                padding-top: 4rem;
+                padding-top: calc(var(--margin-standard-sm) / 2);
                 order: 1;
             }
             @include breakpoint(lg) {
-                padding-top: 8rem;
+                padding-top: calc(var(--margin-standard-lg) / 2);
+
                 order: 0;
             }
             h2 {
@@ -82,16 +83,24 @@
             display: flex;
             flex-direction: column;
 
+            @include breakpoint(sm) {
+                padding-top: calc(var(--margin-standard-sm) / 2);
+                order: 1;
+            }
+            @include breakpoint(lg) {
+                padding-top: calc(var(--margin-standard-lg) / 2);
+
+                order: 0;
+            }
+
             h2 {
                 @include breakpoint(sm) {
                     padding: 0 2rem;
                     text-align: center;
-                    margin-top: 4rem;
                 }
                 @include breakpoint(lg) {
                     padding: 0 0 0 5.5rem;
                     text-align: right;
-                    margin-top: 0;
                 }
             }
             p {
