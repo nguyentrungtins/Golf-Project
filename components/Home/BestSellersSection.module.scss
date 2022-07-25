@@ -5,36 +5,54 @@
     width: 80%;
     margin: 0 auto;
 
+    @include breakpoint(sm) {
+        padding-top: var(--margin-standard-sm);
+    }
+
+    @include breakpoint(lg) {
+        padding-top: var(--margin-standard-lg);
+    }
+
     // HEADER
     .header {
         @include breakpoint(sm) {
-            padding: 4.5rem 0 3.375rem;
+            margin-bottom: calc(var(--margin-standard-sm) / 2);
         }
 
         @include breakpoint(lg) {
-            padding: 4.5rem 0;
+            margin-bottom: calc(var(--margin-standard-lg) / 2);
         }
 
+        h3,
         p {
             font-family: 'Lora', serif;
             text-align: center;
-            margin: 0;
-            color: rgba(0, 0, 0, 0.8);
+            color: var(--text-color);
         }
 
-        .mainHeader {
-            font-size: 3rem;
+        h3 {
+            font-size: var(--title-font-size);
+            font-weight: var(--title-font-weight);
+            margin-bottom: var(--margin-bottom-title-subtitle);
         }
 
-        .subHeader {
+        p {
             font-size: 1rem;
-            margin-top: 0.5rem;
+            font-style: italic;
+            font-weight: var(--title-font-weight);
         }
     }
 
     // CATEGORY
     .categories {
         display: flex;
+        @include breakpoint(sm) {
+            margin-bottom: calc(var(--margin-standard-sm) / 2);
+        }
+
+        @include breakpoint(lg) {
+            margin-bottom: calc(var(--margin-standard-lg) / 2);
+        }
 
         @include breakpoint(sm) {
             justify-content: space-between;
@@ -78,7 +96,14 @@
     // BUTTON
     .btnWrap {
         text-align: center;
-        margin-bottom: 5rem;
+
+        @include breakpoint(sm) {
+            margin-top: calc(var(--margin-standard-sm) / 2);
+        }
+
+        @include breakpoint(lg) {
+            margin-top: calc(var(--margin-standard-lg) / 2);
+        }
 
         button {
             font-size: 0.875rem;

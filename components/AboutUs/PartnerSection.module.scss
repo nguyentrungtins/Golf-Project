@@ -1,0 +1,60 @@
+@import '../../styles/mixin';
+.wrapper {
+    @include breakpoint(sm) {
+        width: 100%;
+        padding-top: var(--margin-standard-sm);
+    }
+
+    @include breakpoint(lg) {
+        width: var(--width-wrapper);
+        margin: 0 auto;
+        padding-top: var(--margin-standard-lg);
+    }
+
+    h3 {
+        font-family: 'Lora', serif;
+        font-size: var(--title-font-size);
+        font-weight: var(--title-font-weight);
+        text-align: center;
+        padding: 0 1rem;
+
+        @include breakpoint(sm) {
+            margin-bottom: calc(var(--margin-standard-sm) / 2);
+        }
+
+        @include breakpoint(lg) {
+            margin-bottom: calc(var(--margin-standard-lg) / 2);
+        }
+    }
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+
+    @include breakpoint(sm) {
+        margin: 0;
+    }
+
+    @include breakpoint(lg) {
+        margin: 0 -1rem;
+    }
+
+    .item {
+        padding: 0 1rem;
+
+        @include breakpoint(sm) {
+            width: 50%;
+            margin-bottom: var(--margin-standard-sm);
+        }
+
+        @include breakpoint(lg) {
+            width: 25%;
+            margin-bottom: var(--margin-standard-lg);
+        }
+
+        p {
+            text-align: center;
+        }
+    }
+}

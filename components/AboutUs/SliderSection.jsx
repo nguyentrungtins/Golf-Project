@@ -1,11 +1,7 @@
+import styles from './SliderSection.module.scss';
+import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import Slider from 'react-slick';
 import Image from 'next/image';
-
-import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
-
-import styles from './SliderSection.module.scss';
-
-const data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 const SliderSection = () => {
     const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
@@ -16,12 +12,14 @@ const SliderSection = () => {
         <BsChevronRight {...props} className={styles.nextIcon} />
     );
 
+    const data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
     const settings = {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 4,
+        slidesToShow: 3,
+        slidesToScroll: 3,
         initialSlide: 0,
         prevArrow: <SlickArrowLeft />,
         nextArrow: <SlickArrowRight />,
@@ -29,16 +27,16 @@ const SliderSection = () => {
             {
                 breakpoint: 992,
                 settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 4,
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
                 },
             },
             {
                 breakpoint: 768,
                 settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                    initialSlide: 3,
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 2,
                 },
             },
             {
@@ -52,41 +50,31 @@ const SliderSection = () => {
     };
 
     return (
-        <div className={styles.sliderContainer}>
+        <div className={styles.wrapper}>
             <Slider {...settings} className={styles.sliderInner}>
                 {data.map((item, index) => {
                     return (
                         <div className={styles.sliderItem} key={index}>
                             <div className={styles.imgWrap}>
                                 <Image
-                                    src="/images/home/best-sellers/1.png"
+                                    src="/images/about-us/member/image 31.png"
                                     alt="Image Product"
-                                    width={218}
-                                    height={202}
+                                    width={285}
+                                    height={285}
                                     layout="responsive"
                                 />
                             </div>
 
                             <div className={styles.info}>
                                 <p className={styles.name}>Driver SiM2</p>
-                                <p className={styles.desc}>Taylor made</p>
-                                <div className={styles.price}>
-                                    <span className={styles.currPrice}>
-                                        {new Intl.NumberFormat('vi-VN', {
-                                            style: 'currency',
-                                            currency: 'VND',
-                                        }).format(10000000)}
-                                    </span>
-                                    <span className={styles.oldPrice}>
-                                        {new Intl.NumberFormat('vi-VN', {
-                                            style: 'currency',
-                                            currency: 'VND',
-                                        }).format(10000000)}
-                                    </span>
-                                </div>
-                                <span className={styles.discount}>
-                                    Giảm 10%
-                                </span>
+                                <p className={styles.desc}>
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.
+                                    Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip
+                                    ex ea commodo consequat.
+                                </p>
                             </div>
                         </div>
                     );

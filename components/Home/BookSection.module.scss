@@ -1,9 +1,19 @@
+@import '../../styles/mixin';
+
 .container {
-    padding: 6rem 0;
+    @include breakpoint(sm) {
+        padding: var(--margin-standard-sm) 0;
+    }
+
+    @include breakpoint(lg) {
+        padding: var(--margin-standard-lg) 0;
+    }
+
     div {
         font-family: 'Lora', serif;
-        font-size: 3rem;
-        color: rgba(0, 0, 0, 0.8);
+        font-size: var(--title-font-size);
+        font-weight: var(--title-font-weight);
+        color: var(--text-color);
         text-align: center;
         text-decoration: underline;
     }
