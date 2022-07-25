@@ -12,13 +12,15 @@ const AboutUs = () => (
 
         {/* CONTENT */}
         <div className={styles.content}>
-            <Image
-                src="/images/about-us/1.png"
-                alt="about-us-image"
-                width={484}
-                height={588}
-                layout="intrinsic"
-            />
+            <div className={styles.imgWrap}>
+                <Image
+                    src="/images/about-us/1.png"
+                    alt="about-us-image"
+                    width={455}
+                    height={551}
+                    layout="responsive"
+                />
+            </div>
 
             <div className={styles.info}>
                 <p className={styles.infoHeader}>OUR STORY</p>

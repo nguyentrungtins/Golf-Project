@@ -35,9 +35,9 @@
             flex-direction: row;
         }
 
-        img {
+        .imgWrap {
             @include breakpoint(sm) {
-                // padding: 0 1rem !important;
+                width: 100%;
             }
             @include breakpoint(lg) {
                 width: 50%;
@@ -52,7 +52,7 @@
             }
             @include breakpoint(lg) {
                 width: 50%;
-                padding-left: 9.375rem;
+                padding: 0 0 0 9.375rem;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -71,7 +71,7 @@
                 font-size: 2.25rem;
                 color: rgba(0, 0, 0, 0.8);
                 font-weight: 400;
-                margin: 1.25rem 0;
+                margin: 2rem 0;
             }
 
             .infoDesc {
@@ -82,7 +82,7 @@
             }
 
             .nextbtn {
-                margin-top: 1.25rem;
+                margin-top: 2rem;
                 color: rgba(0, 0, 0, 0.3);
                 padding: 1.2rem 1.2rem 0.95rem 1.2rem;
                 border-radius: 50%;

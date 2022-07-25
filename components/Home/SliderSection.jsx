@@ -59,14 +59,18 @@ const SliderSection = () => {
                 {data.map((item, index) => {
                     return (
                         <div className={styles.sliderItem} key={index}>
-                            <Image
-                                src="/images/best-sellers/1.png"
-                                alt="Image Product"
-                                width={218}
-                                height={202}
-                            />
+                            <div className={styles.imgWrap}>
+                                <Image
+                                    src="/images/best-sellers/1.png"
+                                    alt="Image Product"
+                                    width={218}
+                                    height={202}
+                                    layout="responsive"
+                                />
+                            </div>
+
                             <div className={styles.info}>
-                                <p className={styles.name}>Driver SiM2 Max</p>
+                                <p className={styles.name}>Driver SiM2</p>
                                 <p className={styles.desc}>Taylor made</p>
                                 <div className={styles.priceAndEvaluate}>
                                     <p className={styles.price}>

@@ -47,20 +47,6 @@
                 transform: scale(1.08);
                 transition: all ease-out 0.4s;
             }
-            @include breakpoint(sm) {
-                width: 100%;
-                & > span {
-                    width: 100% !important;
-                }
-
-                & > span > span > img {
-                    width: 100% !important;
-                }
-            }
-
-            @include breakpoint(lg) {
-                width: inherit;
-            }
 
             .info {
                 .name {
@@ -68,12 +54,18 @@
                     font-weight: 600;
                     color: rgba(0, 0, 0, 0.8);
                     margin: 1.25rem 0 0.625rem 0;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
 
                 .desc {
                     font-size: 0.75rem;
                     color: rgba(0, 0, 0, 0.8);
                     margin: 0 0 1.25rem 0;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
 
                 .priceAndEvaluate {
