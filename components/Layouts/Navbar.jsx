@@ -78,19 +78,19 @@ const Navbar = ({ isNavTrans = false }) => {
                 <NavLink
                     name={'Dịch Vụ'}
                     position={'one'}
-                    isOnTop={positionOnTop}
+                    isOnTop={isNavTrans ? positionOnTop : false}
                 />
 
                 <NavLink
                     name={'Sản Phẩm'}
                     position={'two'}
-                    isOnTop={positionOnTop}
+                    isOnTop={isNavTrans ? positionOnTop : false}
                 />
 
                 <NavLink
                     name={'Khóa Học'}
                     position={'three'}
-                    isOnTop={positionOnTop}
+                    isOnTop={isNavTrans ? positionOnTop : false}
                 />
 
                 <li>

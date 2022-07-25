@@ -4,6 +4,7 @@
     // width: 59.875rem;
     width: 80%;
     margin: 0 auto;
+    margin-bottom: 72px;
 
     @include breakpoint(sm) {
         padding-top: var(--margin-standard-sm);
