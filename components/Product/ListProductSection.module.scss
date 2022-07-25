@@ -1,0 +1,107 @@
+.wrapper {
+    width: var(--width-wrapper);
+    margin: 0 auto;
+    padding-top: calc(var(--header-navbar-height) + var(--margin-standard-lg));
+
+    h3 {
+        font-size: var(--title-font-size);
+        font-weight: var(--title-font-weight);
+        text-align: center;
+        margin-bottom: calc(var(--margin-standard-lg) / 2);
+    }
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -1rem;
+}
+
+.col {
+    width: 25%;
+    padding: 0 1rem;
+    margin-bottom: calc(var(--margin-standard-lg) / 2);
+}
+
+.sliderItem {
+    cursor: pointer;
+    position: relative;
+
+    &:hover {
+        transform: scale(1.08);
+        transition: all ease-out 0.4s;
+    }
+
+    .info {
+        .name {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin: 1.25rem 0 0.625rem 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .desc {
+            font-size: 0.75rem;
+            color: var(--text-color);
+            margin: 0 0 0.625rem 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.875rem;
+            font-weight: 600;
+
+            .currPrice {
+                color: var(--red-color);
+            }
+
+            .oldPrice {
+                position: relative;
+                color: #707070;
+
+                &::after {
+                    content: '';
+                    width: 100%;
+                    height: 0.063rem;
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background-color: #707070;
+                }
+            }
+        }
+
+        .discount {
+            position: absolute;
+            top: 16px;
+            left: -4px;
+            font-size: 0.75rem;
+            background-color: var(--red-color);
+            color: var(--white-color);
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+            padding: 0 4px;
+            height: 1.6rem;
+            line-height: 1.6rem;
+
+            &::after {
+                content: '';
+                display: block;
+                border-top: 4px solid var(--red-color);
+                border-left: 4px solid transparent;
+                position: absolute;
+                top: 100%;
+                left: 0;
+            }
+        }
+    }
+}
