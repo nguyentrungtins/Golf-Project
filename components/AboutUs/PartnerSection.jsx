@@ -4,7 +4,7 @@ import styles from './PartnerSection.module.scss';
 const PartnerSection = () => {
     return (
         <div className={styles.wrapper}>
-            <h3>ĐỐI TÁC CỦA CHÚNG TÔI</h3>
+            <h2>ĐỐI TÁC CỦA CHÚNG TÔI</h2>
             <div className={styles.row}>
                 <div className={styles.item}>
                     <div>

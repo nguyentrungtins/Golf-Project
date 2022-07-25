@@ -8,7 +8,7 @@ const Golf3dSection = () => {
             {/* ROW */}
             <div className={styles.row}>
                 <div className={[styles.text, styles.left].join(' ')}>
-                    <h3>Track Your Progress</h3>
+                    <h2>Track Your Progress</h2>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore
@@ -45,7 +45,7 @@ const Golf3dSection = () => {
                     />
                 </div>
                 <div className={[styles.text, styles.right].join(' ')}>
-                    <h3>Round The Clock Tracking</h3>
+                    <h2>Round The Clock Tracking</h2>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore

@@ -6,8 +6,8 @@ const AboutUs = () => (
     <div className={styles.container}>
         {/* TITLE */}
         <div className={styles.title}>
-            <h3>Fortifies you.</h3>
-            <h3>Its Best, believe in.</h3>
+            <h2>Fortifies you.</h2>
+            <h2>Its Best, believe in.</h2>
         </div>
 
         {/* CONTENT */}
@@ -24,7 +24,7 @@ const AboutUs = () => (
 
             <div className={styles.info}>
                 <p className={styles.infoHeader}>OUR STORY</p>
-                <h4 className={styles.infoTitle}>About Us</h4>
+                <h3 className={styles.infoTitle}>About Us</h3>
                 <p className={styles.infoDesc}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                     do eiusmod tempor incididunt ut labore et dolore magna
