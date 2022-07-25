@@ -1,13 +1,14 @@
 @import './styles/mixin';
 
 .slick-slide > div {
-    margin: 0 2rem;
+    padding: 1rem 2rem;
 }
 .slick-list {
-    padding: 3.375rem 0;
+    // padding: 5rem 0;
     @include breakpoint(sm) {
         width: 100%;
         margin: 0;
+        // margin: 0 -2rem;
     }
     @include breakpoint(lg) {
         width: inherit;

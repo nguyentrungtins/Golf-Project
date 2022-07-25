@@ -8,23 +8,23 @@ const Golf3dSection = () => {
             {/* ROW */}
             <div className={styles.row}>
                 <div className={[styles.text, styles.left].join(' ')}>
-                    <div className={styles.title}>TRACK YOUR PROGRESS</div>
-                    <div className={styles.body}>
+                    <h3>Track Your Progress</h3>
+                    <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore
                         magna aliqua. Interdum consectetur libero id faucibus
                         nisl tincidunt.
-                    </div>
-                    <div className={styles.body}>
+                    </p>
+                    <p>
                         Nec feugiat nisl pretium fusce Lorem ipsum dolor sit
                         amet, consectetur adipiscing elit, sed do eiusmod tempor
                         incididunt ut labore et dolore magna aliqua. Interdum
                         consectetur libero id faucibus nisl.
-                    </div>
+                    </p>
                 </div>
                 <div className={[styles.image, styles.right].join(' ')}>
                     <Image
-                        src="/images/golf-3d/1.png"
+                        src="/images/home/golf-3d/1.png"
                         alt="golf 3d image"
                         width={544}
                         height={410}
@@ -37,7 +37,7 @@ const Golf3dSection = () => {
             <div className={styles.row} style={{ marginTop: '6rem' }}>
                 <div className={[styles.image, styles.left].join(' ')}>
                     <Image
-                        src="/images/golf-3d/2.png"
+                        src="/images/home/golf-3d/2.png"
                         alt="golf 3d image"
                         width={524}
                         height={399}
@@ -45,13 +45,13 @@ const Golf3dSection = () => {
                     />
                 </div>
                 <div className={[styles.text, styles.right].join(' ')}>
-                    <div className={styles.title}>ROUND THE CLOCK TRACKING</div>
-                    <div className={styles.body}>
+                    <h3>Round The Clock Tracking</h3>
+                    <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore
                         magna aliqua. Interdum consectetur libero id faucibus
                         nisl
-                    </div>
+                    </p>
                     <div className={styles.nextBtnWrap}>
                         <button className={styles.nextbtn}>
                             <BsArrowRight className={styles.nextBtnIcon} />

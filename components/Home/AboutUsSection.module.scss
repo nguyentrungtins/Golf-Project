@@ -4,21 +4,31 @@
     margin: 0 auto;
     @include breakpoint(sm) {
         width: 100%;
+        padding-top: var(--margin-standard-sm);
     }
 
     @include breakpoint(lg) {
         width: 80%;
+        padding-top: var(--margin-standard-lg);
     }
 
     // TITLE
     .title {
-        padding: 4.5rem 0;
+        @include breakpoint(sm) {
+            margin-bottom: calc(var(--margin-standard-sm) / 2);
+        }
 
-        p {
+        @include breakpoint(lg) {
+            margin-bottom: calc(var(--margin-standard-lg) / 2);
+        }
+
+        h3 {
             font-family: 'Lora', serif;
+            font-size: var(--title-font-size);
+            font-weight: var(--title-font-weight);
             text-align: center;
-            font-size: 3rem;
             margin: 0;
+            color: var(--text-color);
         }
     }
 
@@ -75,7 +85,7 @@
             }
 
             .infoDesc {
-                font-size: 0.875rem;
+                font-size: 1rem;
                 color: rgba(0, 0, 0, 0.6);
                 margin: 0;
                 line-height: 1.8;

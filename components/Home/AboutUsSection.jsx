@@ -6,15 +6,15 @@ const AboutUs = () => (
     <div className={styles.container}>
         {/* TITLE */}
         <div className={styles.title}>
-            <p>Fortifies you.</p>
-            <p>Its Best, believe in.</p>
+            <h3>Fortifies you.</h3>
+            <h3>Its Best, believe in.</h3>
         </div>
 
         {/* CONTENT */}
         <div className={styles.content}>
             <div className={styles.imgWrap}>
                 <Image
-                    src="/images/about-us/1.png"
+                    src="/images/home/about-us/1.png"
                     alt="about-us-image"
                     width={455}
                     height={551}
@@ -24,7 +24,7 @@ const AboutUs = () => (
 
             <div className={styles.info}>
                 <p className={styles.infoHeader}>OUR STORY</p>
-                <h2 className={styles.infoTitle}>About Us</h2>
+                <h4 className={styles.infoTitle}>About Us</h4>
                 <p className={styles.infoDesc}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                     do eiusmod tempor incididunt ut labore et dolore magna

@@ -1,5 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora&family=Merriweather:wght@300;400;700&family=Montserrat:wght@400;500;600;700&display=swap');
 @import 'mixin';
+
+:root {
+    --text-color: rgba(0, 0, 0, 0.8);
+    --white-color: #fff;
+    --red-color: #c81123;
+
+    --header-navbar-height: 6rem;
+    --margin-standard-sm: 5rem;
+    --margin-standard-lg: 6.25rem;
+    --width-wrapper: 80%;
+    --margin-bottom-title-subtitle: 0.4rem;
+
+    --title-font-size: 2.875rem;
+    --title-font-weight: 500;
+}
+
 html,
 body {
     padding: 0;
@@ -67,6 +83,8 @@ a {
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 ul,
 li {
