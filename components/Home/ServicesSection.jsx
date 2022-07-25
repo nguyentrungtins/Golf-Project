@@ -5,7 +5,7 @@ import Ball_XL from '../../public/Ball_XL.png';
 import ServiceCards from './ServiceCards';
 const ServicesSection = () => {
     return (
-        <section className={styles.sec}>
+        <section className={styles.sec} id="services">
             <div className={styles.head}>
                 <div className={styles.ball_icon}>
                     <Image
