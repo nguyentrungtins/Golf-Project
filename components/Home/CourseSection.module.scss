@@ -1,0 +1,75 @@
+@import '../../styles/mixin';
+
+.sec {
+    background-color: #00463b;
+    padding-left: 10%;
+    display: flex;
+    margin-bottom: 50px;
+    @include breakpoint(sm) {
+        flex-direction: column-reverse;
+        height: 60vh;
+        justify-content: center;
+    }
+
+    @include breakpoint(lg) {
+        justify-content: space-between;
+        flex-direction: row;
+        height: 687px;
+    }
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        @include breakpoint(sm) {
+            max-width: 100%;
+            gap: 20px;
+        }
+
+        @include breakpoint(lg) {
+            max-width: 40%;
+            gap: 40px;
+        }
+        > h1 {
+            font-size: 3rem;
+            font-family: 'Lora', serif;
+            font-weight: 100;
+            color: rgba($color: #fff, $alpha: 0.86);
+        }
+        > p {
+            font-size: 0.875rem;
+            color: rgba($color: #fff, $alpha: 0.7);
+            margin: 0;
+            line-height: 1.8;
+            @include breakpoint(sm) {
+                max-width: 80%;
+            }
+
+            @include breakpoint(lg) {
+                max-width: 70%;
+            }
+        }
+    }
+    .image {
+        @include breakpoint(sm) {
+            display: none;
+        }
+
+        @include breakpoint(lg) {
+            display: flex;
+        }
+
+        .img1 {
+            position: relative;
+            top: 5%;
+            right: -30px;
+            z-index: 99;
+        }
+        .img2 {
+            position: relative;
+            right: 0;
+            top: 14%;
+            right: 0;
+        }
+    }
+}

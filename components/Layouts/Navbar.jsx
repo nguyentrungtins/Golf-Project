@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import SublinkNav from './SubLinkNav';
 import NavLink from './NavLink';
 let lastScroll = 0;
-const Navbar = () => {
+const Navbar = ({ isNavTrans = false }) => {
     const [hambergerToggle, setHambergerToggle] = useState(false);
     const [scrollPositon, setscrollPositon] = useState(true);
     const [positionOnTop, setpositionOnTop] = useState(true);
@@ -23,16 +23,24 @@ const Navbar = () => {
         hambergerToggle ? styles.open : ''
     );
     const isActive = classnames(hambergerToggle ? styles.fade : '');
-
-    const isNavActive = classnames(
-        styles.nav,
-        scrollPositon & !positionOnTop ? styles.scrollUp : '',
-        !scrollPositon & !positionOnTop ? styles.scrollDown : '',
-        hambergerToggle ? styles.active : ''
-    );
+    let isNavActive;
+    if (isNavTrans) {
+        isNavActive = classnames(
+            styles.nav,
+            scrollPositon & !positionOnTop ? styles.scrollUp : '',
+            !scrollPositon & !positionOnTop ? styles.scrollDown : '',
+            hambergerToggle ? styles.active : ''
+        );
+    } else {
+        isNavActive = classnames(
+            styles.nav,
+            scrollPositon ? styles.scrollUp : '',
+            !scrollPositon ? styles.scrollDown : '',
+            hambergerToggle ? styles.active : ''
+        );
+    }
     const scrollHandler = () => {
         const currentScroll = window.scrollY;
-
         if (currentScroll <= 100) {
             setpositionOnTop(true);
             return;
@@ -43,10 +51,8 @@ const Navbar = () => {
         } else if (currentScroll >= lastScroll) {
             setscrollPositon(false);
             setpositionOnTop(false);
-            console.log('scroll down');
         }
-        console.log('current', currentScroll);
-        console.log('last', lastScroll);
+
         lastScroll = currentScroll;
     };
     useEffect(() => {

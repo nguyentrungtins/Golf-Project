@@ -1,0 +1,76 @@
+@import '../../styles/mixin';
+
+.sec {
+    display: flex;
+    width: 100%;
+    min-height: 80vh;
+    background-color: #00463b;
+    flex-direction: column;
+    position: relative;
+    margin-top: 72px;
+
+    @include breakpoint(sm) {
+        padding: 100px 2% 100px 2%;
+    }
+    @include breakpoint(lg) {
+        padding: 100px 10% 100px 10%;
+    }
+}
+
+.head {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    > h1 {
+        text-align: center;
+        color: #fff;
+        font-family: 'Lora', serif;
+        font-size: 3rem;
+        font-weight: 100;
+        letter-spacing: 1.5px;
+        margin: 15px 0 10px 0;
+        z-index: 999;
+    }
+    > p {
+        color: #fff;
+        text-align: center;
+        font-weight: 100;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .ball_icon {
+        position: absolute;
+
+        @include breakpoint(sm) {
+            top: 10px;
+            left: 0;
+        }
+        @include breakpoint(lg) {
+            top: 45px;
+            left: 10%;
+        }
+    }
+    .ball_icon_sm {
+        position: absolute;
+        top: 60px;
+        right: 10%;
+    }
+}
+
+.body {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+
+    @include breakpoint(sm) {
+        gap: 50px 10px;
+        justify-content: space-evenly;
+        margin-top: 50px;
+    }
+    @include breakpoint(lg) {
+        gap: 100px;
+        justify-content: space-evenly;
+        margin-top: 100px;
+    }
+}
