@@ -3,7 +3,7 @@ import styles from './ValueSection.module.scss';
 const ValueSection = () => {
     return (
         <div className={styles.wrapper}>
-            <h2>GIÁ TRỊ CỐT LÕI</h2>
+            <h2>Giá Trị Cốt Lõi</h2>
             <p>
                 &ldquo;Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna

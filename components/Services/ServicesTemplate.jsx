@@ -5,7 +5,7 @@ const ServicesTemplate = () => {
         <section>
             <div className={styles.secIntro}>
                 <div className={styles.intro}>
-                    <h2 className={styles.head}>Our Story</h2>
+                    <h2 className={styles.head}>Golf 3D</h2>
                     <p className={styles.body}>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Corporis iusto nam voluptatibus velit eius ullam fuga

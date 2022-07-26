@@ -3,17 +3,18 @@
     @include breakpoint(sm) {
         width: 100%;
         padding-top: var(--margin-standard-sm);
+        margin-bottom: 30px;
     }
 
     @include breakpoint(lg) {
         width: var(--width-wrapper);
         margin: 0 auto;
         padding-top: var(--margin-standard-lg);
+        margin-bottom: 50px;
     }
 
     h2 {
         font-family: 'Lora', serif;
-        font-size: var(--title-font-size);
         font-weight: var(--title-font-weight);
         color: var(--text-color);
         text-align: center;
@@ -21,10 +22,12 @@
 
         @include breakpoint(sm) {
             margin-bottom: calc(var(--margin-standard-sm) / 2);
+            font-size: 2.5rem;
         }
 
         @include breakpoint(lg) {
             margin-bottom: calc(var(--margin-standard-lg) / 2);
+            font-size: var(--title-font-size);
         }
     }
 }
@@ -32,6 +35,7 @@
 .row {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 
     @include breakpoint(sm) {
         margin: 0;
@@ -46,12 +50,10 @@
 
         @include breakpoint(sm) {
             width: 50%;
-            margin-bottom: var(--margin-standard-sm);
         }
 
         @include breakpoint(lg) {
             width: 25%;
-            margin-bottom: var(--margin-standard-lg);
         }
 
         p {
