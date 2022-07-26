@@ -30,17 +30,18 @@
             max-width: 40%;
             gap: 40px;
         }
-        > h1 {
+        > h2 {
             font-size: 3rem;
             font-family: 'Lora', serif;
             font-weight: 100;
             color: rgba($color: #fff, $alpha: 0.86);
         }
         > p {
-            font-size: 0.875rem;
+            font-size: 1rem;
             color: rgba($color: #fff, $alpha: 0.7);
             margin: 0;
             line-height: 1.8;
+            font-family: var(--mont);
             @include breakpoint(sm) {
                 max-width: 80%;
             }

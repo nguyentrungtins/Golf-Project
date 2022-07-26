@@ -23,7 +23,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    > h1 {
+    > h2 {
         text-align: center;
         color: #fff;
         font-family: 'Lora', serif;
@@ -37,7 +37,7 @@
         color: #fff;
         text-align: center;
         font-weight: 100;
-        font-family: 'Montserrat', sans-serif;
+        font-family: var(--mont);
     }
     .ball_icon {
         position: absolute;

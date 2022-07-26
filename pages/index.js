@@ -9,6 +9,7 @@ import FooterSection from '../components/Layouts/Footer';
 import Navbar from '../components/Layouts/Navbar.jsx';
 import ServicesSection from '../components/Home/ServicesSection';
 import CourseSection from '../components/Home/CourseSection.jsx';
+import Contact from '../components/Layouts/Contact.jsx';
 export default function Home() {
     return (
         <div>
@@ -17,7 +18,9 @@ export default function Home() {
                 <meta name="description" content="Golf" />
                 <link rel="icon" href="/small_logo.png" crossOrigin />
             </Head>
+
             <Navbar isNavTrans={true}></Navbar>
+            <Contact />
             <main>
                 <HomeSection />
                 <AboutUsSection />

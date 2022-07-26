@@ -10,7 +10,7 @@ const CourseSection = () => {
     return (
         <section className={styles.sec}>
             <div className={styles.content}>
-                <h1>JULIENNE</h1>
+                <h2>JULIENNE</h2>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                     do eiusmod tempor incididunt ut labore et dolore magna

@@ -33,11 +33,11 @@ const ServicesSection = () => {
                     layout="fixed"
                 />
 
-                <h1>
+                <h2>
                     Featured
                     <br />
                     Services That We Provide
-                </h1>
+                </h2>
                 <p>
                     Our goal is to provide with you all of the services
                     <br />
