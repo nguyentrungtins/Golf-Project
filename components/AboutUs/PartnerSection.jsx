@@ -4,7 +4,7 @@ import styles from './PartnerSection.module.scss';
 const PartnerSection = () => {
     return (
         <div className={styles.wrapper}>
-            <h2>ĐỐI TÁC CỦA CHÚNG TÔI</h2>
+            <h2>Đối Tác Của Chúng Tôi</h2>
             <div className={styles.row}>
                 <div className={styles.item}>
                     <div>
@@ -16,7 +16,6 @@ const PartnerSection = () => {
                             layout="responsive"
                         />
                     </div>
-                    <p>Behring Companies</p>
                 </div>
                 <div className={styles.item}>
                     <div>
@@ -28,7 +27,6 @@ const PartnerSection = () => {
                             layout="responsive"
                         />
                     </div>
-                    <p>Behring Companies</p>
                 </div>
                 <div className={styles.item}>
                     <div>
@@ -40,7 +38,6 @@ const PartnerSection = () => {
                             layout="responsive"
                         />
                     </div>
-                    <p>Behring Companies</p>
                 </div>
                 <div className={styles.item}>
                     <div>
@@ -52,7 +49,6 @@ const PartnerSection = () => {
                             layout="responsive"
                         />
                     </div>
-                    <p>Behring Companies</p>
                 </div>
                 <div className={styles.item}>
                     <div>
@@ -64,7 +60,6 @@ const PartnerSection = () => {
                             layout="responsive"
                         />
                     </div>
-                    <p>Behring Companies</p>
                 </div>
                 <div className={styles.item}>
                     <div>
@@ -76,7 +71,6 @@ const PartnerSection = () => {
                             layout="responsive"
                         />
                     </div>
-                    <p>Behring Companies</p>
                 </div>
             </div>
         </div>

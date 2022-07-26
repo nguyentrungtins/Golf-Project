@@ -55,26 +55,27 @@ const SliderSection = () => {
                 {data.map((item, index) => {
                     return (
                         <div className={styles.sliderItem} key={index}>
-                            <div className={styles.imgWrap}>
+                            <div
+                                className={styles.imgProfileWrap}
+                                style={{ overflow: 'hidden' }}
+                            >
                                 <Image
                                     src="/images/about-us/member/image 31.png"
                                     alt="Image Product"
                                     width={285}
                                     height={285}
                                     layout="responsive"
+                                    objectFit="cover"
                                 />
                             </div>
 
                             <div className={styles.info}>
-                                <p className={styles.name}>Driver SiM2</p>
+                                <p className={styles.name}>Johnny Depp </p>
                                 <p className={styles.position}>Manager</p>
                                 <p className={styles.desc}>
                                     Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip
-                                    ex ea commodo consequat.
+                                    incididunt ut labore et.
                                 </p>
                             </div>
                         </div>

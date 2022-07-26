@@ -4,9 +4,9 @@ import Image from 'next/image';
 const IntroSection = () => {
     return (
         <div className={styles.wrapper}>
-            <h2>CGV Golf</h2>
             <div className={styles.content}>
                 <div className={styles.body}>
+                    <h2>Why Us?</h2>
                     <p className={styles.para}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore

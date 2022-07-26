@@ -12,32 +12,38 @@
         padding-top: var(--margin-standard-lg);
     }
 
-    h2 {
+    > h2 {
         font-family: 'Lora', serif;
-        font-size: var(--title-font-size);
         font-weight: var(--title-font-weight);
         color: var(--text-color);
         text-align: center;
         margin-bottom: var(--margin-bottom-title-subtitle);
         padding: 0 1rem;
+        margin: 30px 0 30px 0;
+        @include breakpoint(sm) {
+            font-size: 2.5rem;
+        }
+
+        @include breakpoint(lg) {
+            font-size: var(--title-font-size);
+        }
     }
 
     .subtitle {
-        font-family: 'Lora', serif;
+        font-family: var(--mont);
         font-size: 1rem;
-        color: var(--text-color);
+        color: rgba(0, 0, 0, 0.6);
         font-weight: var(--title-font-weight);
         text-align: center;
         margin: 0 auto;
         line-height: 1.6;
-
         @include breakpoint(sm) {
             width: 100%;
             padding: 0 1rem;
         }
 
         @include breakpoint(lg) {
-            width: 50%;
+            width: 60%;
         }
     }
 }
