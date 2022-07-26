@@ -1,13 +1,12 @@
 import Slider from 'react-slick';
 import Image from 'next/image';
-
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 
-import styles from './SliderSection.module.scss';
+import styles from './ProductsSliderSection.module.scss';
 
 const data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-const SliderSection = () => {
+const ProductsSliderSection = () => {
     const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
         <BsChevronLeft {...props} className={styles.prevIcon} />
     );
@@ -52,11 +51,11 @@ const SliderSection = () => {
     };
 
     return (
-        <div className={styles.sliderContainer}>
-            <Slider {...settings} className={styles.sliderInner}>
+        <div className={styles.wrapper}>
+            <Slider {...settings} className={styles.slider}>
                 {data.map((item, index) => {
                     return (
-                        <div className={styles.sliderItem} key={index}>
+                        <div className={styles.item} key={index}>
                             <div className={styles.imgWrap}>
                                 <Image
                                     src="/images/home/best-sellers/1.png"
@@ -96,4 +95,4 @@ const SliderSection = () => {
     );
 };
 
-export default SliderSection;
+export default ProductsSliderSection;

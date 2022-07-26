@@ -1,0 +1,79 @@
+@import '../../styles/mixin';
+
+.wrapper {
+    ul {
+        border-bottom: 1px solid #d2d2d7;
+        display: flex;
+        @include breakpoint(sm) {
+            justify-content: space-between;
+        }
+        @include breakpoint(lg) {
+            justify-content: start;
+        }
+        li {
+            color: #86868b;
+            font-weight: 700;
+            display: inline-block;
+            padding: 0.875rem 1.25rem;
+            cursor: pointer;
+
+            @include breakpoint(sm) {
+                font-size: 0.875rem;
+            }
+            @include breakpoint(lg) {
+                font-size: 1.063rem;
+            }
+
+            & + li {
+                margin-left: 1rem;
+            }
+            &.active {
+                color: var(--primary-green-color);
+                border-bottom: 2px solid var(--primary-green-color);
+            }
+        }
+    }
+
+    .content {
+        display: none;
+        padding: 2rem;
+        &.active {
+            display: block;
+        }
+
+        h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            font-size: 0.875rem;
+            color: var(--text-color);
+            line-height: 1.6;
+            word-spacing: 1px;
+        }
+
+        .separate {
+            margin-bottom: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            tr {
+                border: 1px solid #ddd;
+                font-size: 0.875rem;
+                th {
+                    text-align: left;
+                }
+                th,
+                td {
+                    padding: 0.625rem 0.75rem;
+                }
+            }
+        }
+    }
+}

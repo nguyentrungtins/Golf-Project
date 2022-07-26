@@ -6,13 +6,13 @@
 
 .slick-list {
     // padding: 5rem 0;
+    width: 100%;
     @include breakpoint(sm) {
-        width: 100%;
-        margin: 0;
+        // margin: 0;
         // margin: 0 -2rem;
     }
     @include breakpoint(lg) {
-        width: inherit;
-        margin: 0 -1rem;
+        // width: 100%;
+        // margin: 0 -1rem;
     }
 }
