@@ -1,10 +1,9 @@
 .wrapper {
-    margin-bottom: 50px;
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--text-color);
-    padding: 10px 16px;
-    border-radius: 8px;
+    padding: 0.625rem 1rem;
+    border-radius: 0.5rem;
     border: 0.063rem solid rgba(0, 0, 0, 0.3);
     background-color: var(--white-color);
 
@@ -24,7 +23,12 @@
 
     .icon + .text,
     .text + .icon {
-        margin-left: 12px;
+        margin-left: 0.5rem;
+    }
+
+    .icon {
+        position: relative;
+        top: 0.125rem;
     }
 }
 
@@ -41,7 +45,7 @@
 }
 
 .rounded {
-    border-radius: 32px;
+    border-radius: 2rem;
     background-color: var(--white-color);
     border: 0.063rem solid rgba(0, 0, 0, 0.8);
     outline: none;
@@ -58,15 +62,15 @@
 
 .circle {
     border-radius: 50%;
-    color: rgba(0, 0, 0, 0.3);
-    padding: 1.2rem 1.2rem 0.95rem 1.2rem;
+    color: rgba(0, 0, 0, 0.4);
+    padding: 1.2rem 1.3rem 1.3rem 1rem;
     border-radius: 50%;
     border: 0.063rem solid rgba(0, 0, 0, 0.3);
     background-color: #fff;
 
     &:hover {
         color: rgb(255, 255, 255);
-        border: 1px solid rgba(255, 255, 255, 0.6);
+        border: 0.063rem solid rgba(255, 255, 255, 0.6);
         background-color: rgba(0, 0, 0, 0.6);
         cursor: pointer;
         transition: all linear 0.3s;
@@ -75,14 +79,14 @@
 }
 
 .active {
-    border: 1px solid var(--red-color);
+    border: 0.063rem solid var(--red-color);
     color: var(--red-color);
     background-color: rgba(238, 113, 104, 0.05);
 
     &:hover {
         background-color: rgba(238, 113, 104, 0.05);
         color: var(--red-color);
-        border: 1px solid var(--red-color);
+        border: 0.063rem solid var(--red-color);
         cursor: default;
     }
 }
@@ -93,9 +97,20 @@
 
 .lg {
     font-size: 1rem;
-    padding: 20px 36px;
+    padding: 1.25rem 2.25rem;
 }
 
 .custom {
     color: blue;
+}
+
+.gtheme {
+    color: rgba($color: #fff, $alpha: 0.7);
+    border: 0.063rem solid rgba($color: #fff, $alpha: 0.7);
+    background-color: rgba($color: #fff, $alpha: 0);
+    &:hover {
+        color: rgba($color: #000, $alpha: 0.6);
+        border: 0.063rem solid rgba($color: #000, $alpha: 0.6);
+        background-color: rgba($color: #fff, $alpha: 0.6);
+    }
 }

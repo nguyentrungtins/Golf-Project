@@ -12,7 +12,7 @@ const AboutUsPage = () => {
             <Head>
                 <title>C G V - Chúng tôi</title>
                 <meta name="description" content="Golf" />
-                <link rel="icon" href="/favicon.ico" crossOrigin />
+                <link rel="icon" href="/small_logo.png" crossOrigin />
             </Head>
             <Navbar />
             <IntroSection />

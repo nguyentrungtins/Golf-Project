@@ -67,6 +67,7 @@ const SliderSection = () => {
 
                             <div className={styles.info}>
                                 <p className={styles.name}>Driver SiM2</p>
+                                <p className={styles.position}>Manager</p>
                                 <p className={styles.desc}>
                                     Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit, sed do eiusmod tempor

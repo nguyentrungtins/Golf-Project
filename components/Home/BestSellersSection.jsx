@@ -7,6 +7,7 @@ import { FaDollarSign } from 'react-icons/fa';
 import { FiChevronDown } from 'react-icons/fi';
 import styles from './BestSellersSection.module.scss';
 import SliderSection from './SliderSection';
+import Button from '../Button';
 
 const BestSellers = () => {
     return (
@@ -37,10 +38,10 @@ const BestSellers = () => {
             <SliderSection />
 
             {/* BUTTON */}
-            <div className={styles.btnWrap}>
-                <button>
-                    SHOP NOW <CgArrowLongRight className={styles.btnIcon} />
-                </button>
+            <div className={styles.btnShopNow}>
+                <Button rounded rightIcon={<CgArrowLongRight />}>
+                    Shop now
+                </Button>
             </div>
         </div>
     );

@@ -14,12 +14,11 @@ const Button = ({
     lg,
     leftIcon,
     rightIcon,
+    gtheme,
 }) => {
     let props = {
         onClick,
     };
-
-    console.log('>>> ClassNAME: ', className);
 
     let classNames = [
         styles.wrapper,
@@ -31,6 +30,7 @@ const Button = ({
         disabled ? styles.disabled : '',
         sm ? styles.sm : '',
         lg ? styles.lg : '',
+        gtheme ? styles.gtheme : '',
     ].join(' ');
 
     let Component = 'button';
