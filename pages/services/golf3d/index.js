@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Navbar from '../../../components/Layouts/Navbar';
 import FooterSection from '../../../components/Layouts/Footer';
+import ServicesTemplate from '../../../components/Services/ServicesTemplate';
 const index = () => {
     return (
         <div>
@@ -10,7 +11,9 @@ const index = () => {
                 <link rel="icon" href="/small_logo.png" crossOrigin />
             </Head>
             <Navbar isNavTrans={true}></Navbar>
-            <main></main>
+            <main>
+                <ServicesTemplate />
+            </main>
 
             <footer>
                 <FooterSection />

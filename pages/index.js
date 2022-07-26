@@ -26,10 +26,11 @@ export default function Home() {
                 <CourseSection />
                 <Golf3dSection />
                 <BookSection />
-                <FooterSection />
             </main>
 
-            <footer></footer>
+            <footer>
+                <FooterSection />
+            </footer>
         </div>
     );
 }
