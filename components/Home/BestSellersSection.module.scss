@@ -1,16 +1,14 @@
 @import '../../styles/mixin';
 
 .container {
-    // width: 59.875rem;
-    width: 80%;
-    margin: 0 auto;
-
     @include breakpoint(sm) {
-        padding-top: var(--margin-standard-sm);
-        padding-bottom: var(--margin-standard-sm);
+        width: 100%;
+        padding: var(--margin-standard-sm) 1rem;
     }
 
     @include breakpoint(lg) {
+        width: 80%;
+        margin: 0 auto;
         padding-top: var(--margin-standard-lg);
         padding-bottom: var(--margin-standard-lg);
     }
@@ -94,45 +92,6 @@
         }
     }
 
-    // BUTTON
-    // .btnWrap {
-    //     text-align: center;
-
-    //     @include breakpoint(sm) {
-    //         margin-top: calc(var(--margin-standard-sm) / 2);
-    //     }
-
-    //     @include breakpoint(lg) {
-    //         margin-top: calc(var(--margin-standard-lg) / 2);
-    //     }
-
-    //     button {
-    //         font-size: 0.875rem;
-    //         font-weight: 600;
-    //         color: rgba(0, 0, 0, 0.8);
-    //         background-color: #fff;
-    //         border: 0.063rem solid rgba(0, 0, 0, 0.8);
-    //         outline: none;
-    //         border-radius: 1rem;
-    //         padding: 0.125rem 1rem 0.5rem 1rem;
-
-    //         .btnIcon {
-    //             position: relative;
-    //             top: 0.313rem;
-    //             margin-left: 0.25rem;
-    //             font-size: 1.25rem;
-    //         }
-
-    //         &:hover {
-    //             color: #fff;
-    //             border: 0.063rem solid rgba(255, 255, 255, 0.6);
-    //             background-color: rgba(0, 0, 0, 0.6);
-    //             cursor: pointer;
-    //             transition: all linear 0.3s;
-    //             will-change: color, background-color;
-    //         }
-    //     }
-    // }
     .btnShopNow {
         text-align: center;
         @include breakpoint(sm) {

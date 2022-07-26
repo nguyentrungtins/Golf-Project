@@ -1,13 +1,9 @@
-import Image from 'next/image';
-import Slider from 'react-slick';
-import { AiFillStar } from 'react-icons/ai';
-import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import { CgArrowLongRight } from 'react-icons/cg';
-import { FaDollarSign } from 'react-icons/fa';
 import { FiChevronDown } from 'react-icons/fi';
 import styles from './BestSellersSection.module.scss';
 import SliderSection from './SliderSection';
 import Button from '../Button';
+import ProductsSliderSection from '../Product/ProductsSliderSection';
 
 const BestSellers = () => {
     return (
@@ -35,7 +31,7 @@ const BestSellers = () => {
             </div>
 
             {/* PRODUCTS */}
-            <SliderSection />
+            <ProductsSliderSection />
 
             {/* BUTTON */}
             <div className={styles.btnShopNow}>
