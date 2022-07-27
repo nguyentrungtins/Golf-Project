@@ -1,0 +1,92 @@
+@import '../../../styles/mixin';
+.nav {
+    position: fixed;
+    width: 100%;
+    padding: 0 10%;
+    height: var(--header-navbar-height, 96px);
+    z-index: 9999;
+    background-color: rgba($color: #000000, $alpha: 0.2);
+    transition: all 300ms ease-in-out;
+
+    &.active {
+        background-color: rgba($color: #000000, $alpha: 1);
+    }
+    &.scrollDown {
+        transform: translate3d(0, -100%, 0);
+    }
+    &.scrollUp {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+            0 6px 6px rgba(0, 0, 0, 0.07);
+        background-color: rgba($color: #00463b, $alpha: 1);
+    }
+}
+
+.navItem {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: auto;
+
+    > li {
+        width: 100px;
+        font-family: 'Montserrat', serif;
+        color: rgba($color: #fff, $alpha: 0.8);
+        font-weight: 600;
+        text-align: center;
+        cursor: pointer;
+
+        transition: all 300ms ease-in-out;
+
+        &.tag {
+            &:hover {
+                color: #fff;
+            }
+
+            @include breakpoint(lg) {
+                &:nth-of-type(1),
+                &:nth-of-type(2),
+                &:nth-of-type(3) {
+                    justify-content: flex-start;
+                }
+                &:nth-of-type(5),
+                &:nth-of-type(6),
+                &:nth-of-type(7) {
+                    justify-content: flex-end;
+                }
+            }
+        }
+        div {
+            &.logo {
+                height: 100%;
+                display: flex;
+                @include breakpoint(sm) {
+                    width: 130px;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    p {
+                        margin: 0;
+                        color: white;
+                        font-size: 16px;
+                        letter-spacing: 6px;
+                    }
+                }
+                @include breakpoint(lg) {
+                    width: auto;
+                    align-items: center;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    padding-top: 3px;
+                    p {
+                        color: white;
+                        font-size: 13px;
+                        margin: 0;
+                        letter-spacing: 2px;
+                        margin-top: 2px;
+                    }
+                }
+            }
+        }
+    }
+}
