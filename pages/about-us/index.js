@@ -6,6 +6,7 @@ import MemberSection from '../../components/AboutUs/MemberSection.jsx';
 import ValueSection from '../../components/AboutUs/ValueSection.jsx';
 import PartnerSection from '../../components/AboutUs/PartnerSection.jsx';
 import DetailHead from '../../components/Templates/DetailHead.jsx';
+import Contact from '../../components/Layouts/Contact';
 
 const AboutUsPage = () => {
     const data = {
@@ -22,6 +23,7 @@ const AboutUsPage = () => {
             </Head>
             <Navbar isNavTrans={true} />
             <DetailHead headerTmp={data.headerTmp} bodyTmp={data.bodyTmp} />
+            <Contact />
             <IntroSection />
             <MemberSection />
             <ValueSection />

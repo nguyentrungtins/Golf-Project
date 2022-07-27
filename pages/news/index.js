@@ -1,7 +1,8 @@
 import Head from 'next/head';
 import Navbar from '../../components/Layouts/Navbar.jsx';
 import Footer from '../../components/Layouts/Footer';
-import LastestSection from '../../components/News/LastestSection.jsx';
+import NewsSection from '../../components/News/NewsSection.jsx';
+import Contact from '../../components/Layouts/Contact';
 
 const NewsPage = () => {
     return (
@@ -12,7 +13,8 @@ const NewsPage = () => {
                 <link rel="icon" href="/small_logo.png" crossOrigin />
             </Head>
             <Navbar />
-            <LastestSection />
+            <Contact />
+            <NewsSection />
             <Footer />
         </div>
     );
