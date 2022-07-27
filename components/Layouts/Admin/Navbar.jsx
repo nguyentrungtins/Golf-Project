@@ -36,7 +36,6 @@ const Navbar = ({ isNavTrans = false }) => {
         } else if (currentScroll < lastScroll) {
             setscrollPositon(true);
             setpositionOnTop(false);
-            console.log('scroll up');
         } else if (currentScroll >= lastScroll) {
             setscrollPositon(false);
             setpositionOnTop(false);
