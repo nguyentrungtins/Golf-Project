@@ -19,9 +19,9 @@
     }
 
     h2 {
-        font-family: 'Lora', serif;
-        font-size: var(--title-font-size);
-        font-weight: var(--title-font-weight);
+        font-family: var(--mont);
+        font-size: var(--title-font-size-sm);
+        font-weight: var(--title-font-weight-extraBold);
         color: var(--text-color);
 
         @include breakpoint(sm) {
