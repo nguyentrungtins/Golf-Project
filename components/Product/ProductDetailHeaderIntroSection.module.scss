@@ -2,9 +2,11 @@
 
 .row {
     display: flex;
+    align-items: center;
     @include breakpoint(sm) {
         flex-direction: column;
         margin-bottom: var(--margin-standard-sm);
+        gap: 20px;
     }
 
     @include breakpoint(lg) {
@@ -24,6 +26,7 @@
 }
 
 .images {
+    box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
     .slider {
         .prevIcon,
         .nextIcon {
