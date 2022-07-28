@@ -8,7 +8,7 @@ import { BsArrowRight } from 'react-icons/bs';
 import NextBtn from '../Button/NextBtn';
 const CourseSection = () => {
     return (
-        <section className={styles.sec}>
+        <section className={styles.sec} id="courses">
             <div className={styles.content}>
                 <h2>JULIENNE</h2>
                 <p>

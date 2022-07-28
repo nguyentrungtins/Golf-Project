@@ -48,7 +48,6 @@ const Navbar = ({ isNavTrans = false }) => {
         } else if (currentScroll < lastScroll) {
             setscrollPositon(true);
             setpositionOnTop(false);
-            console.log('scroll up');
         } else if (currentScroll >= lastScroll) {
             setscrollPositon(false);
             setpositionOnTop(false);
@@ -81,7 +80,7 @@ const Navbar = ({ isNavTrans = false }) => {
                     name={'Khóa Học'}
                     position={'three'}
                     isOnTop={isNavTrans ? positionOnTop : false}
-                    href={'/services'}
+                    href={'/#courses'}
                 />
 
                 <li>
@@ -99,12 +98,14 @@ const Navbar = ({ isNavTrans = false }) => {
                     </Link>
                 </li>
                 <li className={styles.tag}>
-                    <Link href="/">
+                    <Link href="#">
                         <a>Khuyến Mãi</a>
                     </Link>
                 </li>
                 <li className={styles.tag}>
-                    <a href="#">Tin Tức</a>
+                    <Link href="/news">
+                        <a>Tin Tức</a>
+                    </Link>
                 </li>
                 <li className={styles.tag}>
                     <Link href="/about-us">
@@ -118,23 +119,60 @@ const Navbar = ({ isNavTrans = false }) => {
                 </li>
             </ul>
             <ul className={hambergerTagStyles}>
-                <li className={isActive}>
-                    <a href="#">Dịch Vụ</a>
+                <li
+                    className={isActive}
+                    onClick={() => {
+                        setHambergerToggle(false);
+                    }}
+                >
+                    <Link href="/#services">
+                        <a>Dịch Vụ</a>
+                    </Link>
+                </li>
+                <li
+                    className={isActive}
+                    onClick={() => {
+                        setHambergerToggle(false);
+                    }}
+                >
+                    <Link href="/products">
+                        <a>Sản Phẩm</a>
+                    </Link>
+                </li>
+                <li
+                    className={isActive}
+                    onClick={() => {
+                        setHambergerToggle(false);
+                    }}
+                >
+                    <Link href="/#courses">
+                        <a>Khóa Học</a>
+                    </Link>
+                </li>
+                <li
+                    className={isActive}
+                    onClick={() => {
+                        setHambergerToggle(false);
+                    }}
+                >
+                    <Link href="/products/sale">
+                        <a>Khuyến Mãi</a>
+                    </Link>
+                </li>
+                <li
+                    className={isActive}
+                    onClick={() => {
+                        setHambergerToggle(false);
+                    }}
+                >
+                    <Link href="/news">
+                        <a>Tin Tức</a>
+                    </Link>
                 </li>
                 <li className={isActive}>
-                    <a href="#">Sản Phẩm</a>
-                </li>
-                <li className={isActive}>
-                    <a href="#">Khóa Học</a>
-                </li>
-                <li className={isActive}>
-                    <a href="#">Khuyến Mãi</a>
-                </li>
-                <li className={isActive}>
-                    <a href="#">Tin Tức</a>
-                </li>
-                <li className={isActive}>
-                    <a href="#">Chúng Tôi</a>
+                    <Link href="/about-us">
+                        <a>Chúng Tôi</a>
+                    </Link>
                 </li>
             </ul>
         </div>

@@ -1,83 +1,35 @@
 import styles from './ServicesTemplate.module.scss';
 import Image from 'next/image';
-const ServicesTemplate = () => {
+const ServicesTemplate = ({ content }) => {
+    const { title, titleDisc, head1, p1, imgPath, p2 } = content;
+    const paragraph1 = p1.map((content) => {
+        return <p>{content}</p>;
+    });
+    const paragraph2 = p2.map((content) => {
+        return <p>{content}</p>;
+    });
     return (
         <section>
             <div className={styles.secIntro}>
                 <div className={styles.intro}>
-                    <h2 className={styles.head}>Golf 3D</h2>
-                    <p className={styles.body}>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Corporis iusto nam voluptatibus velit eius ullam fuga
-                        quis explicabo vero quam, voluptatem facere
-                        consequuntur? Nemo consectetur dicta cum a consequatur
-                        quibusdam.
-                    </p>
+                    <h2 className={styles.head}>{title}</h2>
+                    <p className={styles.body}>{titleDisc}</p>
                 </div>
             </div>
             <div className={styles.detail}>
-                <h2>Why Chose Us</h2>
-                <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Deleniti facere quam sapiente eum itaque magni temporibus
-                    cum ab nobis unde illum, vero corrupti cupiditate
-                    exercitationem. Fugit nam ea voluptatibus omnis? Alias
-                    dolore facere quam quasi? Velit officiis impedit ut eligendi
-                    qui fugit tempora eaque, voluptate dolorem ipsa molestiae
-                    suscipit corrupti quibusdam quam vitae magni! Consectetur ad
-                    error alias vel voluptate.
-                </p>
-                <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Deleniti facere quam sapiente eum itaque magni temporibus
-                    cum ab nobis unde illum, vero corrupti cupiditate
-                    exercitationem. Fugit nam ea voluptatibus omnis? Alias
-                    dolore facere quam quasi? Velit officiis impedit ut eligendi
-                    qui fugit tempora eaque, voluptate dolorem ipsa molestiae
-                    suscipit corrupti quibusdam quam vitae magni! Consectetur ad
-                    error alias vel voluptate.
-                </p>
-                <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Deleniti facere quam sapiente eum itaque magni temporibus
-                    cum ab nobis unde illum, vero corrupti cupiditate
-                    exercitationem. Fugit nam ea voluptatibus omnis? Alias
-                    dolore facere quam quasi? Velit officiis impedit ut eligendi
-                    qui fugit tempora eaque, voluptate dolorem ipsa molestiae
-                    suscipit corrupti quibusdam quam vitae magni! Consectetur ad
-                    error alias vel voluptate.
-                </p>
+                <h2>{head1}</h2>
+                {paragraph1}
+
                 <div className={styles.imgDetail}>
                     <Image
-                        src="/images/home/golf-3d/2.png"
+                        src={imgPath}
                         alt="golfimage"
                         width={944}
                         height={640}
                         layout="responsive"
                     ></Image>
                 </div>
-
-                <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Deleniti facere quam sapiente eum itaque magni temporibus
-                    cum ab nobis unde illum, vero corrupti cupiditate
-                    exercitationem. Fugit nam ea voluptatibus omnis? Alias
-                    dolore facere quam quasi? Velit officiis impedit ut eligendi
-                    qui fugit tempora eaque, voluptate dolorem ipsa molestiae
-                    suscipit corrupti quibusdam quam vitae magni! Consectetur ad
-                    error alias vel voluptate.
-                </p>
-
-                <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Deleniti facere quam sapiente eum itaque magni temporibus
-                    cum ab nobis unde illum, vero corrupti cupiditate
-                    exercitationem. Fugit nam ea voluptatibus omnis? Alias
-                    dolore facere quam quasi? Velit officiis impedit ut eligendi
-                    qui fugit tempora eaque, voluptate dolorem ipsa molestiae
-                    suscipit corrupti quibusdam quam vitae magni! Consectetur ad
-                    error alias vel voluptate.
-                </p>
+                {paragraph2}
             </div>
         </section>
     );

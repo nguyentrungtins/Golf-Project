@@ -1,15 +1,14 @@
+import Link from 'next/link';
 import { useState } from 'react';
 import styles from './SubLinkNav.module.scss';
-const SubLinkLevel2 = ({ name, subName }) => {
+const SubLinkLevel2 = ({ name, subName, url }) => {
     let subLinkLV2;
     const [navLinkHover, setNavLinkHover] = useState(false);
 
     const navLinkMouseInHandler = () => {
-        console.log('On Mount In');
         setNavLinkHover(true);
     };
     const navLinkMouseOutHandler = () => {
-        console.log('On Mount Out');
         setNavLinkHover(false);
     };
     if (subName.length > 0) {
@@ -23,7 +22,9 @@ const SubLinkLevel2 = ({ name, subName }) => {
             onMouseEnter={navLinkMouseInHandler}
             onMouseLeave={navLinkMouseOutHandler}
         >
-            <a href="#">{name}</a>
+            <Link href={url}>
+                <a>{name}</a>
+            </Link>
 
             {navLinkHover && (
                 <ul className={styles.subLinkLV2}>

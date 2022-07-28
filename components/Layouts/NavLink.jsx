@@ -6,11 +6,9 @@ const NavLink = ({ position, name, isOnTop, href }) => {
     const [navLinkHover, setNavLinkHover] = useState(false);
 
     const navLinkMouseInHandler = () => {
-        console.log('On Mount In');
         setNavLinkHover(true);
     };
     const navLinkMouseOutHandler = () => {
-        console.log('On Mount Out');
         setNavLinkHover(false);
     };
     return (
