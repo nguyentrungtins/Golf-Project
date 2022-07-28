@@ -4,6 +4,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import '../styles/custom-slick-slider.scss';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
+import MainLayout from '../components/Layouts/Layout';
 function Loading() {
     const router = useRouter();
 
@@ -35,10 +36,10 @@ function Loading() {
 }
 function MyApp({ Component, pageProps }) {
     return (
-        <>
+        <MainLayout>
             <Loading />
             <Component {...pageProps} />
-        </>
+        </MainLayout>
     );
 }
 

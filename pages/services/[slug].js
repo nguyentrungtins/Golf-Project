@@ -1,26 +1,15 @@
-import Head from 'next/head';
 import Navbar from '../../components/Layouts/Navbar.jsx';
-import Footer from '../../components/Layouts/Footer';
-import Contact from '../../components/Layouts/Contact';
 import Template from '../../components/Services/ServicesTemplate';
 import path from 'path';
 import fs from 'fs/promises';
-import { useRouter } from 'next/router.js';
 
 const Services = (props) => {
     const { loadedContent } = props;
     return (
-        <div>
-            <Head>
-                <title>C G V - Chi tiết sản phẩm</title>
-                <meta name="description" content="Golf" />
-                <link rel="icon" href="/small_logo.png" crossOrigin />
-            </Head>
-            <Navbar />
-            <Contact />
+        <>
+            <Navbar isNavTrans={true} />
             <Template content={loadedContent} />
-            <Footer />
-        </div>
+        </>
     );
 };
 

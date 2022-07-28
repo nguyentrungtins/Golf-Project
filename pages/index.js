@@ -12,28 +12,15 @@ import CourseSection from '../components/Home/CourseSection.jsx';
 import Contact from '../components/Layouts/Contact.jsx';
 export default function Home() {
     return (
-        <div>
-            <Head>
-                <title>C G V</title>
-                <meta name="description" content="Golf" />
-                <link rel="icon" href="/small_logo.png" crossOrigin />
-            </Head>
-
+        <>
             <Navbar isNavTrans={true}></Navbar>
-            <Contact />
-            <main>
-                <HomeSection />
-                <AboutUsSection />
-                <ServicesSection />
-                <BestSellersSection />
-                <CourseSection />
-                <Golf3dSection />
-                <BookSection />
-            </main>
-
-            <footer>
-                <FooterSection />
-            </footer>
-        </div>
+            <HomeSection />
+            <AboutUsSection />
+            <ServicesSection />
+            <BestSellersSection />
+            <CourseSection />
+            <Golf3dSection />
+            <BookSection />
+        </>
     );
 }
