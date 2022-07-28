@@ -3,3 +3,8 @@
     width: var(--width-wrapper);
     margin: 0 auto;
 }
+.btnWrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: calc(var(--margin-standard-lg) / 2);
+}

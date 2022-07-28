@@ -4,7 +4,7 @@ export default function Document() {
     return (
         <Html style={{ scrollBehavior: 'smooth' }}>
             <Head>
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link
                     rel="preconnect"
                     href="https://fonts.gstatic.com"
@@ -15,6 +15,7 @@ export default function Document() {
                     rel="stylesheet"
                 />
 
+            /> */}
                 <script
                     src="https://upload-widget.cloudinary.com/global/all.js"
                     type="text/javascript"
@@ -23,6 +24,7 @@ export default function Document() {
             <body>
                 <Main />
                 <NextScript />
+                <div id="modal-root"></div>
             </body>
         </Html>
     );
