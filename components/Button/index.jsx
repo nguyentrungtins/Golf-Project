@@ -1,47 +1,42 @@
+import React from 'react';
 import styles from './Button.module.scss';
-import Link from 'next/link';
 
-const Button = ({
-    children,
-    className,
-    onClick,
-    home,
-    active,
-    rounded,
-    circle,
-    disabled,
-    sm,
-    lg,
-    leftIcon,
-    rightIcon,
-    gtheme,
-}) => {
-    let props = {
-        onClick,
+const Button = React.forwardRef((props, ref) => {
+    let ownProps = {
+        onClick: props.onClick,
     };
 
     let classNames = [
         styles.wrapper,
-        className ? styles[className] : '',
-        home ? styles.home : '',
-        active ? styles.active : '',
-        rounded ? styles.rounded : '',
-        circle ? styles.circle : '',
-        disabled ? styles.disabled : '',
-        sm ? styles.sm : '',
-        lg ? styles.lg : '',
-        gtheme ? styles.gtheme : '',
+        props.className ? styles[className] : null,
+        props.home ? styles.home : null,
+        props.active ? styles.active : null,
+        props.rounded ? styles.rounded : null,
+        props.circle ? styles.circle : null,
+        props.disabled ? styles.disabled : null,
+        props.sm ? styles.sm : null,
+        props.lg ? styles.lg : null,
+        props.gtheme ? styles.gtheme : null,
+        props.forIcon ? styles.forIcon : null,
     ].join(' ');
 
     let Component = 'button';
+    if (props.forLabel) {
+        Component = 'span';
+    }
 
     return (
-        <Component {...props} className={classNames}>
-            {leftIcon && <span className={styles.icon}>{leftIcon}</span>}
-            <span className={styles.text}>{children}</span>
-            {rightIcon && <span className={styles.icon}>{rightIcon}</span>}
+        <Component {...ownProps} ref={ref} className={classNames}>
+            {props.leftIcon && (
+                <span className={styles.icon}>{props.leftIcon}</span>
+            )}
+            <span className={styles.text}>{props.children}</span>
+            {props.rightIcon && (
+                <span className={styles.icon}>{props.rightIcon}</span>
+            )}
         </Component>
     );
-};
+});
 
+Button.displayName = 'MyCustomButtonComponent';
 export default Button;
