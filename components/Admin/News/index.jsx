@@ -8,7 +8,7 @@ const AdminNewsSection = () => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.btnWrap}>
-                <Link href="/admin/news/create-new">
+                <Link href="/admin/news/create">
                     <Button leftIcon={<BsPlusLg />}>Tạo tin mới</Button>
                 </Link>
             </div>

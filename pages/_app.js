@@ -34,6 +34,7 @@ function Loading() {
         )
     );
 }
+
 function MyApp({ Component, pageProps }) {
     return (
         <MainLayout>

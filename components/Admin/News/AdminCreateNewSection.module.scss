@@ -20,7 +20,6 @@
 .content {
     width: 70vw;
     min-width: 25rem;
-    height: 6.25rem;
     display: block;
     margin: auto;
     padding: 3.125rem 0;
@@ -75,6 +74,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: transparent;
 
     .btn {
         margin-right: 1rem;
