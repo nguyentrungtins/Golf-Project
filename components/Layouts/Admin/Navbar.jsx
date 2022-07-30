@@ -3,12 +3,10 @@ import Image from 'next/image';
 import Logo from '../../../public/Logo.png';
 import { useState, useEffect } from 'react';
 import classnames from 'classnames';
-import NavLink from '../NavLink';
 import Link from 'next/link';
 
 const Navbar = ({ isNavTrans = false }) => {
     let lastScroll = 0;
-    const [hambergerToggle, setHambergerToggle] = useState(false);
     const [scrollPositon, setscrollPositon] = useState(true);
     const [positionOnTop, setpositionOnTop] = useState(true);
 
@@ -17,15 +15,13 @@ const Navbar = ({ isNavTrans = false }) => {
         isNavActive = classnames(
             styles.nav,
             scrollPositon & !positionOnTop ? styles.scrollUp : '',
-            !scrollPositon & !positionOnTop ? styles.scrollDown : '',
-            hambergerToggle ? styles.active : ''
+            !scrollPositon & !positionOnTop ? styles.scrollDown : ''
         );
     } else {
         isNavActive = classnames(
             styles.nav,
             scrollPositon ? styles.scrollUp : '',
-            !scrollPositon ? styles.scrollDown : '',
-            hambergerToggle ? styles.active : ''
+            !scrollPositon ? styles.scrollDown : ''
         );
     }
     const scrollHandler = () => {
@@ -50,12 +46,14 @@ const Navbar = ({ isNavTrans = false }) => {
     return (
         <div className={isNavActive}>
             <ul className={styles.navItem}>
-                <li className={styles.tag}>
-                    <a href="#">Sản Phẩm</a>
-                </li>
+                <Link href="/admin/products">
+                    <li className={styles.tag}>
+                        <a>Sản Phẩm</a>
+                    </li>
+                </Link>
 
                 <li>
-                    <Link href="/">
+                    <Link href="/admin">
                         <div className={styles.logo}>
                             <Image
                                 src={Logo}
@@ -68,9 +66,11 @@ const Navbar = ({ isNavTrans = false }) => {
                         </div>
                     </Link>
                 </li>
-                <li className={styles.tag}>
-                    <a href="#">Tin Tức</a>
-                </li>
+                <Link href="/admin/bulletin">
+                    <li className={styles.tag}>
+                        <a href="#">Tin Tức</a>
+                    </li>
+                </Link>
             </ul>
         </div>
     );
