@@ -4,16 +4,15 @@ import AboutUsSection from '../components/Home/AboutUsSection';
 import BestSellersSection from '../components/Home/BestSellersSection';
 import Golf3dSection from '../components/Home/Golf3dSection';
 import BookSection from '../components/Home/BookSection';
-import FooterSection from '../components/Layouts/Footer';
+import Layout from '../components/Layouts/Layout';
 
-import Navbar from '../components/Layouts/Navbar.jsx';
 import ServicesSection from '../components/Home/ServicesSection';
 import CourseSection from '../components/Home/CourseSection.jsx';
-import Contact from '../components/Layouts/Contact.jsx';
+import NestedLayout from '../components/Layouts/NestedLayout.jsx';
+NestedLayout;
 export default function Home() {
     return (
         <>
-            <Navbar isNavTrans={true}></Navbar>
             <HomeSection />
             <AboutUsSection />
             <ServicesSection />
@@ -24,3 +23,11 @@ export default function Home() {
         </>
     );
 }
+
+Home.getLayout = function getLayout(page) {
+    return (
+        <Layout>
+            <NestedLayout>{page}</NestedLayout>
+        </Layout>
+    );
+};

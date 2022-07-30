@@ -1,4 +1,4 @@
-import Navbar from '../../components/Layouts/Navbar.jsx';
+import Navbar from '../../components/Layouts/Navbar/Navbar.jsx';
 import BulletinSection from '../../components/Bulletin/BulletinSection.jsx';
 
 const BulletinPage = () => {

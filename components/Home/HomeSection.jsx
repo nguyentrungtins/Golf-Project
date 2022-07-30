@@ -1,5 +1,4 @@
 import styles from './HomeSection.module.scss';
-import Navbar from '../Layouts/Navbar';
 import scrolldown from '../../public/scrolldown.png';
 import Image from 'next/image';
 const HomeSection = () => {

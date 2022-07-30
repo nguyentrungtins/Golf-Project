@@ -1,9 +1,10 @@
-import Navbar from '../../components/Layouts/Navbar.jsx';
 import IntroSection from '../../components/AboutUs/IntroSection.jsx';
 import MemberSection from '../../components/AboutUs/MemberSection.jsx';
 import ValueSection from '../../components/AboutUs/ValueSection.jsx';
 import PartnerSection from '../../components/AboutUs/PartnerSection.jsx';
 import DetailHead from '../../components/Templates/DetailHead.jsx';
+import NestedLayout from '../../components/Layouts/NestedLayout';
+import Layout from '../../components/Layouts/Layout';
 
 const AboutUsPage = () => {
     const data = {
@@ -13,7 +14,6 @@ const AboutUsPage = () => {
     };
     return (
         <>
-            <Navbar isNavTrans={true} />
             <DetailHead headerTmp={data.headerTmp} bodyTmp={data.bodyTmp} />
             <IntroSection />
             <MemberSection />
@@ -24,3 +24,11 @@ const AboutUsPage = () => {
 };
 
 export default AboutUsPage;
+
+AboutUsPage.getLayout = function getLayout(page) {
+    return (
+        <Layout>
+            <NestedLayout>{page}</NestedLayout>
+        </Layout>
+    );
+};

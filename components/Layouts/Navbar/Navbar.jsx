@@ -1,6 +1,6 @@
 import styles from './Navbar.module.scss';
 import Image from 'next/image';
-import Logo from '../../public/Logo.png';
+import Logo from '../../../public/Logo.png';
 import { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import SublinkNav from './SubLinkNav';
