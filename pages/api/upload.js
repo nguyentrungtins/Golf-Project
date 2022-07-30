@@ -6,9 +6,10 @@ export default async function handler(req, res) {
     try {
         const { src, options } = req.body;
         const uploadResult = await cloudinary.uploader.upload(src, options);
-        console.log('>>> Upload result: ', uploadResult);
-        return res.json({
+        // console.log('>>> Upload result: ', uploadResult);
+        return res.status(201).json({
             message: 'upload sucessfully',
+            url: uploadResult.secure_url,
         });
     } catch (error) {
         console.error(error);

@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import { BiBookmark } from 'react-icons/bi';
 import { BsChevronDown } from 'react-icons/bs';
-import styles from './NewsSection.module.scss';
+import styles from './BulletinSection.module.scss';
 import Button from '../Button';
-import ListNewsCardSection from './ListNewsCardSection';
+import ListBulletinCardSection from './ListBulletinCardSection';
 
-const NewsSection = () => {
+const BulletinSection = () => {
     return (
         <div className={styles.wrapper}>
             {/* LATEST */}
@@ -54,11 +54,11 @@ const NewsSection = () => {
                     <div className={styles.blur}></div>
                 </div>
             </div>
-            <ListNewsCardSection />
+            <ListBulletinCardSection />
 
             {/* TRENDING */}
             <h2>Xu hướng</h2>
-            <ListNewsCardSection />
+            <ListBulletinCardSection />
 
             <div className={styles.seeMoreBtn}>
                 <Button rounded rightIcon={<BsChevronDown />}>
@@ -69,4 +69,4 @@ const NewsSection = () => {
     );
 };
 
-export default NewsSection;
+export default BulletinSection;

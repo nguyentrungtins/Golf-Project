@@ -1,21 +1,21 @@
 import Head from 'next/head';
 import Navbar from '../../../components/Layouts/Admin/Navbar';
-import AdminCreateNewSection from '../../../components/Admin/News/AdminCreateNewSection';
+import AdminBulletinDetailSection from '../../../components/Admin/Bulletin/AdminBulletinDetailSection';
 
-const CreateNewPage = () => {
+const AdminNewsDetailPage = () => {
     return (
         <div>
             <Head>
-                <title>C G V ADMIN - Tạo tin mới</title>
+                <title>C G V ADMIN - Tin tức chi tiết</title>
                 <meta name="description" content="Golf" />
                 <link rel="icon" href="/small_logo.png" crossOrigin />
             </Head>
             <main>
                 <Navbar />
-                <AdminCreateNewSection />
+                <AdminBulletinDetailSection />
             </main>
         </div>
     );
 };
 
-export default CreateNewPage;
+export default AdminNewsDetailPage;

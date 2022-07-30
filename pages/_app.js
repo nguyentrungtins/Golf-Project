@@ -1,3 +1,4 @@
+import App from 'next/app';
 import '../styles/globals.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -43,5 +44,12 @@ function MyApp({ Component, pageProps }) {
         </MainLayout>
     );
 }
+
+// MyApp.getInitialProps = async (appContext) => {
+//     // calls page's `getInitialProps` and fills `appProps.pageProps`
+//     const appProps = await App.getInitialProps(appContext);
+
+//     return { ...appProps };
+// };
 
 export default MyApp;

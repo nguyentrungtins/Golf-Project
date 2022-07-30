@@ -51,10 +51,6 @@ const Navbar = ({ isNavTrans = false }) => {
         <div className={isNavActive}>
             <ul className={styles.navItem}>
                 <li className={styles.tag}>
-                    <a href="#">Dịch Vụ</a>
-                </li>
-
-                <li className={styles.tag}>
                     <a href="#">Sản Phẩm</a>
                 </li>
 
@@ -71,9 +67,6 @@ const Navbar = ({ isNavTrans = false }) => {
                             <p>CGV</p>
                         </div>
                     </Link>
-                </li>
-                <li className={styles.tag}>
-                    <a href="#">Khóa học</a>
                 </li>
                 <li className={styles.tag}>
                     <a href="#">Tin Tức</a>

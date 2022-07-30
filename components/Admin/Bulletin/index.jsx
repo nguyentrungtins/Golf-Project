@@ -1,20 +1,20 @@
 import Link from 'next/link';
-import styles from './AdminNewsSection.module.scss';
-import ListNewsCardSection from '../../News/ListNewsCardSection';
+import styles from './AdminBulletinSection.module.scss';
+import ListBulletinCardSection from '../../Bulletin/ListBulletinCardSection';
 import Button from '../../Button';
 import { BsPlusLg } from 'react-icons/bs';
 
-const AdminNewsSection = () => {
+const AdminBulletinSection = ({ bulletins }) => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.btnWrap}>
-                <Link href="/admin/news/create">
+                <Link href="/admin/bulletin/create">
                     <Button leftIcon={<BsPlusLg />}>Tạo tin mới</Button>
                 </Link>
             </div>
-            <ListNewsCardSection />
+            <ListBulletinCardSection bulletins={bulletins} />
         </div>
     );
 };
 
-export default AdminNewsSection;
+export default AdminBulletinSection;

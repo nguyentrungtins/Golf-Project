@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from './AdminNewDetailSection.module.scss';
+import styles from './AdminBulletinDetailSection.module.scss';
 import Button from '../../Button';
 import { BiArrowBack, BiEditAlt } from 'react-icons/bi';
 import { AiOutlineDelete } from 'react-icons/ai';
 import Modal from '../../Modal';
 
-const AdminNewDetailSection = () => {
+const AdminBulletinDetailSection = () => {
     const [showModal, setShowModal] = useState(false);
 
     return (
@@ -85,4 +85,4 @@ const AdminNewDetailSection = () => {
     );
 };
 
-export default AdminNewDetailSection;
+export default AdminBulletinDetailSection;

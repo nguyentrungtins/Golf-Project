@@ -1,12 +1,12 @@
 import Head from 'next/head';
 import Navbar from '../../../components/Layouts/Admin/Navbar';
-import AdminCreateNewSection from '../../../components/Admin/News/AdminCreateNewSection';
+import AdminCreateNewBulletinSection from '../../../components/Admin/Bulletin/AdminCreateNewBulletinSection';
 
 const CreateNewPage = () => {
     return (
         <>
             <Navbar />
-            <AdminCreateNewSection />
+            <AdminCreateNewBulletinSection />
         </>
     );
 };
