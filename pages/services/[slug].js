@@ -1,13 +1,12 @@
-import Navbar from '../../components/Layouts/Navbar.jsx';
 import Template from '../../components/Services/ServicesTemplate';
 import path from 'path';
 import fs from 'fs/promises';
-
+import NestedLayout from '../../components/Layouts/NestedLayout.jsx';
+import Layout from '../../components/Layouts/Layout.jsx';
 const Services = (props) => {
     const { loadedContent } = props;
     return (
         <>
-            <Navbar isNavTrans={true} />
             <Template content={loadedContent} />
         </>
     );
@@ -43,3 +42,11 @@ export async function getStaticPaths() {
 }
 
 export default Services;
+
+Services.getLayout = function getLayout(page) {
+    return (
+        <Layout>
+            <NestedLayout>{page}</NestedLayout>
+        </Layout>
+    );
+};
