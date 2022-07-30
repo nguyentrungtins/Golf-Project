@@ -9,7 +9,7 @@ const MainLayout = (props) => {
                 <meta name="description" content="Golf" />
                 <link rel="icon" href="/small_logo.png" crossOrigin />
             </Head>
-            <Contact />
+            {/* <Contact /> */}
             <main>{props.children}</main>
             <footer>
                 <FooterSection />

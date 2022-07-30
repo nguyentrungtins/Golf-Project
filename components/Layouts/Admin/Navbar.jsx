@@ -68,9 +68,11 @@ const Navbar = ({ isNavTrans = false }) => {
                         </div>
                     </Link>
                 </li>
-                <li className={styles.tag}>
-                    <a href="#">Tin Tức</a>
-                </li>
+                <Link href="/admin/bulletin">
+                    <li className={styles.tag}>
+                        <a href="#">Tin Tức</a>
+                    </li>
+                </Link>
             </ul>
         </div>
     );

@@ -1,17 +1,21 @@
 import { useState, useRef } from 'react';
-import { useRouter } from 'next/router';
-import styles from './AdminCreateNewBulletinSection.module.scss';
+import styles from './AdminUpdateBulletinSection.module.scss';
 import Button from '../../Button';
 import { BsUpload } from 'react-icons/bs';
 
-const AdminCreateNewBulletinSection = () => {
-    const router = useRouter();
+const AdminUpdateBulletinSection = ({ bulletin }) => {
     const textArticleRef = useRef();
 
-    const [bannerImageSrc, setBannerImageSrc] = useState({});
-    const [titleInput, setTitleInput] = useState('');
-    const [articleInput, setArticleInput] = useState('');
-    const [articleImages, setArticleImages] = useState([]);
+    const [banner, setBanner] = useState(bulletin ? bulletin.banner : {});
+    const [titleInput, setTitleInput] = useState(
+        bulletin ? bulletin.title : ''
+    );
+    const [articleInput, setArticleInput] = useState(
+        bulletin ? bulletin.article : ''
+    );
+    const [articleImages, setArticleImages] = useState(
+        bulletin ? bulletin.images : []
+    );
 
     // RANDOM STRING FUNCTION
     function randomString() {
@@ -32,7 +36,7 @@ const AdminCreateNewBulletinSection = () => {
             const reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onloadend = () => {
-                setBannerImageSrc({
+                setBanner({
                     src: reader.result,
                 });
             };
@@ -69,7 +73,7 @@ const AdminCreateNewBulletinSection = () => {
     };
 
     // ONCLICK EVENT ON CREATE BUTTON (SUBMIT)
-    const handleOnClickCreateButton = async () => {
+    const handleOnClickUpdateButton = async () => {
         // console.log('>>> bannerImageSrc: ', bannerImageSrc);
         // console.log('>>> titleInput: ', titleInput);
         // console.log('>>> articleInput: ', articleInput);
@@ -77,29 +81,34 @@ const AdminCreateNewBulletinSection = () => {
         const data = {
             title: titleInput,
             article: articleInput,
-            banner: bannerImageSrc,
+            banner: banner,
             images: articleImages,
         };
+        console.log(data);
 
-        const res = await fetch('http://localhost:3000/api/bulletin', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-type': 'application/json',
-            },
-        });
+        const res = await fetch(
+            `http://localhost:3000/api/bulletin/${bulletin._id.toString()}`,
+            {
+                method: 'PUT',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-type': 'application/json',
+                },
+            }
+        );
         const result = await res.json();
         console.log(result);
-        if (result.success) {
-            router.push('/admin/bulletin');
-        }
     };
 
     return (
         <div className={styles.wrapper}>
             <div
                 className={styles.banner}
-                style={{ backgroundImage: `url("${bannerImageSrc.src}")` }}
+                style={{
+                    backgroundImage: banner.url
+                        ? `url("${banner.url}")`
+                        : `url("${banner.src}")`,
+                }}
             >
                 <input
                     type="file"
@@ -144,10 +153,12 @@ const AdminCreateNewBulletinSection = () => {
                 <label htmlFor="image-upload" className={styles.btn}>
                     <Button forLabel>Chèn ảnh</Button>
                 </label>
-                <Button onClick={handleOnClickCreateButton}>Tạo tin</Button>
+                <Button onClick={handleOnClickUpdateButton}>
+                    Cập nhật tin
+                </Button>
             </div>
         </div>
     );
 };
 
-export default AdminCreateNewBulletinSection;
+export default AdminUpdateBulletinSection;

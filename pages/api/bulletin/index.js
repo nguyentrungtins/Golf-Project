@@ -20,6 +20,7 @@ const handle = async (req, res) => {
     // console.log('>>> Images: ', images);
     // console.log('>>> Method: ', method);
     // console.log('>>> Body: ', body);
+    // console.log(article);
     await dbConnect();
 
     switch (method) {
@@ -36,7 +37,7 @@ const handle = async (req, res) => {
             try {
                 // UPLOAD BANNER IMAGE
                 const uploadBannerData = {
-                    src: banner,
+                    src: banner.src,
                     options: {
                         folder: 'bulletin',
                         upload_preset: 'hdvpsezy',
@@ -57,7 +58,13 @@ const handle = async (req, res) => {
                             },
                         };
                         const imageUrl = await uploadImage(uploadImageData);
-                        newImages = [...newImages, imageUrl];
+                        newImages = [
+                            ...newImages,
+                            {
+                                name: image.name,
+                                url: imageUrl,
+                            },
+                        ];
                     })
                 );
 
@@ -65,12 +72,14 @@ const handle = async (req, res) => {
                 const data = {
                     title,
                     article,
-                    banner: bannerUrl,
+                    banner: {
+                        url: bannerUrl,
+                    },
                     images: newImages,
                 };
-                console.log('>>> Data: ', data);
+                // console.log('>>> Data: ', data);
                 const bulletin = await Bulletin.create(data);
-                console.log('>>> bulletin: ', bulletin);
+                // console.log('>>> bulletin: ', bulletin);
                 return res.status(201).json({ success: true, data: bulletin });
             } catch (error) {
                 console.error(error);

@@ -4,7 +4,13 @@ import styles from './Modal.module.scss';
 import Button from '../Button';
 import { VscChromeClose } from 'react-icons/vsc';
 
-const Modal = ({ show, onClose, children, title }) => {
+const Modal = ({
+    show,
+    onClose,
+    children,
+    title,
+    onClickConfirmDeleteButton,
+}) => {
     const [isBrowser, setIsBrowser] = useState(false);
 
     useEffect(() => {
@@ -30,7 +36,7 @@ const Modal = ({ show, onClose, children, title }) => {
                 <div className={styles.body}>{children}</div>
                 <div className={styles.footer}>
                     <Button onClick={handleClose}>Hủy bỏ</Button>
-                    <Button>Đồng ý</Button>
+                    <Button onClick={onClickConfirmDeleteButton}>Đồng ý</Button>
                 </div>
             </div>
         </div>
