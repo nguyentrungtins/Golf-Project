@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
+import { ToastContainer, toast } from 'react-toastify';
 import styles from './AdminCreateNewBulletinSection.module.scss';
 import Button from '../../Button';
 import { BsUpload } from 'react-icons/bs';
@@ -7,6 +8,7 @@ import { BsUpload } from 'react-icons/bs';
 const AdminCreateNewBulletinSection = () => {
     const router = useRouter();
     const textArticleRef = useRef();
+    const loadingToast = useRef();
 
     const [bannerImageSrc, setBannerImageSrc] = useState({});
     const [titleInput, setTitleInput] = useState('');
@@ -74,9 +76,32 @@ const AdminCreateNewBulletinSection = () => {
         // console.log('>>> titleInput: ', titleInput);
         // console.log('>>> articleInput: ', articleInput);
         // console.log('>>> articleImages: ', articleImages);
+
+        // VALIDATE DATA BEFORE FETCH API
+        if (!bannerImageSrc.src) {
+            toast.warn('Vui lòng chọn ảnh bìa');
+            return;
+        }
+        if (!titleInput) {
+            toast.warn('Vui lòng nhập tiêu đề tin');
+            return;
+        }
+        if (!articleInput) {
+            toast.warn('Vui lòng nhập nội dung tin');
+            return;
+        }
+
+        console.log('pass validate');
+
+        // ADD LOADING TOAST FOR HANDLE CALL API
+        loadingToast.current = toast.info('Đang xử lý tạo tin mới', {
+            autoClose: false,
+            closeOnClick: false,
+        });
+
         const data = {
-            title: titleInput,
-            article: articleInput,
+            title: titleInput.trim(),
+            article: articleInput.trim(),
             banner: bannerImageSrc,
             images: articleImages,
         };
@@ -88,10 +113,32 @@ const AdminCreateNewBulletinSection = () => {
                 'Content-type': 'application/json',
             },
         });
+
+        // GET RESULT FROM API
         const result = await res.json();
         console.log(result);
         if (result.success) {
-            router.push('/admin/bulletin');
+            // router.push('/admin/bulletin');
+
+            // SHOW SUCCESS TOAST
+            toast.update(loadingToast.current, {
+                render: result.message,
+                type: toast.TYPE.SUCCESS,
+                autoClose: 5000,
+                closeOnClick: true,
+                pauseOnHover: true,
+                onClose: () => router.push('/admin/bulletin'),
+            });
+            // toast.success(result.message);
+        } else {
+            // SHOW ERROR TOAST
+            toast.update(loadingToast.current, {
+                render: result.message,
+                type: toast.TYPE.ERROR,
+                autoClose: 5000,
+                closeOnClick: true,
+                pauseOnHover: true,
+            });
         }
     };
 
@@ -109,8 +156,8 @@ const AdminCreateNewBulletinSection = () => {
                     onChange={handleOnChangeBannerInput}
                 />
                 <label htmlFor="banner-upload" className={styles.btn}>
-                    <Button forLabel>
-                        <BsUpload />
+                    <Button forLabel rightIcon={<BsUpload />}>
+                        Chọn ảnh bìa
                     </Button>
                 </label>
             </div>
@@ -145,6 +192,14 @@ const AdminCreateNewBulletinSection = () => {
                     <Button forLabel>Chèn ảnh</Button>
                 </label>
                 <Button onClick={handleOnClickCreateButton}>Tạo tin</Button>
+                <ToastContainer
+                    position="bottom-right"
+                    theme="colored"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    closeOnClick
+                    pauseOnHover
+                />
             </div>
         </div>
     );

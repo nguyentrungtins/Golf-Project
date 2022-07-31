@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import PeoPleIcon from '../../public/people_icon.png';
 import styles from './ServiceCards.module.scss';
-import Link from 'next/link';
 const ServiceCards = () => {
     return (
         <div className={styles.card}>

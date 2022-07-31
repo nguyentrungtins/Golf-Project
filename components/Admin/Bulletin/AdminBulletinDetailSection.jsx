@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ToastContainer, toast } from 'react-toastify';
 import styles from './AdminBulletinDetailSection.module.scss';
 import Button from '../../Button';
 import { BiArrowBack, BiEditAlt } from 'react-icons/bi';
@@ -11,6 +12,7 @@ import Modal from '../../Modal';
 const AdminBulletinDetailSection = ({ bulletin }) => {
     const router = useRouter();
     const articleRef = useRef();
+    const loadingToast = useRef();
     const [showModal, setShowModal] = useState(false);
 
     // SET CONTENT OF ARTICLE
@@ -62,16 +64,43 @@ const AdminBulletinDetailSection = ({ bulletin }) => {
 
     // ONCLICK ON CONFIRM DELETE BULLETIN BUTTON
     const handleOnClickDeleteBulletin = async () => {
-        const response = await fetch(
-            `http://localhost:3000/api/bulletin/${bulletin._id.toString()}`,
-            {
-                method: 'DELETE',
+        if (bulletin._id) {
+            // ADD LOADING TOAST FOR HANDLE CALL API
+            loadingToast.current = toast.info('Đang xử lý xóa tin', {
+                autoClose: false,
+                closeOnClick: false,
+            });
+
+            const response = await fetch(
+                `http://localhost:3000/api/bulletin/${bulletin._id.toString()}`,
+                {
+                    method: 'DELETE',
+                }
+            );
+
+            // GET RESULT FROM API
+            const result = await response.json();
+            console.log(result);
+            if (result.success) {
+                // SHOW SUCCESS TOAST
+                toast.update(loadingToast.current, {
+                    render: result.message,
+                    type: toast.TYPE.SUCCESS,
+                    autoClose: 5000,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    onClose: () => router.push('/admin/bulletin'),
+                });
+            } else {
+                // SHOW ERROR TOAST
+                toast.update(loadingToast.current, {
+                    render: result.message,
+                    type: toast.TYPE.ERROR,
+                    autoClose: 5000,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                });
             }
-        );
-        const result = await response.json();
-        console.log(result);
-        if (result.success) {
-            router.push('/admin/bulletin');
         }
     };
 
@@ -121,6 +150,14 @@ const AdminBulletinDetailSection = ({ bulletin }) => {
                 Hành động này không thể khôi phục. Bạn chắc chắn muốn xóa tin
                 này?
             </Modal>
+            <ToastContainer
+                position="bottom-right"
+                theme="colored"
+                autoClose={5000}
+                hideProgressBar={false}
+                closeOnClick
+                pauseOnHover
+            />
         </div>
     );
 };

@@ -1,10 +1,12 @@
 import { useState, useRef } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import styles from './AdminUpdateBulletinSection.module.scss';
 import Button from '../../Button';
 import { BsUpload } from 'react-icons/bs';
 
 const AdminUpdateBulletinSection = ({ bulletin }) => {
     const textArticleRef = useRef();
+    const loadingToast = useRef();
 
     const [banner, setBanner] = useState(bulletin ? bulletin.banner : {});
     const [titleInput, setTitleInput] = useState(
@@ -78,9 +80,28 @@ const AdminUpdateBulletinSection = ({ bulletin }) => {
         // console.log('>>> titleInput: ', titleInput);
         // console.log('>>> articleInput: ', articleInput);
         // console.log('>>> articleImages: ', articleImages);
+
+        // VALIDATE DATA BEFORE FETCH API
+        if (!titleInput) {
+            toast.warn('Vui lòng nhập tiêu đề tin');
+            return;
+        }
+        if (!articleInput) {
+            toast.warn('Vui lòng nhập nội dung tin');
+            return;
+        }
+
+        console.log('pass validate');
+
+        // ADD LOADING TOAST FOR HANDLE CALL API
+        loadingToast.current = toast.info('Đang xử lý cập nhật tin', {
+            autoClose: false,
+            closeOnClick: false,
+        });
+
         const data = {
-            title: titleInput,
-            article: articleInput,
+            title: titleInput.trim(),
+            article: articleInput.trim(),
             banner: banner,
             images: articleImages,
         };
@@ -96,8 +117,28 @@ const AdminUpdateBulletinSection = ({ bulletin }) => {
                 },
             }
         );
+
+        // GET RESULT FROM API
         const result = await res.json();
-        console.log(result);
+        if (result.success) {
+            // SHOW SUCCESS TOAST
+            toast.update(loadingToast.current, {
+                render: result.message,
+                type: toast.TYPE.SUCCESS,
+                autoClose: 5000,
+                closeOnClick: true,
+                pauseOnHover: true,
+            });
+        } else {
+            // SHOW ERROR TOAST
+            toast.update(loadingToast.current, {
+                render: result.message,
+                type: toast.TYPE.ERROR,
+                autoClose: 5000,
+                closeOnClick: true,
+                pauseOnHover: true,
+            });
+        }
     };
 
     return (
@@ -156,6 +197,14 @@ const AdminUpdateBulletinSection = ({ bulletin }) => {
                 <Button onClick={handleOnClickUpdateButton}>
                     Cập nhật tin
                 </Button>
+                <ToastContainer
+                    position="bottom-right"
+                    theme="colored"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    closeOnClick
+                    pauseOnHover
+                />
             </div>
         </div>
     );

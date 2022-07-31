@@ -5,7 +5,6 @@ import Img2 from '../../public/img2.png';
 
 import Button from '../Button';
 import { BsArrowRight } from 'react-icons/bs';
-import NextBtn from '../Button/NextBtn';
 const CourseSection = () => {
     return (
         <section className={styles.sec} id="courses">

@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { BsArrowRight } from 'react-icons/bs';
 import styles from './AboutUsSection.module.scss';
 import Button from '../Button';

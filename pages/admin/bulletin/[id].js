@@ -18,13 +18,17 @@ import AdminBulletinDetailSection from '../../../components/Admin/Bulletin/Admin
 
 export const getServerSideProps = async (context) => {
     const id = context.params.id;
-    const response = await fetch(`http://localhost:3000/api/bulletin/${id}`);
-    const result = await response.json();
-    return {
-        props: {
-            bulletin: result.data,
-        },
-    };
+    if (id) {
+        const response = await fetch(
+            `http://localhost:3000/api/bulletin/${id}`
+        );
+        const result = await response.json();
+        return {
+            props: {
+                bulletin: result.data,
+            },
+        };
+    }
 };
 
 const AdminNewsDetailPage = ({ bulletin }) => {

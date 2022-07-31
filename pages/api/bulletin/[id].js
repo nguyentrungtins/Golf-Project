@@ -37,6 +37,18 @@ export default async function handler(req, res) {
         case 'PUT':
             try {
                 const data = req.body;
+                if (
+                    !data.title ||
+                    data.title === '' ||
+                    !data.article ||
+                    data.article === ''
+                ) {
+                    return res.status(500).json({
+                        success: false,
+                        message: 'Dữ liệu không hợp lệ',
+                    });
+                }
+
                 // CHECK BANNER IS CHANGED
                 // IF BANNER HAS SRC PROPERTY -> BANNER CHANGED -> UPLOAD NEW BANNER
                 if (data.banner.src) {
@@ -85,25 +97,40 @@ export default async function handler(req, res) {
                     runValidators: true,
                 });
                 if (!bulletin) {
-                    return res.status(400).json({ success: false });
+                    return res.status(400).json({
+                        success: false,
+                        message: 'Cập nhật tin thất bại',
+                    });
                 }
-                return res.status(200).json({ success: true, data: bulletin });
+                return res.status(200).json({
+                    success: true,
+                    data: bulletin,
+                    message: 'Cập nhật tin thành công',
+                });
             } catch (error) {
-                return res.status(400).json({ success: false });
+                return res
+                    .status(400)
+                    .json({ success: false, message: 'Cập nhật tin thất bại' });
             }
 
         case 'DELETE':
             try {
                 const deletedBulletin = await Bulletin.deleteOne({ _id: id });
                 if (!deletedBulletin) {
-                    return res.status(400).json({ success: false });
+                    return res
+                        .status(400)
+                        .json({ success: false, message: 'Xóa tin thất bại' });
                 }
-                return res.status(200).json({ success: true, data: {} });
+                return res
+                    .status(200)
+                    .json({ success: true, message: 'Xóa tin thành công' });
             } catch (error) {
                 res.status(400).json({ success: false });
             }
 
         default:
-            return res.status(400).json({ success: false });
+            return res
+                .status(400)
+                .json({ success: false, message: 'Xóa tin thất bại' });
     }
 }

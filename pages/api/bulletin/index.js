@@ -1,6 +1,14 @@
 import dbConnect from '../../../lib/dbConnect';
 import Bulletin from '../../../models/Bulletin';
 
+export const config = {
+    api: {
+        bodyParser: {
+            sizeLimit: '25mb', // Set desired value here
+        },
+    },
+};
+
 const uploadImage = async (bodyData) => {
     const response = await fetch('http://localhost:3000/api/upload', {
         method: 'POST',
@@ -32,8 +40,20 @@ const handle = async (req, res) => {
                 return res.status(400).json({ success: false });
             }
         case 'POST':
-            // console.log('go here ...');
-            // break;
+            if (
+                !title ||
+                title === '' ||
+                !article ||
+                article === '' ||
+                !banner ||
+                !banner.src ||
+                banner.src === ''
+            ) {
+                return res.status(500).json({
+                    success: false,
+                    message: 'Dữ liệu không hợp lệ',
+                });
+            }
             try {
                 // UPLOAD BANNER IMAGE
                 const uploadBannerData = {
@@ -70,8 +90,8 @@ const handle = async (req, res) => {
 
                 // CREATE NEW BULLETIN TO DB
                 const data = {
-                    title,
-                    article,
+                    title: title.trim(),
+                    article: article.trim(),
                     banner: {
                         url: bannerUrl,
                     },
@@ -80,10 +100,16 @@ const handle = async (req, res) => {
                 // console.log('>>> Data: ', data);
                 const bulletin = await Bulletin.create(data);
                 // console.log('>>> bulletin: ', bulletin);
-                return res.status(201).json({ success: true, data: bulletin });
+                return res.status(201).json({
+                    success: true,
+                    data: bulletin,
+                    message: 'Tạo tin mới thành công',
+                });
             } catch (error) {
                 console.error(error);
-                return res.status(500).json({ success: false });
+                return res
+                    .status(500)
+                    .json({ success: false, message: 'Tạo tin mới thất bại' });
             }
     }
 };
