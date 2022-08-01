@@ -94,9 +94,7 @@ function AuthForm() {
                                 </label>
                             </div>
                         </div>
-                        {result.error && (
-                            <p className={classes.error}>{message}</p>
-                        )}
+                        {isError && <p className={classes.error}>{message}</p>}
 
                         <button type="submit" className={classes.cta__btn}>
                             Log In

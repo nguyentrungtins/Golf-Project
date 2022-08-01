@@ -5,11 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../styles/custom-slick-slider.scss';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-<<<<<<< HEAD
 import { Provider } from 'next-auth/client';
 
-=======
->>>>>>> 2a019677134266aa2d054fcc921e666fe4deebe6
 function Loading() {
     const router = useRouter();
 
