@@ -11,8 +11,8 @@ function AuthForm() {
     const passwordInputRef = useRef(null);
 
     const [isLogin, setIsLogin] = useState(true);
-    const [isError, setIsError] = useState(true);
-
+    const [isError, setIsError] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
     const router = useRouter();
 
     function switchAuthModeHandler() {
@@ -36,14 +36,16 @@ function AuthForm() {
 
             if (!result.error) {
                 // set some auth state
+
                 router.replace('/admin');
+            } else {
+                setIsError(true);
+                setErrorMsg(result.error);
             }
         } else {
             try {
                 const result = await createUser(enteredEmail, enteredPassword);
-            } catch (error) {
-                setIsError(error);
-            }
+            } catch (error) {}
         }
     }
 
@@ -94,9 +96,7 @@ function AuthForm() {
                                 </label>
                             </div>
                         </div>
-                        {result.error && (
-                            <p className={classes.error}>{message}</p>
-                        )}
+                        {isError && <p className={classes.error}>{errorMsg}</p>}
 
                         <button type="submit" className={classes.cta__btn}>
                             Log In

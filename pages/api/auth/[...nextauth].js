@@ -17,7 +17,6 @@ export default NextAuth({
                 const user = await User.findOne({
                     email: credentials.email,
                 });
-                console.log(user);
 
                 if (!user) {
                     throw new Error('No user found!');
@@ -29,7 +28,7 @@ export default NextAuth({
                 );
 
                 if (!isValid) {
-                    throw new Error('Could not log you in!');
+                    throw new Error('Invalid Password!');
                 }
 
                 return { email: user.email };
