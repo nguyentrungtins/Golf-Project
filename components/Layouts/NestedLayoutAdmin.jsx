@@ -1,5 +1,5 @@
 import Navbar from './Admin/Navbar';
-const NestedLayout = (props) => {
+const NestedLayoutAdmin = (props) => {
     return (
         <>
             <Navbar />
@@ -7,4 +7,4 @@ const NestedLayout = (props) => {
         </>
     );
 };
-export default NestedLayout;
+export default NestedLayoutAdmin;

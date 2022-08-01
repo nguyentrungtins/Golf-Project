@@ -1,7 +1,6 @@
 import { CgArrowLongRight } from 'react-icons/cg';
 import { FiChevronDown } from 'react-icons/fi';
 import styles from './BestSellersSection.module.scss';
-import SliderSection from './SliderSection';
 import Button from '../Button';
 import ProductsSliderSection from '../Product/ProductsSliderSection';
 

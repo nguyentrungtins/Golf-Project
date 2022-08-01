@@ -1,6 +1,6 @@
 import styles from './BookSection.module.scss';
 
-const Book = () => {
+const BookSection = () => {
     return (
         <div className={styles.container}>
             <div>
@@ -13,4 +13,4 @@ const Book = () => {
     );
 };
 
-export default Book;
+export default BookSection;

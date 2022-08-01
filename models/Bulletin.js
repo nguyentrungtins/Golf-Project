@@ -9,7 +9,7 @@ const BulletinSchema = new mongoose.Schema(
             type: String,
         },
         banner: {
-            type: String,
+            type: Object,
         },
         images: {
             type: Array,

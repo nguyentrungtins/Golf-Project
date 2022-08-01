@@ -1,7 +1,7 @@
 import Contact from './Contact';
 import FooterSection from './Footer';
 import Navbar from './Navbar/Navbar';
-const NestedLayout = (props) => {
+const NestedLayout2 = (props) => {
     return (
         <>
             <Navbar />
@@ -13,4 +13,4 @@ const NestedLayout = (props) => {
         </>
     );
 };
-export default NestedLayout;
+export default NestedLayout2;

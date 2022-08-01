@@ -1,19 +1,23 @@
 import { useState, useRef } from 'react';
-import { useRouter } from 'next/router';
 import { ToastContainer, toast } from 'react-toastify';
-import styles from './AdminCreateNewBulletinSection.module.scss';
+import styles from './AdminUpdateBulletinSection.module.scss';
 import Button from '../../Button';
 import { BsUpload } from 'react-icons/bs';
 
-const AdminCreateNewBulletinSection = () => {
-    const router = useRouter();
+const AdminUpdateBulletinSection = ({ bulletin }) => {
     const textArticleRef = useRef();
     const loadingToast = useRef();
 
-    const [bannerImageSrc, setBannerImageSrc] = useState({});
-    const [titleInput, setTitleInput] = useState('');
-    const [articleInput, setArticleInput] = useState('');
-    const [articleImages, setArticleImages] = useState([]);
+    const [banner, setBanner] = useState(bulletin ? bulletin.banner : {});
+    const [titleInput, setTitleInput] = useState(
+        bulletin ? bulletin.title : ''
+    );
+    const [articleInput, setArticleInput] = useState(
+        bulletin ? bulletin.article : ''
+    );
+    const [articleImages, setArticleImages] = useState(
+        bulletin ? bulletin.images : []
+    );
 
     // RANDOM STRING FUNCTION
     function randomString() {
@@ -34,7 +38,7 @@ const AdminCreateNewBulletinSection = () => {
             const reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onloadend = () => {
-                setBannerImageSrc({
+                setBanner({
                     src: reader.result,
                 });
             };
@@ -71,17 +75,13 @@ const AdminCreateNewBulletinSection = () => {
     };
 
     // ONCLICK EVENT ON CREATE BUTTON (SUBMIT)
-    const handleOnClickCreateButton = async () => {
+    const handleOnClickUpdateButton = async () => {
         // console.log('>>> bannerImageSrc: ', bannerImageSrc);
         // console.log('>>> titleInput: ', titleInput);
         // console.log('>>> articleInput: ', articleInput);
         // console.log('>>> articleImages: ', articleImages);
 
         // VALIDATE DATA BEFORE FETCH API
-        if (!bannerImageSrc.src) {
-            toast.warn('Vui lòng chọn ảnh bìa');
-            return;
-        }
         if (!titleInput) {
             toast.warn('Vui lòng nhập tiêu đề tin');
             return;
@@ -94,7 +94,7 @@ const AdminCreateNewBulletinSection = () => {
         console.log('pass validate');
 
         // ADD LOADING TOAST FOR HANDLE CALL API
-        loadingToast.current = toast.info('Đang xử lý tạo tin mới', {
+        loadingToast.current = toast.info('Đang xử lý cập nhật tin', {
             autoClose: false,
             closeOnClick: false,
         });
@@ -102,24 +102,25 @@ const AdminCreateNewBulletinSection = () => {
         const data = {
             title: titleInput.trim(),
             article: articleInput.trim(),
-            banner: bannerImageSrc,
+            banner: banner,
             images: articleImages,
         };
+        console.log(data);
 
-        const res = await fetch('http://localhost:3000/api/bulletin', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-type': 'application/json',
-            },
-        });
+        const res = await fetch(
+            `http://localhost:3000/api/bulletin/${bulletin._id.toString()}`,
+            {
+                method: 'PUT',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-type': 'application/json',
+                },
+            }
+        );
 
         // GET RESULT FROM API
         const result = await res.json();
-        console.log(result);
         if (result.success) {
-            // router.push('/admin/bulletin');
-
             // SHOW SUCCESS TOAST
             toast.update(loadingToast.current, {
                 render: result.message,
@@ -127,9 +128,7 @@ const AdminCreateNewBulletinSection = () => {
                 autoClose: 5000,
                 closeOnClick: true,
                 pauseOnHover: true,
-                onClose: () => router.push('/admin/bulletin'),
             });
-            // toast.success(result.message);
         } else {
             // SHOW ERROR TOAST
             toast.update(loadingToast.current, {
@@ -146,7 +145,11 @@ const AdminCreateNewBulletinSection = () => {
         <div className={styles.wrapper}>
             <div
                 className={styles.banner}
-                style={{ backgroundImage: `url("${bannerImageSrc.src}")` }}
+                style={{
+                    backgroundImage: banner.url
+                        ? `url("${banner.url}")`
+                        : `url("${banner.src}")`,
+                }}
             >
                 <input
                     type="file"
@@ -156,8 +159,8 @@ const AdminCreateNewBulletinSection = () => {
                     onChange={handleOnChangeBannerInput}
                 />
                 <label htmlFor="banner-upload" className={styles.btn}>
-                    <Button forLabel rightIcon={<BsUpload />}>
-                        Chọn ảnh bìa
+                    <Button forLabel>
+                        <BsUpload />
                     </Button>
                 </label>
             </div>
@@ -191,7 +194,9 @@ const AdminCreateNewBulletinSection = () => {
                 <label htmlFor="image-upload" className={styles.btn}>
                     <Button forLabel>Chèn ảnh</Button>
                 </label>
-                <Button onClick={handleOnClickCreateButton}>Tạo tin</Button>
+                <Button onClick={handleOnClickUpdateButton}>
+                    Cập nhật tin
+                </Button>
                 <ToastContainer
                     position="bottom-right"
                     theme="colored"
@@ -205,4 +210,4 @@ const AdminCreateNewBulletinSection = () => {
     );
 };
 
-export default AdminCreateNewBulletinSection;
+export default AdminUpdateBulletinSection;

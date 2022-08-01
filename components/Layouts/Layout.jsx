@@ -1,6 +1,4 @@
 import Head from 'next/head';
-import Contact from './Contact';
-import FooterSection from './Footer';
 const Layout = (props) => {
     return (
         <>
@@ -13,4 +11,3 @@ const Layout = (props) => {
         </>
     );
 };
-export default Layout;
