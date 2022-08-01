@@ -4,6 +4,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import styles from './AdminCreateNewBulletinSection.module.scss';
 import Button from '../../Button';
 import { BsUpload } from 'react-icons/bs';
+import {
+    randomString,
+    toLowerCaseNonAccentVietnamese,
+} from '../../../lib/functions';
 
 const AdminCreateNewBulletinSection = () => {
     const router = useRouter();
@@ -14,17 +18,6 @@ const AdminCreateNewBulletinSection = () => {
     const [titleInput, setTitleInput] = useState('');
     const [articleInput, setArticleInput] = useState('');
     const [articleImages, setArticleImages] = useState([]);
-
-    // RANDOM STRING FUNCTION
-    function randomString() {
-        const length = 8;
-        const chars =
-            '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        var result = '';
-        for (var i = length; i > 0; --i)
-            result += chars[Math.floor(Math.random() * chars.length)];
-        return result;
-    }
 
     // ONCHANGE EVENT IN BANNER INPUT
     const handleOnChangeBannerInput = (e) => {
@@ -93,6 +86,13 @@ const AdminCreateNewBulletinSection = () => {
 
         console.log('pass validate');
 
+        // CREATE SLUG
+        let slug = titleInput.split(' ').join('-') + '-' + randomString();
+        slug = toLowerCaseNonAccentVietnamese(slug).replace(
+            /[^0-9a-zA-Z\-]/g,
+            ''
+        );
+
         // ADD LOADING TOAST FOR HANDLE CALL API
         loadingToast.current = toast.info('Đang xử lý tạo tin mới', {
             autoClose: false,
@@ -104,6 +104,7 @@ const AdminCreateNewBulletinSection = () => {
             article: articleInput.trim(),
             banner: bannerImageSrc,
             images: articleImages,
+            slug: slug.trim(),
         };
 
         const res = await fetch('http://localhost:3000/api/bulletin', {

@@ -5,7 +5,7 @@ import styles from './BulletinSection.module.scss';
 import Button from '../Button';
 import ListBulletinCardSection from './ListBulletinCardSection';
 
-const BulletinSection = () => {
+const BulletinSection = ({ bulletins, useSlug }) => {
     return (
         <div className={styles.wrapper}>
             {/* LATEST */}
@@ -54,11 +54,11 @@ const BulletinSection = () => {
                     <div className={styles.blur}></div>
                 </div>
             </div>
-            <ListBulletinCardSection />
+            <ListBulletinCardSection bulletins={bulletins} useSlug />
 
             {/* TRENDING */}
             <h2>Xu hướng</h2>
-            <ListBulletinCardSection />
+            <ListBulletinCardSection bulletins={bulletins} useSlug />
 
             <div className={styles.seeMoreBtn}>
                 <Button rounded rightIcon={<BsChevronDown />}>

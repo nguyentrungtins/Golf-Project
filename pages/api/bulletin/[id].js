@@ -41,7 +41,9 @@ export default async function handler(req, res) {
                     !data.title ||
                     data.title === '' ||
                     !data.article ||
-                    data.article === ''
+                    data.article === '' ||
+                    !data.slug ||
+                    data.slug === ''
                 ) {
                     return res.status(500).json({
                         success: false,
@@ -129,8 +131,9 @@ export default async function handler(req, res) {
             }
 
         default:
-            return res
-                .status(400)
-                .json({ success: false, message: 'Xóa tin thất bại' });
+            return res.status(400).json({
+                success: false,
+                message: 'Phương thức không được hỗ trợ',
+            });
     }
 }

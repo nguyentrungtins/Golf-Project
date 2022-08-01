@@ -1,9 +1,9 @@
-import styles from './SliderSection.module.scss';
+import styles from './AboutUsSliderSection.module.scss';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import Slider from 'react-slick';
 import Image from 'next/image';
 
-const SliderSection = () => {
+const AboutUsSliderSection = () => {
     const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
         <BsChevronLeft {...props} className={styles.prevIcon} />
     );
@@ -86,4 +86,4 @@ const SliderSection = () => {
     );
 };
 
-export default SliderSection;
+export default AboutUsSliderSection;

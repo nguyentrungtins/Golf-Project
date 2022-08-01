@@ -14,6 +14,9 @@ const BulletinSchema = new mongoose.Schema(
         images: {
             type: Array,
         },
+        slug: {
+            type: String,
+        },
     },
     {
         timestamps: true,

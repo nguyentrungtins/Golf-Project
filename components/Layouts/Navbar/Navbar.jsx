@@ -103,7 +103,7 @@ const Navbar = ({ isNavTrans = false }) => {
                     </Link>
                 </li>
                 <li className={styles.tag}>
-                    <Link href="/news">
+                    <Link href="/bulletins">
                         <a>Tin Tức</a>
                     </Link>
                 </li>
@@ -165,7 +165,7 @@ const Navbar = ({ isNavTrans = false }) => {
                         setHambergerToggle(false);
                     }}
                 >
-                    <Link href="/news">
+                    <Link href="/bulletins">
                         <a>Tin Tức</a>
                     </Link>
                 </li>

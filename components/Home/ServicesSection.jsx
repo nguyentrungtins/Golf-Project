@@ -3,6 +3,7 @@ import Image from 'next/image';
 import GoleHole from '../../public/Golf-Hole.png';
 import Ball_XL from '../../public/Ball_XL.png';
 import ServiceCards from './ServiceCards';
+
 const ServicesSection = () => {
     return (
         <section className={styles.sec} id="services">
