@@ -2,6 +2,7 @@ import styles from './Navbar.module.scss';
 import Image from 'next/image';
 import Logo from '../../../public/Logo.png';
 import { useState, useEffect } from 'react';
+import { useSession, signOut } from 'next-auth/client';
 import classnames from 'classnames';
 import Link from 'next/link';
 
@@ -9,6 +10,11 @@ const Navbar = ({ isNavTrans = false }) => {
     let lastScroll = 0;
     const [scrollPositon, setscrollPositon] = useState(true);
     const [positionOnTop, setpositionOnTop] = useState(true);
+    const [session, loading] = useSession();
+
+    function logoutHandler() {
+        signOut();
+    }
 
     let isNavActive;
     if (isNavTrans) {

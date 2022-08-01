@@ -1,11 +1,11 @@
 .container {
     position: fixed;
-    right: 0;
+    right: -270px;
     bottom: 80px;
     z-index: 999999;
     ul {
         padding: 0px;
-        transform: translate(250px, 0);
+        transform: translate(-20px, 0);
         li {
             display: block;
             margin: 10px;
