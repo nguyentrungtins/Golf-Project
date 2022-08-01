@@ -5,7 +5,8 @@ import 'slick-carousel/slick/slick-theme.css';
 import '../styles/custom-slick-slider.scss';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import Layout from '../components/Layouts/Layout';
+import { Provider } from 'next-auth/client';
+
 function Loading() {
     const router = useRouter();
 
@@ -40,10 +41,10 @@ function MyApp({ Component, pageProps }) {
     const getLayout = Component.getLayout || ((page) => page);
 
     return getLayout(
-        <>
+        <Provider session={pageProps.session}>
             <Loading />
             <Component {...pageProps} />
-        </>
+        </Provider>
     );
     // return (
     //     <MainLayout>
