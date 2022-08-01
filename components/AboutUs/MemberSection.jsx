@@ -1,5 +1,5 @@
 import styles from './MemberSection.module.scss';
-import SliderSection from './SliderSection';
+import AboutUsSliderSection from './AboutUsSliderSection';
 
 const MemberSection = () => {
     return (
@@ -9,7 +9,7 @@ const MemberSection = () => {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua
             </p>
-            <SliderSection />
+            <AboutUsSliderSection />
         </div>
     );
 };

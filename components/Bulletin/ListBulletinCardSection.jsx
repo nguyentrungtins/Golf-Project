@@ -2,12 +2,16 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styles from './ListBulletinCardSection.module.scss';
 
-const ListBulletinCardSection = ({ bulletins }) => {
+const ListBulletinCardSection = ({ bulletins, useSlug = false }) => {
     return (
         <div className={styles.row}>
             {bulletins.map((bulletin) => (
                 <Link
-                    href={`/admin/bulletin/${bulletin._id.toString()}`}
+                    href={
+                        useSlug
+                            ? `/bulletins/${bulletin.slug.toString()}`
+                            : `/admin/bulletin/${bulletin._id.toString()}`
+                    }
                     key={bulletin._id}
                 >
                     <div className={styles.col3}>

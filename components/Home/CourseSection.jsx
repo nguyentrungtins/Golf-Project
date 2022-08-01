@@ -2,9 +2,9 @@ import styles from './CourseSection.module.scss';
 import Image from 'next/image';
 import Img1 from '../../public/img1.png';
 import Img2 from '../../public/img2.png';
-
 import Button from '../Button';
 import { BsArrowRight } from 'react-icons/bs';
+
 const CourseSection = () => {
     return (
         <section className={styles.sec} id="courses">

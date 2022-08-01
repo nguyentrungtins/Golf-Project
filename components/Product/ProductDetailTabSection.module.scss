@@ -1,6 +1,13 @@
 @import '../../styles/mixin';
 
 .wrapper {
+    @include breakpoint(sm) {
+        margin-top: 0;
+    }
+    @include breakpoint(lg) {
+        margin-top: 2rem;
+    }
+
     ul {
         border-bottom: 1px solid #d2d2d7;
         display: flex;

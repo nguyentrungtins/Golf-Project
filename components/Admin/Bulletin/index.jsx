@@ -4,7 +4,7 @@ import ListBulletinCardSection from '../../Bulletin/ListBulletinCardSection';
 import Button from '../../Button';
 import { BsPlusLg } from 'react-icons/bs';
 
-const AdminBulletinSection = ({ bulletins }) => {
+const AdminBulletinSection = ({ bulletins, slug }) => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.btnWrap}>

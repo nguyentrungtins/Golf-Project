@@ -24,11 +24,7 @@ const uploadImage = async (bodyData) => {
 
 const handle = async (req, res) => {
     const { method, body } = req;
-    const { title, article, banner, images } = body;
-    // console.log('>>> Images: ', images);
-    // console.log('>>> Method: ', method);
-    // console.log('>>> Body: ', body);
-    // console.log(article);
+
     await dbConnect();
 
     switch (method) {
@@ -40,6 +36,7 @@ const handle = async (req, res) => {
                 return res.status(400).json({ success: false });
             }
         case 'POST':
+            const { title, article, banner, images, slug } = body;
             if (
                 !title ||
                 title === '' ||
@@ -47,7 +44,9 @@ const handle = async (req, res) => {
                 article === '' ||
                 !banner ||
                 !banner.src ||
-                banner.src === ''
+                banner.src === '' ||
+                !slug ||
+                slug === ''
             ) {
                 return res.status(500).json({
                     success: false,
@@ -96,8 +95,10 @@ const handle = async (req, res) => {
                         url: bannerUrl,
                     },
                     images: newImages,
+                    slug: slug.trim(),
                 };
                 // console.log('>>> Data: ', data);
+
                 const bulletin = await Bulletin.create(data);
                 // console.log('>>> bulletin: ', bulletin);
                 return res.status(201).json({
