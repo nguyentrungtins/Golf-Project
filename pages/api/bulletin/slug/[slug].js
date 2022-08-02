@@ -7,7 +7,7 @@ export default async function handle(req, res) {
         method,
     } = req;
 
-    console.log(slug);
+    // console.log(slug);
 
     await dbConnect();
 

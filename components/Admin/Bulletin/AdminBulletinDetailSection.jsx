@@ -33,7 +33,7 @@ const AdminBulletinDetailSection = ({ bulletin }) => {
                 }
 
                 articleContent += `
-                <h${count}>${item}</h${count}>
+                <h${count}>${item.slice(count, item.length)}</h${count}>
             `;
             }
             // CHECK IMAGE

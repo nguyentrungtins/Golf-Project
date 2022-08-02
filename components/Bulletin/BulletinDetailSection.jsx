@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './BulletinDetailSection.module.scss';
@@ -51,7 +51,7 @@ const BulletinDetailSection = ({ bulletin }) => {
         });
 
         articleRef.current.innerHTML = articleContent;
-    }, []);
+    }, [bulletin.article]);
 
     return (
         <div className={styles.wrapper}>
