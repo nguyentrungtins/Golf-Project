@@ -9,7 +9,7 @@ import classnames from 'classnames';
 import { useState } from 'react';
 const ProductCreateForm = () => {
     const [techParameterList, setTechParameterList] = useState([
-        { techParameter: '' },
+        { techParameter: '', techParameterContent: '' },
     ]);
 
     const handleTechParameterChange = (e, index) => {
@@ -26,7 +26,10 @@ const ProductCreateForm = () => {
     };
 
     const handleTechParameterAdd = () => {
-        setTechParameterList([...techParameterList, { techParameter: '' }]);
+        setTechParameterList([
+            ...techParameterList,
+            { techParameter: '', techParameterContent: '' },
+        ]);
     };
 
     const onSubmit = (e) => {
@@ -39,7 +42,7 @@ const ProductCreateForm = () => {
                     <Button leftIcon={<IoIosArrowBack />}>Trở về</Button>
                 </Link>
                 <h2>Thêm Sản Phẩm Mới</h2>
-                <form onSubmit={onSubmit}>
+                <form onSubmit={onSubmit} method="POST">
                     <div className={styles.field}>
                         <h3>Thông tin chính</h3>
                         <div className={styles.fieldGroup}>
@@ -121,14 +124,26 @@ const ProductCreateForm = () => {
                                     <input
                                         type="text"
                                         className={styles.inputLabel}
-                                        name="provider"
+                                        name="techParameter"
                                         placeholder="Thống số"
+                                        value={
+                                            singleTechParameter.techParameter
+                                        }
+                                        onChange={(e) =>
+                                            handleTechParameterChange(e, index)
+                                        }
                                     />
                                     <input
                                         type="text"
                                         className={styles.input}
-                                        name="provider"
+                                        name="techParameterContent"
                                         placeholder="Nội dung thông số"
+                                        value={
+                                            singleTechParameter.techParameterContent
+                                        }
+                                        onChange={(e) =>
+                                            handleTechParameterChange(e, index)
+                                        }
                                     />
                                     {techParameterList.length !== 1 && (
                                         <span
