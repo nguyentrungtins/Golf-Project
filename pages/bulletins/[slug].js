@@ -31,11 +31,13 @@ export const getStaticProps = async (context) => {
     );
     const fetchOneResult = await fetchOneRes.json();
     const bulletin = fetchOneResult.data;
+
     return {
         props: {
             bulletins,
             bulletin,
         },
+        revalidate: 3600,
     };
 };
 

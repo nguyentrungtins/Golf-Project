@@ -22,7 +22,18 @@ const AdminCreateNewBulletinSection = () => {
     // ONCHANGE EVENT IN BANNER INPUT
     const handleOnChangeBannerInput = (e) => {
         const file = e.target.files[0];
+        // console.log(file.size);
+
+        // CHECK FILE TYPE
         if (file && file.type.includes('image')) {
+            // CHECK FILE SIZE (< 10MB)
+            if (file.size > 10 * 1024 * 1024) {
+                toast.warn(
+                    'Kích thước file vượt quá kích thước cho phép (< 10MB)'
+                );
+                return;
+            }
+
             // READ FILE
             const reader = new FileReader();
             reader.readAsDataURL(file);
@@ -31,6 +42,10 @@ const AdminCreateNewBulletinSection = () => {
                     src: reader.result,
                 });
             };
+            reader.onerror = () => {
+                console.error('AHHHHHHHH!!');
+                setErrMsg('something went wrong!');
+            };
         }
     };
 
@@ -38,6 +53,14 @@ const AdminCreateNewBulletinSection = () => {
     const handleOnChangeImageInput = (e) => {
         const file = e.target.files[0];
         if (file && file.type.includes('image')) {
+            // CHECK FILE SIZE (< 10MB)
+            if (file.size > 10 * 1024 * 1024) {
+                toast.warn(
+                    'Kích thước file vượt quá kích thước cho phép (< 10MB)'
+                );
+                return;
+            }
+
             // SET IMAGE NAME
             let date = new Date();
             let imageName =
@@ -51,6 +74,10 @@ const AdminCreateNewBulletinSection = () => {
                     ...prev,
                     { name: imageName, src: reader.result },
                 ]);
+            };
+            reader.onerror = () => {
+                console.error('AHHHHHHHH!!');
+                setErrMsg('something went wrong!');
             };
 
             // CHANGE STATE OF ARTICLE INPUT VALUE
@@ -190,7 +217,9 @@ const AdminCreateNewBulletinSection = () => {
                     onChange={handleOnChangeImageInput}
                 />
                 <label htmlFor="image-upload" className={styles.btn}>
-                    <Button forLabel>Chèn ảnh</Button>
+                    <Button forLabel rightIcon={<BsUpload />}>
+                        Chèn ảnh
+                    </Button>
                 </label>
                 <Button onClick={handleOnClickCreateButton}>Tạo tin</Button>
                 <ToastContainer

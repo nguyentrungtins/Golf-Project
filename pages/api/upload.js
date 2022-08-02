@@ -2,6 +2,14 @@
 
 import cloudinary from '../../utils/cloudinary';
 
+export const config = {
+    api: {
+        bodyParser: {
+            sizeLimit: '100mb', // Set desired value here
+        },
+    },
+};
+
 export default async function handler(req, res) {
     try {
         const { src, options } = req.body;

@@ -4,7 +4,7 @@ import Bulletin from '../../../models/Bulletin';
 export const config = {
     api: {
         bodyParser: {
-            sizeLimit: '25mb', // Set desired value here
+            sizeLimit: '100mb', // Set desired value here
         },
     },
 };

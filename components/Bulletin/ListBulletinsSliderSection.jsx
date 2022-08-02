@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import styles from './ListBulletinsSliderSection.module.scss';
-import { useEffect } from 'react';
 
 const ListBulletinsSliderSection = ({ bulletins }) => {
     const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
@@ -13,10 +12,6 @@ const ListBulletinsSliderSection = ({ bulletins }) => {
     const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
         <BsChevronRight {...props} className={styles.nextIcon} />
     );
-
-    useEffect(() => {
-        console.log(bulletins);
-    }, []);
 
     const settings = {
         dots: false,
