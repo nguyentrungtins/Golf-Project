@@ -1,12 +1,19 @@
 import styles from './ProductList.module.scss';
 import classnames from 'classnames';
-import { AiOutlineEdit } from 'react-icons/ai';
-import { TbListDetails } from 'react-icons/tb';
+import Button from '../../Button';
 import ProductItem from './ProductItem';
+import Link from 'next/link';
+import { BsPlusLg } from 'react-icons/bs';
+
 const ProductList = () => {
     return (
         <div className={styles.wrapper}>
             <h2>Sản phẩm</h2>
+            <div className={styles.btnWrap}>
+                <Link href="/admin/products/create">
+                    <Button leftIcon={<BsPlusLg />}>Thêm Sản Phẩm</Button>
+                </Link>
+            </div>
             <table className={styles.table}>
                 <thead>
                     <tr>

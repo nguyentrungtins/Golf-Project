@@ -25,6 +25,11 @@ $radius: 0.2rem;
     display: flex;
     flex-direction: column;
     padding: 0 10% 0 10%;
+    > .btnWrap {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: calc(var(--margin-standard-lg) / 2);
+    }
     > h2 {
         margin-top: 96px;
         font-family: 'Lora', serif;
