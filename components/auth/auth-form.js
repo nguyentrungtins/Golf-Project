@@ -40,7 +40,7 @@ function AuthForm() {
                 router.replace('/admin');
             } else {
                 setIsError(true);
-                setErrorMsg(result.error);
+                setErrorMsg('Tài khoản hoặc mật khẩu không hợp lệ.');
             }
         } else {
             try {
@@ -55,7 +55,7 @@ function AuthForm() {
             <div className={classes.body__login}>
                 <div className={classes.card}>
                     <form onSubmit={submitHandler}>
-                        <h2 className={classes.title}> Log in</h2>
+                        <h2 className={classes.title}> Login</h2>
                         <p className={classes.subtitle}>
                             Đăng nhập để sử dụng chức năng admin
                         </p>

@@ -24,16 +24,20 @@ $radius: 0.2rem;
 .wrapper {
     display: flex;
     flex-direction: column;
-    padding: 0 10% 0 10%;
+    padding: 96px 10% 0 10%;
+    > .btnWrap {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: calc(var(--margin-standard-lg) / 2);
+    }
     > h2 {
-        margin-top: 96px;
-        font-family: 'Lora', serif;
-        font-weight: var(--title-font-weight);
+        font-family: var(--Lora);
+        font-weight: var(--title-font-weight-bold);
         color: var(--text-color);
         text-align: center;
-        padding-top: 10vh;
-        letter-spacing: 1.5px;
-        margin-bottom: calc(var(--margin-standard-lg) / 2);
+        margin-bottom: var(--margin-bottom-title-subtitle);
+        padding: 0 1rem;
+        margin: 30px 0 30px 0;
         font-size: var(--title-font-size);
     }
     > .table {
