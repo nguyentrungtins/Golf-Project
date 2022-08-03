@@ -60,6 +60,7 @@ export default async function handler(req, res) {
                         options: {
                             folder: 'bulletin',
                             upload_preset: 'hdvpsezy',
+                            resource_type: 'image',
                         },
                     });
                     data.banner.src = null;

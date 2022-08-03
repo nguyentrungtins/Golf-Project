@@ -15,14 +15,14 @@ const ProductDetailTabSection = () => {
                 {/* TABS */}
                 <ul>
                     <li
-                        className={activedTab === 1 && styles.active}
+                        className={activedTab === 1 ? styles.active : undefined}
                         data-value={1}
                         onClick={(e) => handleClick(e)}
                     >
                         Mô tả sản phẩm
                     </li>
                     <li
-                        className={activedTab === 2 && styles.active}
+                        className={activedTab === 2 ? styles.active : undefined}
                         data-value={2}
                         onClick={(e) => handleClick(e)}
                     >

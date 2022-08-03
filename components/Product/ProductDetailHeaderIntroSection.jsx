@@ -1,9 +1,12 @@
 import Slider from 'react-slick';
 import Image from 'next/image';
+import Link from 'next/link';
 import { FaRegCheckCircle } from 'react-icons/fa';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
+import { BiArrowBack } from 'react-icons/bi';
 
 import styles from './ProductDetailHeaderIntroSection.module.scss';
+import Button from '../Button';
 
 const ProductDetailHeaderIntroSection = () => {
     const data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -28,6 +31,13 @@ const ProductDetailHeaderIntroSection = () => {
 
     return (
         <div className={styles.wrapper}>
+            <div className={styles.back}>
+                <Link href="/products">
+                    <Button forIcon>
+                        <BiArrowBack />
+                    </Button>
+                </Link>
+            </div>
             <div className={styles.row}>
                 {/* IMAGE */}
                 <div className={styles.images}>
@@ -41,6 +51,7 @@ const ProductDetailHeaderIntroSection = () => {
                                         width={800}
                                         height={800}
                                         layout="responsive"
+                                        priority={true}
                                     />
                                 </div>
                             );

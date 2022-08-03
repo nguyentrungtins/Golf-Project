@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Image from 'next/image';
 import { BiBookmark } from 'react-icons/bi';
 import { BsChevronDown } from 'react-icons/bs';
@@ -6,6 +7,13 @@ import Button from '../Button';
 import ListBulletinCardSection from './ListBulletinCardSection';
 
 const BulletinSection = ({ bulletins, useSlug }) => {
+    const [noOfBulletinShowed, setNoOfBulletinShowed] = useState(4);
+    const slices = bulletins.slice(0, noOfBulletinShowed);
+
+    const handleShowMoreBulletin = () => {
+        setNoOfBulletinShowed((prev) => prev + 4);
+    };
+
     return (
         <div className={styles.wrapper}>
             {/* LATEST */}
@@ -58,10 +66,14 @@ const BulletinSection = ({ bulletins, useSlug }) => {
 
             {/* TRENDING */}
             <h2>Xu hướng</h2>
-            <ListBulletinCardSection bulletins={bulletins} useSlug />
+            <ListBulletinCardSection bulletins={slices} useSlug />
 
             <div className={styles.seeMoreBtn}>
-                <Button rounded rightIcon={<BsChevronDown />}>
+                <Button
+                    onClick={handleShowMoreBulletin}
+                    rounded
+                    rightIcon={<BsChevronDown />}
+                >
                     Xem thêm
                 </Button>
             </div>

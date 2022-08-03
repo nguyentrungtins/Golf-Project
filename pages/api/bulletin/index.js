@@ -60,6 +60,7 @@ const handle = async (req, res) => {
                     options: {
                         folder: 'bulletin',
                         upload_preset: 'hdvpsezy',
+                        resource_type: 'image',
                     },
                 };
 
@@ -74,6 +75,7 @@ const handle = async (req, res) => {
                             options: {
                                 folder: 'bulletin',
                                 upload_preset: 'hdvpsezy',
+                                resource_type: 'image',
                             },
                         };
                         const imageUrl = await uploadImage(uploadImageData);

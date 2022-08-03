@@ -1,5 +1,18 @@
 @import '../../styles//mixin';
 
+.back {
+    display: flex;
+    align-items: center;
+
+    @include breakpoint(sm) {
+        height: var(--margin-standard-sm);
+    }
+
+    @include breakpoint(lg) {
+        height: var(--margin-standard-lg);
+    }
+}
+
 .row {
     display: flex;
     align-items: center;

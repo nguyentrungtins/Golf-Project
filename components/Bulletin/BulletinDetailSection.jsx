@@ -40,7 +40,7 @@ const BulletinDetailSection = ({ bulletin }) => {
                             src="${image.url}"
                             alt="image"
                             width="100%"
-                            height="100%"
+                            height="90%"
                             layout="responsive"
                         />
                     </div>
@@ -72,9 +72,10 @@ const BulletinDetailSection = ({ bulletin }) => {
                 <Image
                     src={bulletin.banner.url}
                     alt="image"
-                    width="100%"
-                    height="100%"
+                    width="160%"
+                    height="90%"
                     layout="responsive"
+                    priority={true}
                 />
             </div>
             <div className={styles.article} ref={articleRef}></div>

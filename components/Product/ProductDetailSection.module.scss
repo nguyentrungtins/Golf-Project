@@ -7,16 +7,13 @@
 .wrapper {
     @include breakpoint(sm) {
         width: 100%;
-        padding: calc(var(--header-navbar-height) + var(--margin-standard-sm))
-            1rem var(--margin-standard-sm);
+        padding: var(--header-navbar-height) 1rem var(--margin-standard-sm);
     }
 
     @include breakpoint(lg) {
         width: var(--width-wrapper);
         margin: 0 auto;
-        padding-top: calc(
-            var(--header-navbar-height) + var(--margin-standard-lg)
-        );
+        padding-top: var(--header-navbar-height);
         padding-bottom: var(--margin-standard-lg);
     }
 
