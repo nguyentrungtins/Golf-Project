@@ -2,11 +2,14 @@ import styles from './ServicesTemplate.module.scss';
 import Image from 'next/image';
 const ServicesTemplate = ({ content }) => {
     const { title, titleDisc, head1, p1, imgPath, p2 } = content;
+    let key;
     const paragraph1 = p1.map((content) => {
-        return <p>{content}</p>;
+        key = Math.floor(Math.random() * 100);
+        return <p key={key}>{content}</p>;
     });
     const paragraph2 = p2.map((content) => {
-        return <p>{content}</p>;
+        key = Math.floor(Math.random() * 100);
+        return <p key={key}>{content}</p>;
     });
     return (
         <section>

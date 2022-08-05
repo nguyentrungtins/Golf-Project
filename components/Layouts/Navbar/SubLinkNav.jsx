@@ -123,7 +123,14 @@ const SubLinkNav = ({ subLinkPosition, isOnTop }) => {
     //     });
     // });
     const subLinkName = subLinkItem.map((e) => {
-        return <SubLinkLevel2 name={e.name} subName={e.subName} url={e.url} />;
+        return (
+            <SubLinkLevel2
+                key={e.url}
+                name={e.name}
+                subName={e.subName}
+                url={e.url}
+            />
+        );
     });
 
     return (
