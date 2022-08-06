@@ -13,7 +13,11 @@ const SubLinkLevel2 = ({ name, subName, url }) => {
     };
     if (subName.length > 0) {
         subLinkLV2 = subName.map((e) => {
-            return <li className={styles.subLVItem}>{e}</li>;
+            return (
+                <li key={e} className={styles.subLVItem}>
+                    {e}
+                </li>
+            );
         });
     }
     return (
