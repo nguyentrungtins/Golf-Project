@@ -134,7 +134,12 @@ const AdminCreateNewBulletinSection = () => {
             slug: slug.trim(),
         };
 
-        const res = await fetch('http://localhost:3000/api/bulletin', {
+        const isDevEnv = process.env.NODE_ENV !== 'production'; // development
+        const host = isDevEnv
+            ? process.env.NEXT_PUBLIC_API_DEV_HOST
+            : process.env.NEXT_PUBLIC_API_PROD_HOST;
+
+        const res = await fetch(`${host}/api/bulletin`, {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {

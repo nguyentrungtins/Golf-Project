@@ -2,32 +2,36 @@ import Head from 'next/head';
 import Navbar from '../../../components/Layouts/Admin/Navbar';
 import AdminBulletinDetailSection from '../../../components/Admin/Bulletin/AdminBulletinDetailSection';
 
-// export const getStaticPaths = async () => {
-//     const response = await fetch('http://localhost:3000/api/bulletin');
-//     const result = await response.json();
-//     const bulletins = result.data;
-//     return {
-//         paths: bulletins.map((bulletin) => ({
-//             params: {
-//                 id: bulletin._id.toString(),
-//             },
-//         })),
-//         fallback: true,
-//     };
-// };
-
 export const getServerSideProps = async (context) => {
-    const id = context.params.id;
-    if (id) {
-        const response = await fetch(
-            `http://localhost:3000/api/bulletin/${id}`
-        );
+    try {
+        const id = context.params.id;
+        // console.log('>>> id: ', context.params.id);
+
+        // CHECK ID IS UNDEFINED OR NOT
+        if (id === 'undefined') {
+            console.log('>>> go here');
+            return {
+                props: {
+                    bulletin: {},
+                },
+            };
+        }
+
+        // PASSED CHECK ID
+        const isDevEnv = process.env.NODE_ENV !== 'production'; // development
+        const host = isDevEnv
+            ? process.env.API_DEV_HOST
+            : process.env.API_PRODUCT_HOST;
+
+        const response = await fetch(`${host}/api/bulletin/${id}`);
         const result = await response.json();
         return {
             props: {
                 bulletin: result.data,
             },
         };
+    } catch (error) {
+        console.error(error);
     }
 };
 

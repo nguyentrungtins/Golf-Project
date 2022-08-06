@@ -18,48 +18,49 @@ const AdminBulletinDetailSection = ({ bulletin }) => {
     // SET CONTENT OF ARTICLE
     useEffect(() => {
         let articleContent = '';
+        if (bulletin) {
+            const splitArticle = bulletin.article
+                .split('\n')
+                .filter((item) => item !== '');
+            // console.log(bulletin.article);
+            // console.log(splitArticle);
+            splitArticle.forEach((item) => {
+                // CHECK HEADING
+                if (item[0] === '#') {
+                    let count = 1;
+                    while (item[count] === '#') {
+                        count += 1;
+                    }
 
-        const splitArticle = bulletin.article
-            .split('\n')
-            .filter((item) => item !== '');
-        // console.log(bulletin.article);
-        // console.log(splitArticle);
-        splitArticle.forEach((item) => {
-            // CHECK HEADING
-            if (item[0] === '#') {
-                let count = 1;
-                while (item[count] === '#') {
-                    count += 1;
+                    articleContent += `
+                    <h${count}>${item.slice(count, item.length)}</h${count}>
+                `;
                 }
+                // CHECK IMAGE
+                else if (item.startsWith('!Image')) {
+                    const imageName = item.slice(7, item.length - 1);
 
-                articleContent += `
-                <h${count}>${item.slice(count, item.length)}</h${count}>
-            `;
-            }
-            // CHECK IMAGE
-            else if (item.startsWith('!Image')) {
-                const imageName = item.slice(7, item.length - 1);
+                    const image = bulletin.images.find(
+                        (item) => item.name === imageName
+                    );
+                    articleContent += `
+                    <div>
+                        <Image
+                            src="${image.url}"
+                            alt="image"
+                            width="100%"
+                            height="100%"
+                            layout="responsive"
+                        />
+                    </div>
+                `;
+                } else {
+                    articleContent += `<p>${item}</p>`;
+                }
+            });
 
-                const image = bulletin.images.find(
-                    (item) => item.name === imageName
-                );
-                articleContent += `
-                <div>
-                    <Image
-                        src="${image.url}"
-                        alt="image"
-                        width="100%"
-                        height="100%"
-                        layout="responsive"
-                    />
-                </div>
-            `;
-            } else {
-                articleContent += `<p>${item}</p>`;
-            }
-        });
-
-        articleRef.current.innerHTML = articleContent;
+            articleRef.current.innerHTML = articleContent;
+        }
     }, []);
 
     // ONCLICK ON CONFIRM DELETE BULLETIN BUTTON
@@ -71,8 +72,13 @@ const AdminBulletinDetailSection = ({ bulletin }) => {
                 closeOnClick: false,
             });
 
+            const isDevEnv = process.env.NODE_ENV !== 'production'; // development
+            const host = isDevEnv
+                ? process.env.NEXT_PUBLIC_API_DEV_HOST
+                : process.env.NEXT_PUBLIC_API_PROD_HOST;
+
             const response = await fetch(
-                `http://localhost:3000/api/bulletin/${bulletin._id.toString()}`,
+                `${host}/api/bulletin/${bulletin._id.toString()}`,
                 {
                     method: 'DELETE',
                 }
@@ -113,33 +119,45 @@ const AdminBulletinDetailSection = ({ bulletin }) => {
                     </Button>
                 </Link>
                 <div>
-                    <Link
-                        href={`/admin/bulletin/update/${bulletin._id.toString()}`}
-                    >
-                        <Button forIcon>
-                            <BiEditAlt />
-                        </Button>
-                    </Link>
+                    {bulletin._id && (
+                        <Link
+                            href={`/admin/bulletin/update/${bulletin._id.toString()}`}
+                        >
+                            <Button forIcon>
+                                <BiEditAlt />
+                            </Button>
+                        </Link>
+                    )}
+
                     <Button forIcon onClick={() => setShowModal(true)}>
                         <AiOutlineDelete />
                     </Button>
                 </div>
             </div>
-            <h1 className={styles.title}>{bulletin.title}</h1>
-            <p className={styles.published}>
-                <span>
-                    {new Date(bulletin.updatedAt).toISOString().slice(0, 10)}
-                </span>
-            </p>
-            <div className={styles.banner}>
-                <Image
-                    src={bulletin.banner.url}
-                    alt="image"
-                    width="100%"
-                    height="100%"
-                    layout="responsive"
-                />
-            </div>
+            {bulletin.title && (
+                <h1 className={styles.title}>{bulletin.title}</h1>
+            )}
+            {bulletin.published && (
+                <p className={styles.published}>
+                    <span>
+                        {new Date(bulletin.updatedAt)
+                            .toISOString()
+                            .slice(0, 10)}
+                    </span>
+                </p>
+            )}
+            {bulletin.banner && (
+                <div className={styles.banner}>
+                    <Image
+                        src={bulletin.banner.url}
+                        alt="image"
+                        width="100%"
+                        height="100%"
+                        layout="responsive"
+                    />
+                </div>
+            )}
+
             <div className={styles.article} ref={articleRef}></div>
             <Modal
                 show={showModal}

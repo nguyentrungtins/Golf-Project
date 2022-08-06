@@ -3,7 +3,12 @@ import AdminBulletinSection from '../../../components/Admin/Bulletin';
 
 export const getServerSideProps = async () => {
     try {
-        const res = await fetch('http://localhost:3000/api/bulletin');
+        const isDevEnv = process.env.NODE_ENV !== 'production'; // development
+        const host = isDevEnv
+            ? process.env.API_DEV_HOST
+            : process.env.API_PRODUCT_HOST;
+
+        const res = await fetch(`${host}/api/bulletin`);
         const result = await res.json();
 
         return {

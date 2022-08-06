@@ -2,16 +2,25 @@ import dbConnect from '../../../lib/dbConnect';
 import Bulletin from '../../../models/Bulletin';
 
 const uploadImage = async (bodyData) => {
-    const response = await fetch('http://localhost:3000/api/upload', {
-        method: 'POST',
-        body: JSON.stringify(bodyData),
-        headers: {
-            'Content-type': 'application/json',
-        },
-    });
-    const result = await response.json();
-    const url = await result.url;
-    return url;
+    try {
+        const isDevEnv = process.env.NODE_ENV !== 'production'; // development
+        const host = isDevEnv
+            ? process.env.API_DEV_HOST
+            : process.env.API_PRODUCT_HOST;
+
+        const response = await fetch(`${host}/api/upload`, {
+            method: 'POST',
+            body: JSON.stringify(bodyData),
+            headers: {
+                'Content-type': 'application/json',
+            },
+        });
+        const result = await response.json();
+        const url = await result.url;
+        return url;
+    } catch (error) {
+        console.error(error);
+    }
 };
 
 export default async function handler(req, res) {
