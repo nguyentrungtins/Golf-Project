@@ -1,5 +1,5 @@
-import Head from 'next/head';
-import Navbar from '../../../../components/Layouts/Admin/Navbar';
+import Layout from '../../../../components/Layouts/Layout';
+import NestedLayoutAdmin from '../../../../components/Layouts/NestedLayoutAdmin';
 import AdminUpdateBulletinSection from '../../../../components/Admin/Bulletins/AdminUpdateBulletinSection';
 
 import dbConnect from '../../../../lib/dbConnect';
@@ -39,17 +39,17 @@ export const getServerSideProps = async (context) => {
 
 const AdminUpdateBulletinPage = ({ bulletin }) => {
     return (
-        <div>
-            <Head>
-                <title>C G V ADMIN - Cập nhật tin tức</title>
-                <meta name="description" content="Golf" />
-                <link rel="icon" href="/small_logo.png" crossOrigin />
-            </Head>
-            <main>
-                <Navbar />
-                <AdminUpdateBulletinSection bulletin={bulletin} />
-            </main>
-        </div>
+        <>
+            <AdminUpdateBulletinSection bulletin={bulletin} />
+        </>
+    );
+};
+
+AdminUpdateBulletinPage.getLayout = function getLayout(page) {
+    return (
+        <Layout>
+            <NestedLayoutAdmin>{page}</NestedLayoutAdmin>
+        </Layout>
     );
 };
 

@@ -1,4 +1,5 @@
-import Navbar from '../../../components/Layouts/Admin/Navbar';
+import Layout from '../../../components/Layouts/Layout';
+import NestedLayoutAdmin from '../../../components/Layouts/NestedLayoutAdmin';
 import AdminBulletinSection from '../../../components/Admin/Bulletins';
 
 import dbConnect from '../../../lib/dbConnect';
@@ -27,9 +28,16 @@ export const getServerSideProps = async () => {
 const AdminBulletinPage = ({ bulletins }) => {
     return (
         <>
-            <Navbar />
             <AdminBulletinSection bulletins={bulletins} />
         </>
+    );
+};
+
+AdminBulletinPage.getLayout = function getLayout(page) {
+    return (
+        <Layout>
+            <NestedLayoutAdmin>{page}</NestedLayoutAdmin>
+        </Layout>
     );
 };
 

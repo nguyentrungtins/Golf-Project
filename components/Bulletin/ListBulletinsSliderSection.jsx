@@ -60,15 +60,17 @@ const ListBulletinsSliderSection = ({ bulletins = [] }) => {
                         >
                             <div className={styles.item}>
                                 <div className={styles.imageWrap}>
-                                    <Image
-                                        src={bulletin.banner.url}
-                                        alt="News Latest Section Image"
-                                        width={768}
-                                        height={432}
-                                        layout="responsive"
-                                    />
+                                    {bulletin.banner.url && (
+                                        <Image
+                                            src={bulletin.banner.url}
+                                            alt="News Latest Section Image"
+                                            width={768}
+                                            height={432}
+                                            layout="responsive"
+                                        />
+                                    )}
                                 </div>
-                                <h3>{bulletin.title}</h3>
+                                {bulletin.title && <h3>{bulletin.title}</h3>}
                             </div>
                         </Link>
                     );

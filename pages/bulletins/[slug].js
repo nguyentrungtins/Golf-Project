@@ -19,16 +19,6 @@ const getBulletinBySlug = async (slug) => {
 };
 
 export const getStaticPaths = async (context) => {
-    // const isDevEnv = process.env.NODE_ENV !== 'production'; // development
-    // const host = isDevEnv
-    //     ? process.env.API_DEV_HOST
-    //     : process.env.API_PRODUCT_HOST;
-
-    // GET ALL BULLETINS FROM API
-    // const res = await fetch(`http://localhost:3000/api/bulletin`);
-    // const result = await res.json();
-    // const bulletins = result.data;
-
     const bulletins = await getAllBulletins();
     return {
         paths: bulletins.map((bulletin) => ({
@@ -41,24 +31,21 @@ export const getStaticPaths = async (context) => {
 };
 
 export const getStaticProps = async (context) => {
-    // const isDevEnv = process.env.NODE_ENV !== 'production'; // development
-    // const host = isDevEnv
-    //     ? process.env.API_DEV_HOST
-    //     : process.env.API_PRODUCT_HOST;
-
-    // GET ALL BULLETINS FROM API
-    // const fetchAllRes = await fetch(`http://localhost:3000/api/bulletin`);
-    // const fetchAllResult = await fetchAllRes.json();
-    // const bulletins = fetchAllResult.data;
     const bulletins = await getAllBulletins();
 
     // GET BULLETIN FROM API
     const slug = context.params.slug;
-    // const fetchOneRes = await fetch(
-    //     `http://localhost:3000/api/bulletin/slug/${slug}`
-    // );
-    // const fetchOneResult = await fetchOneRes.json();
-    // const bulletin = fetchOneResult.data;
+
+    // CHECK SLUG IS UNDEFINED OR NOT
+    if (slug === 'undefined' || slug === 'null') {
+        // console.log('>>> go here');
+        return {
+            props: {
+                bulletin: {},
+            },
+        };
+    }
+
     const bulletin = await getBulletinBySlug(slug);
 
     return {
