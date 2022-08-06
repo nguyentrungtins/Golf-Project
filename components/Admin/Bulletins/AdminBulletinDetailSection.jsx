@@ -9,7 +9,7 @@ import { BiArrowBack, BiEditAlt } from 'react-icons/bi';
 import { AiOutlineDelete } from 'react-icons/ai';
 import Modal from '../../Modal';
 
-const AdminBulletinDetailSection = ({ bulletin }) => {
+const AdminBulletinDetailSection = ({ bulletin = {} }) => {
     const router = useRouter();
     const articleRef = useRef();
     const loadingToast = useRef();
@@ -51,6 +51,7 @@ const AdminBulletinDetailSection = ({ bulletin }) => {
                             width="100%"
                             height="100%"
                             layout="responsive"
+                            priority={true}
                         />
                     </div>
                 `;
@@ -61,7 +62,7 @@ const AdminBulletinDetailSection = ({ bulletin }) => {
 
             articleRef.current.innerHTML = articleContent;
         }
-    }, []);
+    }, [bulletin]);
 
     // ONCLICK ON CONFIRM DELETE BULLETIN BUTTON
     const handleOnClickDeleteBulletin = async () => {
@@ -72,13 +73,8 @@ const AdminBulletinDetailSection = ({ bulletin }) => {
                 closeOnClick: false,
             });
 
-            const isDevEnv = process.env.NODE_ENV !== 'production'; // development
-            const host = isDevEnv
-                ? process.env.NEXT_PUBLIC_API_DEV_HOST
-                : process.env.NEXT_PUBLIC_API_PROD_HOST;
-
             const response = await fetch(
-                `${host}/api/bulletin/${bulletin._id.toString()}`,
+                `/api/bulletins/${bulletin._id.toString()}`,
                 {
                     method: 'DELETE',
                 }
@@ -95,7 +91,7 @@ const AdminBulletinDetailSection = ({ bulletin }) => {
                     autoClose: 5000,
                     closeOnClick: true,
                     pauseOnHover: true,
-                    onClose: () => router.push('/admin/bulletin'),
+                    onClose: () => router.push('/admin/bulletins'),
                 });
             } else {
                 // SHOW ERROR TOAST
@@ -113,7 +109,7 @@ const AdminBulletinDetailSection = ({ bulletin }) => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.actions}>
-                <Link href="/admin/bulletin">
+                <Link href="/admin/bulletins">
                     <Button forIcon>
                         <BiArrowBack />
                     </Button>
@@ -121,7 +117,7 @@ const AdminBulletinDetailSection = ({ bulletin }) => {
                 <div>
                     {bulletin._id && (
                         <Link
-                            href={`/admin/bulletin/update/${bulletin._id.toString()}`}
+                            href={`/admin/bulletins/update/${bulletin._id.toString()}`}
                         >
                             <Button forIcon>
                                 <BiEditAlt />
@@ -148,13 +144,16 @@ const AdminBulletinDetailSection = ({ bulletin }) => {
             )}
             {bulletin.banner && (
                 <div className={styles.banner}>
-                    <Image
-                        src={bulletin.banner.url}
-                        alt="image"
-                        width="100%"
-                        height="100%"
-                        layout="responsive"
-                    />
+                    {bulletin.banner.url && (
+                        <Image
+                            src={bulletin.banner.url}
+                            alt="image"
+                            width="100%"
+                            height="100%"
+                            layout="responsive"
+                            priority={true}
+                        />
+                    )}
                 </div>
             )}
 

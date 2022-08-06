@@ -1,3 +1,5 @@
+import cloudinary from '../../../utils/cloudinary';
+
 import dbConnect from '../../../lib/dbConnect';
 import Bulletin from '../../../models/Bulletin';
 
@@ -10,16 +12,9 @@ export const config = {
 };
 
 const uploadImage = async (bodyData) => {
-    const response = await fetch('http://localhost:3000/api/upload', {
-        method: 'POST',
-        body: JSON.stringify(bodyData),
-        headers: {
-            'Content-type': 'application/json',
-        },
-    });
-    const result = await response.json();
-    const url = await result.url;
-    return url;
+    const { src, options } = bodyData;
+    const uploadResult = await cloudinary.uploader.upload(src, options);
+    return uploadResult.secure_url;
 };
 
 const handle = async (req, res) => {
@@ -39,14 +34,14 @@ const handle = async (req, res) => {
             const { title, article, banner, images, slug } = body;
             if (
                 !title ||
-                title === '' ||
+                title.trim() === '' ||
                 !article ||
-                article === '' ||
+                article.trim() === '' ||
                 !banner ||
                 !banner.src ||
                 banner.src === '' ||
                 !slug ||
-                slug === ''
+                slug.trim() === ''
             ) {
                 return res.status(500).json({
                     success: false,

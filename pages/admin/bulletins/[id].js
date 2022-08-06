@@ -1,15 +1,24 @@
 import Head from 'next/head';
 import Navbar from '../../../components/Layouts/Admin/Navbar';
-import AdminBulletinDetailSection from '../../../components/Admin/Bulletin/AdminBulletinDetailSection';
+import AdminBulletinDetailSection from '../../../components/Admin/Bulletins/AdminBulletinDetailSection';
+
+import dbConnect from '../../../lib/dbConnect';
+import Bulletin from '../../../models/Bulletin';
+
+const getBulletinById = async (id) => {
+    await dbConnect();
+    const bulletin = await Bulletin.findById(id);
+    return JSON.parse(JSON.stringify(bulletin));
+};
 
 export const getServerSideProps = async (context) => {
     try {
-        const id = context.params.id;
+        const id = context.params.id.trim();
         // console.log('>>> id: ', context.params.id);
 
         // CHECK ID IS UNDEFINED OR NOT
-        if (id === 'undefined') {
-            console.log('>>> go here');
+        if (id === 'undefined' || id === 'null') {
+            // console.log('>>> go here');
             return {
                 props: {
                     bulletin: {},
@@ -18,16 +27,18 @@ export const getServerSideProps = async (context) => {
         }
 
         // PASSED CHECK ID
-        const isDevEnv = process.env.NODE_ENV !== 'production'; // development
-        const host = isDevEnv
-            ? process.env.API_DEV_HOST
-            : process.env.API_PRODUCT_HOST;
+        // const isDevEnv = process.env.NODE_ENV !== 'production'; // development
+        // const host = isDevEnv
+        //     ? process.env.API_DEV_HOST
+        //     : process.env.API_PRODUCT_HOST;
 
-        const response = await fetch(`${host}/api/bulletin/${id}`);
-        const result = await response.json();
+        // const response = await fetch(`${host}/api/bulletin/${id}`);
+        // const result = await response.json();
+        const bulletin = await getBulletinById(id);
+        console.log('>>> Bulletin: ', bulletin);
         return {
             props: {
-                bulletin: result.data,
+                bulletin,
             },
         };
     } catch (error) {

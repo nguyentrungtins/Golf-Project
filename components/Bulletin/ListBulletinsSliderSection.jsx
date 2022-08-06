@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import styles from './ListBulletinsSliderSection.module.scss';
 
-const ListBulletinsSliderSection = ({ bulletins }) => {
+const ListBulletinsSliderSection = ({ bulletins = [] }) => {
     const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
         <BsChevronLeft {...props} className={styles.prevIcon} />
     );

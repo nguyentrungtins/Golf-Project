@@ -4,9 +4,11 @@ const BulletinSchema = new mongoose.Schema(
     {
         title: {
             type: String,
+            trim: true,
         },
         article: {
             type: String,
+            trim: true,
         },
         banner: {
             type: Object,
@@ -16,6 +18,7 @@ const BulletinSchema = new mongoose.Schema(
         },
         slug: {
             type: String,
+            trim: true,
         },
     },
     {

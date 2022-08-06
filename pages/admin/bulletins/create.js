@@ -1,5 +1,5 @@
 import Navbar from '../../../components/Layouts/Admin/Navbar';
-import AdminCreateNewBulletinSection from '../../../components/Admin/Bulletin/AdminCreateNewBulletinSection';
+import AdminCreateNewBulletinSection from '../../../components/Admin/Bulletins/AdminCreateNewBulletinSection';
 
 const AdminCreateNewBulletinPage = () => {
     return (

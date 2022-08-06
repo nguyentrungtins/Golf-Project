@@ -134,12 +134,7 @@ const AdminCreateNewBulletinSection = () => {
             slug: slug.trim(),
         };
 
-        const isDevEnv = process.env.NODE_ENV !== 'production'; // development
-        const host = isDevEnv
-            ? process.env.NEXT_PUBLIC_API_DEV_HOST
-            : process.env.NEXT_PUBLIC_API_PROD_HOST;
-
-        const res = await fetch(`${host}/api/bulletin`, {
+        const res = await fetch(`/api/bulletins`, {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
@@ -160,7 +155,7 @@ const AdminCreateNewBulletinSection = () => {
                 autoClose: 5000,
                 closeOnClick: true,
                 pauseOnHover: true,
-                onClose: () => router.push('/admin/bulletin'),
+                onClose: () => router.push('/admin/bulletins'),
             });
             // toast.success(result.message);
         } else {

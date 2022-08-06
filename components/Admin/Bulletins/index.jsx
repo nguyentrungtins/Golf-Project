@@ -4,11 +4,11 @@ import ListBulletinCardSection from '../../Bulletin/ListBulletinCardSection';
 import Button from '../../Button';
 import { BsPlusLg } from 'react-icons/bs';
 
-const AdminBulletinSection = ({ bulletins, slug }) => {
+const AdminBulletinSection = ({ bulletins = [] }) => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.btnWrap}>
-                <Link href="/admin/bulletin/create">
+                <Link href="/admin/bulletins/create">
                     <Button leftIcon={<BsPlusLg />}>Tạo tin mới</Button>
                 </Link>
             </div>

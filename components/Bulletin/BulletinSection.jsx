@@ -6,7 +6,7 @@ import styles from './BulletinSection.module.scss';
 import Button from '../Button';
 import ListBulletinCardSection from './ListBulletinCardSection';
 
-const BulletinSection = ({ bulletins, useSlug }) => {
+const BulletinSection = ({ bulletins = [], useSlug = false }) => {
     const [noOfBulletinShowed, setNoOfBulletinShowed] = useState(4);
     const slices = bulletins.slice(0, noOfBulletinShowed);
 

@@ -5,7 +5,7 @@ import styles from './BulletinDetailSection.module.scss';
 import Button from '../Button';
 import { BiArrowBack } from 'react-icons/bi';
 
-const BulletinDetailSection = ({ bulletin }) => {
+const BulletinDetailSection = ({ bulletin = {} }) => {
     const articleRef = useRef();
 
     // SET CONTENT OF ARTICLE
@@ -34,24 +34,26 @@ const BulletinDetailSection = ({ bulletin }) => {
                 const image = bulletin.images.find(
                     (item) => item.name === imageName
                 );
-                articleContent += `
-                    <div>
-                        <Image
-                            src="${image.url}"
-                            alt="image"
-                            width="100%"
-                            height="90%"
-                            layout="responsive"
-                        />
-                    </div>
-                `;
+                if (image) {
+                    articleContent += `
+                        <div>
+                            <Image
+                                src="${image.url}"
+                                alt="image"
+                                width="100%"
+                                height="90%"
+                                layout="responsive"
+                            />
+                        </div>
+                    `;
+                }
             } else {
                 articleContent += `<p>${item}</p>`;
             }
         });
 
         articleRef.current.innerHTML = articleContent;
-    }, [bulletin.article]);
+    }, [bulletin.article, bulletin.images]);
 
     return (
         <div className={styles.wrapper}>
@@ -62,12 +64,19 @@ const BulletinDetailSection = ({ bulletin }) => {
                     </Button>
                 </Link>
             </div>
-            <h1 className={styles.title}>{bulletin.title}</h1>
-            <p className={styles.published}>
-                <span>
-                    {new Date(bulletin.updatedAt).toISOString().slice(0, 10)}
-                </span>
-            </p>
+            {bulletin.title && (
+                <h1 className={styles.title}>{bulletin.title}</h1>
+            )}
+            {bulletin.published && (
+                <p className={styles.published}>
+                    <span>
+                        {new Date(bulletin.updatedAt)
+                            .toISOString()
+                            .slice(0, 10)}
+                    </span>
+                </p>
+            )}
+
             <div className={styles.banner}>
                 <Image
                     src={bulletin.banner.url}

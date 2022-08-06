@@ -8,7 +8,7 @@ import {
     toLowerCaseNonAccentVietnamese,
 } from '../../../lib/functions';
 
-const AdminUpdateBulletinSection = ({ bulletin }) => {
+const AdminUpdateBulletinSection = ({ bulletin = {} }) => {
     const textArticleRef = useRef();
     const loadingToast = useRef();
 
@@ -108,16 +108,13 @@ const AdminUpdateBulletinSection = ({ bulletin }) => {
         };
         // console.log(data);
 
-        const res = await fetch(
-            `http://localhost:3000/api/bulletin/${bulletin._id.toString()}`,
-            {
-                method: 'PUT',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-type': 'application/json',
-                },
-            }
-        );
+        const res = await fetch(`/api/bulletins/${bulletin._id.toString()}`, {
+            method: 'PUT',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-type': 'application/json',
+            },
+        });
 
         // GET RESULT FROM API
         const result = await res.json();
