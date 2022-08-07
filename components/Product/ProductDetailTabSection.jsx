@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from './ProductDetailTabSection.module.scss';
-
+import classnames from 'classnames';
 const ProductDetailTabSection = () => {
     const [activedTab, setActivedTab] = useState(1);
 
@@ -8,7 +8,10 @@ const ProductDetailTabSection = () => {
         const value = parseInt(event.target.dataset.value);
         setActivedTab(value);
     };
-
+    const contentStyles = [
+        styles.content,
+        activedTab === 1 && styles.active,
+    ].join(' ');
     return (
         <div className={styles.container}>
             <div className={styles.wrapper}>
@@ -31,12 +34,7 @@ const ProductDetailTabSection = () => {
                 </ul>
 
                 {/* CONTENT */}
-                <div
-                    className={[
-                        styles.content,
-                        activedTab === 1 && styles.active,
-                    ].join(' ')}
-                >
+                <div className={contentStyles}>
                     <h4>Tổng quan về bộ gậy golf fullset Callaway Reva Lady</h4>
                     <p>
                         Nhắc tới Callaway chắc hẳn người chơi golf sẽ nghĩ ngay
