@@ -1,43 +1,47 @@
 import mongoose from 'mongoose';
 
-const ProductSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        trim: true,
-        default: '',
-        required: [true, 'Please fill in product name'],
+const ProductSchema = new mongoose.Schema(
+    {
+        name: {
+            type: String,
+            trim: true,
+            default: '',
+            required: [true, 'Please fill in product name'],
+        },
+        tag: {
+            type: Array,
+            default: '',
+        },
+        brand: {
+            type: String,
+            trim: true,
+            default: '',
+            required: [true, 'Please fill in product brand'],
+        },
+        price: {
+            type: Object,
+        },
+        desc: {
+            type: String,
+            trim: true,
+            default: '',
+        },
+        descImg: {
+            type: Array,
+            default: '',
+        },
+        techParameter: {
+            type: Array,
+            default: '',
+        },
+        img: {
+            type: Array,
+        },
     },
-    type: {
-        type: String,
-        trim: true,
-        default: '',
-        required: [true, 'Please fill in product type'],
-    },
-    brand: {
-        type: String,
-        trim: true,
-        default: '',
-        required: [true, 'Please fill in product brand'],
-    },
-    desc: {
-        type: String,
-        trim: true,
-        default: '',
-    },
-    descImg: {
-        type: Array,
-        default: '',
-    },
-    techParameter: {
-        type: Array,
-        default: '',
-    },
-    img: {
-        type: String,
-        trim: true,
-        default: '',
-    },
-});
+    {
+        timestamps: true,
+    }
+);
 
 export default mongoose.models.Product ||
     mongoose.model('Product', ProductSchema);

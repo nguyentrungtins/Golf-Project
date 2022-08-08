@@ -7,26 +7,139 @@ import { BsUpload } from 'react-icons/bs';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import ButtonToggle from '../../Button/ButtonToggle';
 import classnames from 'classnames';
 import { useState, useRef } from 'react';
 import {
     randomString,
     toLowerCaseNonAccentVietnamese,
 } from '../../../lib/functions';
+import Image from 'next/image';
 
 const ProductCreateForm = () => {
     const [techParameterList, setTechParameterList] = useState([
         { techParameter: '', techParameterContent: '' },
     ]);
 
+    const router = useRouter();
+
     const textArticleRef = useRef();
     const loadingToast = useRef();
     const productName = useRef('');
-    const productType = useRef('');
     const productBrand = useRef('');
+    const productOriginalPrice = useRef(0);
+    const productSale = useRef(0);
+    const finalPrice = useRef(0);
+    const [price, setPrice] = useState(0);
     const [productDescInput, setArticleInput] = useState('');
     const [productDescImages, setArticleImages] = useState([]);
     const [productImageSrc, setProductImageSrc] = useState([]);
+    const [priceList, setPriceList] = useState({});
+    const [tagList, setTagList] = useState([]);
+
+    // Tag data
+
+    const tagData = [
+        {
+            slug: 'gay-golf',
+            name: 'Gậy golf',
+        },
+        {
+            slug: 'gay-golf-nam',
+            name: 'Gậy golf nam',
+        },
+        {
+            slug: 'gay-golf-nu',
+            name: 'Gậy golf nữ',
+        },
+        {
+            slug: 'thoi-trang',
+            name: 'Thời trang',
+        },
+        {
+            slug: 'ao-golf-nam',
+            name: 'Áo golf nam',
+        },
+        {
+            slug: 'ao-golf-nu',
+            name: 'Áo golf nữ',
+        },
+        {
+            slug: 'quan-golf-nam',
+            name: 'Quần golf nam',
+        },
+        {
+            slug: 'quan-golf-nu',
+            name: 'Quần golf nữ',
+        },
+        {
+            slug: 'vay-golf-nu',
+            name: 'Váy golf nữ',
+        },
+        {
+            slug: 'phu-kien-golf',
+            name: 'Phụ kiện golf',
+        },
+        {
+            slug: 'gang-tay-golf',
+            name: 'Găng tay golf',
+        },
+        {
+            slug: 'du-golf',
+            name: 'Dù golf',
+        },
+        {
+            slug: 'vo-golf',
+            name: 'Vớ golf',
+        },
+        {
+            slug: 'may-3d-golf',
+            name: 'Máy golf 3D',
+        },
+        {
+            slug: 'cigar',
+            name: 'Cigar',
+        },
+        {
+            slug: 'ruou-vang',
+            name: 'Rượu vang',
+        },
+        {
+            slug: 'khac',
+            name: 'Khác',
+        },
+    ];
+
+    // Gia san pham
+    const priceHandler = () => {
+        const priceAfterSale =
+            productOriginalPrice.current.value -
+            productOriginalPrice.current.value *
+                (productSale.current.value / 100);
+        setPriceList({
+            originalPrice: parseInt(productOriginalPrice.current.value),
+            sale: parseInt(productSale.current.value),
+            priceAfterSale: priceAfterSale,
+        });
+        setPrice(priceAfterSale);
+    };
+
+    // Danh muc san pham - tag
+
+    const btnTagHandler = (value) => () => {
+        // your logic
+        if (tagList.includes(value)) {
+            const newList = tagList.filter((tag) => {
+                return tag != value;
+            });
+            setTagList(newList);
+            console.log('remove: ', tagList);
+        } else {
+            setTagList((prev) => [...prev, value]);
+            console.log('add: ', tagList);
+        }
+    };
 
     // Mo ta san pham
     const handleOnChangeImageInput = (e) => {
@@ -148,49 +261,51 @@ const ProductCreateForm = () => {
         });
         const data = {
             name: productName.current.value,
-            type: productType.current.value,
             brand: productBrand.current.value,
+            price: priceList,
             desc: productDescInput.trim(),
             descImg: productDescImages,
             techParameter: techParameterData,
             img: productImageSrc,
+            status: 1,
+            tag: tagList,
         };
         console.log(data);
 
-        // const res = await fetch(`/api/products/create`, {
-        //     method: 'POST',
-        //     body: JSON.stringify(data),
-        //     headers: {
-        //         'Content-type': 'application/json',
-        //     },
-        // });
+        const res = await fetch(`/api/products`, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-type': 'application/json',
+            },
+        });
 
-        // // GET RESULT FROM API
-        // const result = await res.json();
-        // console.log(result);
-        // if (result.success) {
-        //     // router.push('/admin/bulletin');
+        // GET RESULT FROM API
+        const result = await res.json();
+        console.log(result);
+        if (result.success) {
+            // router.push('/admin/bulletin');
 
-        //     // SHOW SUCCESS TOAST
-        //     toast.update(loadingToast.current, {
-        //         render: result.message,
-        //         type: toast.TYPE.SUCCESS,
-        //         autoClose: 5000,
-        //         closeOnClick: true,
-        //         pauseOnHover: true,
-        //         onClose: () => router.push('/admin/bulletins'),
-        //     });
-        //     // toast.success(result.message);
-        // } else {
-        //     // SHOW ERROR TOAST
-        //     toast.update(loadingToast.current, {
-        //         render: result.message,
-        //         type: toast.TYPE.ERROR,
-        //         autoClose: 5000,
-        //         closeOnClick: true,
-        //         pauseOnHover: true,
-        //     });
-        // }
+            // SHOW SUCCESS TOAST
+            toast.update(loadingToast.current, {
+                render: result.message,
+                type: toast.TYPE.SUCCESS,
+                autoClose: 5000,
+                closeOnClick: true,
+                pauseOnHover: true,
+                onClose: () => router.push('/admin/products'),
+            });
+            // toast.success(result.message);
+        } else {
+            // SHOW ERROR TOAST
+            toast.update(loadingToast.current, {
+                render: result.message,
+                type: toast.TYPE.ERROR,
+                autoClose: 5000,
+                closeOnClick: true,
+                pauseOnHover: true,
+            });
+        }
     };
     return (
         <div className={styles.wrapper}>
@@ -219,22 +334,7 @@ const ProductCreateForm = () => {
                                     ref={productName}
                                 />
                             </div>
-                            <div className={styles.formControl}>
-                                <label
-                                    className={styles.label}
-                                    htmlFor="productType"
-                                >
-                                    Danh mục sản phẩm
-                                </label>
-                                <input
-                                    type="text"
-                                    id="productType"
-                                    placeholder="Gậy golf"
-                                    className={styles.input}
-                                    name="category"
-                                    ref={productType}
-                                />
-                            </div>
+
                             <div className={styles.formControl}>
                                 <label
                                     className={styles.label}
@@ -253,6 +353,106 @@ const ProductCreateForm = () => {
                             </div>
                         </div>
                     </div>
+                    {/* <div className={styles.field}>
+                        <h3>Danh mục sản phẩm</h3>
+                        <div className={styles.fieldGroup}>
+                            <div
+                                className={classnames(
+                                    styles.formControl,
+                                    styles.nonBG
+                                )}
+                            >
+                                <div className={styles.select}>
+                                    <select>
+                                        <option value="1"></option>
+                                        <option value="2">Hết Hàng</option>
+                                        <option value="3">
+                                            Ngừng Kinh Doanh
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div> */}
+
+                    <div className={styles.field}>
+                        <h3>Danh mục sản phẩm</h3>
+                        <div className={styles.fieldGroup}>
+                            <div
+                                className={classnames(
+                                    styles.formControl,
+                                    styles.nonBG
+                                )}
+                            >
+                                <div className={styles.btnToggleWrapper}>
+                                    {tagData.map(({ slug, name }) => {
+                                        return (
+                                            <div onClick={btnTagHandler(slug)}>
+                                                <ButtonToggle name={name} />
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={styles.field}>
+                        <h3>Giá </h3>
+                        <div className={styles.fieldGroup}>
+                            <div className={styles.formControl}>
+                                <label
+                                    className={styles.label}
+                                    htmlFor="productOriginalPrice"
+                                >
+                                    Giá gốc
+                                </label>
+                                <input
+                                    type="number"
+                                    id="productOriginalPrice"
+                                    placeholder="2000000"
+                                    className={styles.input}
+                                    name="productOriginalPrice"
+                                    onChange={priceHandler}
+                                    ref={productOriginalPrice}
+                                />
+                            </div>
+                            <div className={styles.formControl}>
+                                <label
+                                    className={styles.label}
+                                    htmlFor="productSale"
+                                >
+                                    Giảm giá (%)
+                                </label>
+                                <input
+                                    type="number"
+                                    id="productSale"
+                                    onChange={priceHandler}
+                                    placeholder="10%"
+                                    className={styles.input}
+                                    name="productSale"
+                                    ref={productSale}
+                                />
+                            </div>
+                            <div className={styles.formControl}>
+                                <label
+                                    className={styles.label}
+                                    htmlFor="productSale"
+                                >
+                                    Sau giảm giá
+                                </label>
+                                <input
+                                    type="number"
+                                    id="finalPrice"
+                                    placeholder="1800000"
+                                    className={styles.input}
+                                    name="finalPrice"
+                                    ref={finalPrice}
+                                    disabled={true}
+                                    value={price}
+                                />
+                            </div>
+                        </div>
+                    </div>
                     <div className={styles.field}>
                         <h3>Ảnh sản phẩm</h3>
                         <div className={styles.fieldGroup}>
@@ -262,22 +462,37 @@ const ProductCreateForm = () => {
                                     backgroundImage: `url("${productImageSrc.src}")`,
                                 }}
                             >
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    id="product-upload"
-                                    hidden
-                                    multiple
-                                    onChange={handleOnChangeImgInput}
-                                />
-                                <label
-                                    htmlFor="product-upload"
-                                    className={styles.btn}
-                                >
-                                    <Button forLabel rightIcon={<BsUpload />}>
-                                        Chọn ảnh bìa
-                                    </Button>
-                                </label>
+                                <div className={styles.imgList}>
+                                    {productImageSrc.map((img) => {
+                                        return (
+                                            <img
+                                                src={img.src}
+                                                className={styles.imgItem}
+                                            />
+                                        );
+                                    })}
+                                </div>
+                                <div className={styles.options}>
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        id="product-upload"
+                                        hidden
+                                        multiple
+                                        onChange={handleOnChangeImgInput}
+                                    />
+                                    <label
+                                        htmlFor="product-upload"
+                                        className={styles.btn}
+                                    >
+                                        <Button
+                                            forLabel
+                                            rightIcon={<BsUpload />}
+                                        >
+                                            Chọn ảnh
+                                        </Button>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>

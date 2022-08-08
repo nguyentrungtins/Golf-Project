@@ -73,7 +73,7 @@
     }
 
     > .formControl {
-        height: 50px;
+        min-height: 50px;
         padding: 0 20px;
         display: flex;
         align-items: center;
@@ -134,6 +134,9 @@
                 }
             }
         }
+        &.nonBG {
+            background-color: #f5f5f7;
+        }
     }
     .options {
         height: 50px;
@@ -168,4 +171,64 @@
         transition: all ease-in-out 0.3s;
         will-change: color, background-color;
     }
+}
+.imgList {
+    display: flex;
+    gap: 10px;
+    display: inline-block;
+    .imgItem {
+        max-width: 200px;
+        object-fit: contain;
+    }
+}
+
+/* Custom Select wrapper */
+.select {
+    position: relative;
+    display: flex;
+    width: 20em;
+    height: 3em;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 0.063rem solid rgba(0, 0, 0, 0.3);
+    > select {
+        /* Reset Select */
+        appearance: none;
+        outline: 0;
+        border: 0;
+        box-shadow: none;
+        /* Personalize */
+        flex: 1;
+        padding: 0 1em;
+        font-size: 16px;
+        color: rgba($color: #000000, $alpha: 0.7);
+        background-color: #fafafa;
+        background-image: none;
+        cursor: pointer;
+    }
+    /* Remove IE arrow */
+    > select::-ms-expand {
+        display: none;
+    }
+}
+/* Arrow */
+.select::after {
+    content: '\2935';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1em;
+    background-color: #fafafa;
+    transition: 0.25s all ease;
+    pointer-events: none;
+}
+/* Transition */
+.select:hover::after {
+    color: #f39c12;
+}
+
+.btnToggleWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
