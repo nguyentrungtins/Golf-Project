@@ -14,7 +14,6 @@ const getBulletinById = async (id) => {
 export const getServerSideProps = async (context) => {
     try {
         const id = context.params.id.trim();
-        // console.log('>>> id: ', context.params.id);
 
         // CHECK ID IS UNDEFINED OR NOT
         if (id === 'undefined' || id === 'null') {
@@ -27,15 +26,7 @@ export const getServerSideProps = async (context) => {
         }
 
         // PASSED CHECK ID
-        // const isDevEnv = process.env.NODE_ENV !== 'production'; // development
-        // const host = isDevEnv
-        //     ? process.env.API_DEV_HOST
-        //     : process.env.API_PRODUCT_HOST;
-
-        // const response = await fetch(`${host}/api/bulletin/${id}`);
-        // const result = await response.json();
         const bulletin = await getBulletinById(id);
-        console.log('>>> Bulletin: ', bulletin);
         return {
             props: {
                 bulletin,

@@ -50,7 +50,11 @@ export const getStaticProps = async (context) => {
 
     return {
         props: {
-            bulletins,
+            bulletins: bulletins.sort(
+                (a, b) =>
+                    Number(new Date(b.updatedAt)) -
+                    Number(new Date(a.updatedAt))
+            ),
             bulletin,
         },
         revalidate: 3600,

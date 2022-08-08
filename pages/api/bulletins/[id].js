@@ -3,24 +3,27 @@ import cloudinary from '../../../utils/cloudinary';
 import dbConnect from '../../../lib/dbConnect';
 import Bulletin from '../../../models/Bulletin';
 
+export const config = {
+    api: {
+        bodyParser: {
+            sizeLimit: '100mb', // Set desired value here
+        },
+    },
+};
+
 const uploadImage = async (bodyData) => {
     try {
-        // const response = await fetch(`http://localhost:3000/api/upload`, {
-        //     method: 'POST',
-        //     body: JSON.stringify(bodyData),
-        //     headers: {
-        //         'Content-type': 'application/json',
-        //     },
-        // });
-        // const result = await response.json();
-        // const url = await result.url;
-        // return url;
-
         const { src, options } = bodyData;
         const uploadResult = await cloudinary.uploader.upload(src, options);
-        return uploadResult.secure_url;
+        // console.log(uploadResult);
+        return {
+            url: uploadResult.secure_url,
+            width: uploadResult.width,
+            height: uploadResult.height,
+        };
     } catch (error) {
         console.error(error);
+        return null;
     }
 };
 
@@ -65,7 +68,7 @@ export default async function handler(req, res) {
                 // IF BANNER HAS SRC PROPERTY -> BANNER CHANGED -> UPLOAD NEW BANNER
                 if (data.banner.src) {
                     // UPLOAD BANNER IMAGE
-                    const bannerUrl = await uploadImage({
+                    const uploadBannerRes = await uploadImage({
                         src: data.banner.src,
                         options: {
                             folder: 'bulletin',
@@ -74,7 +77,9 @@ export default async function handler(req, res) {
                         },
                     });
                     data.banner.src = null;
-                    data.banner.url = bannerUrl;
+                    data.banner.url = uploadBannerRes.url;
+                    data.banner.width = uploadBannerRes.width;
+                    data.banner.height = uploadBannerRes.height;
                 }
 
                 // CHECK ARTICLE IMAGES ARE CHANGED
@@ -82,7 +87,7 @@ export default async function handler(req, res) {
                     data.images.map(async (image) => {
                         // IF IMAGE HAS SRC PROPERTY -> NEW IMAGE -> UPLOAD NEW IMAGE
                         if (image.src) {
-                            const imageUrl = await uploadImage({
+                            const uploadImageRes = await uploadImage({
                                 src: image.src,
                                 options: {
                                     folder: 'bulletin',
@@ -92,7 +97,7 @@ export default async function handler(req, res) {
                             data.images.splice(data.images.indexOf(image), 1);
                             data.images.push({
                                 name: image.name,
-                                url: imageUrl,
+                                ...uploadImageRes,
                             });
                             // data.images = [
                             //     ...data.images,

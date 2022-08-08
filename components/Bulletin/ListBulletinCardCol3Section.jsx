@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from './ListBulletinCardSection.module.scss';
+import styles from './ListBulletinCardCol3Section.module.scss';
 
 const ListBulletinCardSection = ({ bulletins = [], useSlug = false }) => {
     return (
@@ -9,14 +9,14 @@ const ListBulletinCardSection = ({ bulletins = [], useSlug = false }) => {
                 <Link
                     href={
                         useSlug
-                            ? `/bulletins/${bulletin.slug.toString()}`
+                            ? `/tin-tuc/${bulletin.slug.toString()}`
                             : `/admin/bulletins/${bulletin._id.toString()}`
                     }
                     key={bulletin._id.toString()}
                 >
                     <div className={styles.col3}>
                         <div className={styles.imageWrap}>
-                            {bulletin.banner.url && (
+                            {bulletin.banner && (
                                 <Image
                                     src={bulletin.banner.url}
                                     alt="News Latest Section Image"

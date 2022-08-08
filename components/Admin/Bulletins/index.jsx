@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from './AdminBulletinSection.module.scss';
-import ListBulletinCardSection from '../../Bulletin/ListBulletinCardSection';
+import ListBulletinCardCol3Section from '../../Bulletin/ListBulletinCardCol3Section';
 import Button from '../../Button';
 import { BsPlusLg } from 'react-icons/bs';
 
@@ -12,7 +12,7 @@ const AdminBulletinSection = ({ bulletins = [] }) => {
                     <Button leftIcon={<BsPlusLg />}>Tạo tin mới</Button>
                 </Link>
             </div>
-            <ListBulletinCardSection bulletins={bulletins} />
+            <ListBulletinCardCol3Section bulletins={bulletins} />
         </div>
     );
 };

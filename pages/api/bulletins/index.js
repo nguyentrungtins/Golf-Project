@@ -12,9 +12,19 @@ export const config = {
 };
 
 const uploadImage = async (bodyData) => {
-    const { src, options } = bodyData;
-    const uploadResult = await cloudinary.uploader.upload(src, options);
-    return uploadResult.secure_url;
+    try {
+        const { src, options } = bodyData;
+        const uploadResult = await cloudinary.uploader.upload(src, options);
+        // console.log(uploadResult);
+        return {
+            url: uploadResult.secure_url,
+            width: uploadResult.width,
+            height: uploadResult.height,
+        };
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
 };
 
 const handle = async (req, res) => {
@@ -59,7 +69,20 @@ const handle = async (req, res) => {
                     },
                 };
 
-                const bannerUrl = await uploadImage(uploadBannerData);
+                const bannerUploadRes = await uploadImage(uploadBannerData);
+                // const bannerUploadRes = await fetch('/api/upload', {
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-type': 'application/json',
+                //     },
+                //     body: JSON.stringify(uploadBannerData),
+                // });
+                // const bannerUploadResult = await bannerUploadRes.json();
+                if (!bannerUploadRes) {
+                    return res
+                        .status(500)
+                        .json({ success: false, message: 'Lỗi upload ảnh' });
+                }
 
                 // UPLOAD ARTICLE IMAGES
                 let newImages = [];
@@ -73,13 +96,18 @@ const handle = async (req, res) => {
                                 resource_type: 'image',
                             },
                         };
-                        const imageUrl = await uploadImage(uploadImageData);
+                        const imageUploadRes = await uploadImage(
+                            uploadImageData
+                        );
+                        if (!imageUploadRes) {
+                            return res.status(500).json({
+                                success: false,
+                                message: 'Lỗi upload ảnh',
+                            });
+                        }
                         newImages = [
                             ...newImages,
-                            {
-                                name: image.name,
-                                url: imageUrl,
-                            },
+                            { ...imageUploadRes, name: image.name },
                         ];
                     })
                 );
@@ -88,9 +116,7 @@ const handle = async (req, res) => {
                 const data = {
                     title: title.trim(),
                     article: article.trim(),
-                    banner: {
-                        url: bannerUrl,
-                    },
+                    banner: bannerUploadRes,
                     images: newImages,
                     slug: slug.trim(),
                 };

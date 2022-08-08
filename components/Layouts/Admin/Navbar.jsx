@@ -72,7 +72,7 @@ const Navbar = ({ isNavTrans = false }) => {
                         </div>
                     </Link>
                 </li>
-                <Link href="/admin/bulletin">
+                <Link href="/admin/bulletins">
                     <li className={styles.tag}>
                         <a href="#">Tin Tức</a>
                     </li>

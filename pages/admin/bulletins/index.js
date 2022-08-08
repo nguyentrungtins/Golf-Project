@@ -17,7 +17,11 @@ export const getServerSideProps = async () => {
         // console.log('>>> Bulletins: ', bulletins);
         return {
             props: {
-                bulletins,
+                bulletins: bulletins.sort(
+                    (a, b) =>
+                        Number(new Date(b.updatedAt)) -
+                        Number(new Date(a.updatedAt))
+                ),
             },
         };
     } catch (error) {
