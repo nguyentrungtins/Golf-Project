@@ -20,10 +20,22 @@ const uploadImage = async (bodyData) => {
             url: uploadResult.secure_url,
             width: uploadResult.width,
             height: uploadResult.height,
+            public_id: uploadResult.public_id,
         };
     } catch (error) {
         console.error(error);
         return null;
+    }
+};
+
+const deleteImage = async (public_ids) => {
+    try {
+        await cloudinary.api.delete_resources(public_ids);
+        // console.log(deleteResult);
+        return true;
+    } catch (error) {
+        console.error(error);
+        return false;
     }
 };
 
@@ -99,13 +111,6 @@ export default async function handler(req, res) {
                                 name: image.name,
                                 ...uploadImageRes,
                             });
-                            // data.images = [
-                            //     ...data.images,
-                            //     {
-                            //         name: image.name,
-                            //         url: imageUrl,
-                            //     },
-                            // ];
                         }
                     })
                 );
@@ -133,6 +138,36 @@ export default async function handler(req, res) {
 
         case 'DELETE':
             try {
+                const data = req.body;
+                if (
+                    !data.title ||
+                    data.title === '' ||
+                    !data.article ||
+                    data.article === '' ||
+                    !data.slug ||
+                    data.slug === ''
+                ) {
+                    return res.status(500).json({
+                        success: false,
+                        message: 'Dữ liệu không hợp lệ',
+                    });
+                }
+
+                // DELETE IMAGES
+                let image_public_ids = data.images.map(
+                    (image) => image.public_id
+                );
+
+                if (data.banner.url) {
+                    image_public_ids = [
+                        ...image_public_ids,
+                        data.banner.public_id,
+                    ];
+                }
+
+                await deleteImage(image_public_ids);
+
+                // DELETE BULLETIN
                 const deletedBulletin = await Bulletin.deleteOne({ _id: id });
                 if (!deletedBulletin) {
                     return res

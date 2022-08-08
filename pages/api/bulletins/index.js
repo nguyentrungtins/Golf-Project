@@ -20,6 +20,7 @@ const uploadImage = async (bodyData) => {
             url: uploadResult.secure_url,
             width: uploadResult.width,
             height: uploadResult.height,
+            public_id: uploadResult.public_id,
         };
     } catch (error) {
         console.error(error);
