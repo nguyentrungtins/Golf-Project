@@ -55,12 +55,12 @@ const ListBulletinsSliderSection = ({ bulletins = [] }) => {
                 {bulletins.map((bulletin) => {
                     return (
                         <Link
-                            href={`/bulletins/${bulletin.slug.toString()}`}
+                            href={`/tin-tuc/${bulletin.slug.toString()}`}
                             key={bulletin._id.toString()}
                         >
                             <div className={styles.item}>
                                 <div className={styles.imageWrap}>
-                                    {bulletin.banner.url && (
+                                    {bulletin.banner && (
                                         <Image
                                             src={bulletin.banner.url}
                                             alt="News Latest Section Image"

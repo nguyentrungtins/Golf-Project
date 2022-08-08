@@ -16,15 +16,15 @@
 
     .title {
         margin-top: 2rem;
+        margin-bottom: 2rem;
+        line-height: 2.125rem;
 
         @include breakpoint(sm) {
             font-size: 1.625rem;
-            line-height: 2.125rem;
             padding: 0 1rem;
         }
         @include breakpoint(lg) {
             font-size: 2.5rem;
-            line-height: 3.375rem;
             padding: 0;
         }
     }
@@ -41,20 +41,15 @@
 }
 
 .published {
-    margin: 1.25rem 0 3.75rem;
-    text-transform: capitalize;
+    margin-bottom: 2rem;
     font-style: italic;
+    font-weight: 700;
     color: rgba(0, 0, 0, 0.5);
     @include breakpoint(sm) {
         padding: 0 1rem;
     }
     @include breakpoint(lg) {
         padding: 0;
-    }
-
-    span {
-        font-weight: 700;
-        font-style: normal;
     }
 }
 
@@ -104,5 +99,10 @@
 
     h6 {
         font-size: 1rem;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
     }
 }

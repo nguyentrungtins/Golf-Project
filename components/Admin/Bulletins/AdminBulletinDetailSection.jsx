@@ -43,18 +43,16 @@ const AdminBulletinDetailSection = ({ bulletin = {} }) => {
                     const image = bulletin.images.find(
                         (item) => item.name === imageName
                     );
-                    articleContent += `
-                    <div>
-                        <Image
-                            src="${image.url}"
-                            alt="image"
-                            width="100%"
-                            height="100%"
-                            layout="responsive"
-                            priority={true}
-                        />
-                    </div>
-                `;
+                    if (image) {
+                        articleContent += `
+                            <div>
+                                <img
+                                    src="${image.url}"
+                                    alt="image"
+                                />
+                            </div>
+                        `;
+                    }
                 } else {
                     articleContent += `<p>${item}</p>`;
                 }
@@ -66,6 +64,8 @@ const AdminBulletinDetailSection = ({ bulletin = {} }) => {
 
     // ONCLICK ON CONFIRM DELETE BULLETIN BUTTON
     const handleOnClickDeleteBulletin = async () => {
+        setShowModal(false);
+
         if (bulletin._id) {
             // ADD LOADING TOAST FOR HANDLE CALL API
             loadingToast.current = toast.info('Đang xử lý xóa tin', {
@@ -77,6 +77,10 @@ const AdminBulletinDetailSection = ({ bulletin = {} }) => {
                 `/api/bulletins/${bulletin._id.toString()}`,
                 {
                     method: 'DELETE',
+                    headers: {
+                        'Content-type': 'application/json',
+                    },
+                    body: JSON.stringify(bulletin),
                 }
             );
 
@@ -148,8 +152,8 @@ const AdminBulletinDetailSection = ({ bulletin = {} }) => {
                         <Image
                             src={bulletin.banner.url}
                             alt="image"
-                            width="100%"
-                            height="100%"
+                            width={bulletin.banner.width}
+                            height={bulletin.banner.height}
                             layout="responsive"
                             priority={true}
                         />

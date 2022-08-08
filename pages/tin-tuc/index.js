@@ -13,20 +13,15 @@ const getAllBulletins = async () => {
 
 export const getStaticProps = async () => {
     try {
-        // const isDevEnv = process.env.NODE_ENV !== 'production'; // development
-        // const host = isDevEnv
-        //     ? process.env.API_DEV_HOST
-        //     : process.env.API_PRODUCT_HOST;
-
-        // CALL API TO GET ALL BULLETINS
-        // const res = await fetch(`http://localhost:3000/api/bulletin`);
-        // const result = await res.json();
-
         const bulletins = await getAllBulletins();
         // console.log('>>> Bulletins: ', bulletins);
         return {
             props: {
-                bulletins,
+                bulletins: bulletins.sort(
+                    (a, b) =>
+                        Number(new Date(b.updatedAt)) -
+                        Number(new Date(a.updatedAt))
+                ),
             },
         };
     } catch (error) {

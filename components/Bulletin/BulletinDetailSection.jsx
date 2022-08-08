@@ -4,6 +4,7 @@ import Link from 'next/link';
 import styles from './BulletinDetailSection.module.scss';
 import Button from '../Button';
 import { BiArrowBack } from 'react-icons/bi';
+import { covertDateFormat } from '../../lib/functions';
 
 const BulletinDetailSection = ({ bulletin = {} }) => {
     const articleRef = useRef();
@@ -37,12 +38,9 @@ const BulletinDetailSection = ({ bulletin = {} }) => {
                     if (image) {
                         articleContent += `
                             <div>
-                                <Image
+                                <img
                                     src=${image.url}
                                     alt="image"
-                                    width="100%"
-                                    height="90%"
-                                    layout="responsive"
                                 />
                             </div>
                         `;
@@ -54,12 +52,12 @@ const BulletinDetailSection = ({ bulletin = {} }) => {
 
             articleRef.current.innerHTML = articleContent;
         }
-    }, [bulletin.article]);
+    }, [bulletin]);
 
     return (
         <div className={styles.wrapper}>
             <div className={styles.actions}>
-                <Link href="/bulletins">
+                <Link href="/tin-tuc">
                     <Button forIcon>
                         <BiArrowBack />
                     </Button>
@@ -68,12 +66,15 @@ const BulletinDetailSection = ({ bulletin = {} }) => {
             {bulletin.title && (
                 <h1 className={styles.title}>{bulletin.title}</h1>
             )}
-            {bulletin.published && (
+            {bulletin.updatedAt && (
                 <p className={styles.published}>
                     <span>
-                        {new Date(bulletin.updatedAt)
-                            .toISOString()
-                            .slice(0, 10)}
+                        Đăng ngày{' '}
+                        {covertDateFormat(
+                            new Date(bulletin.updatedAt)
+                                .toISOString()
+                                .slice(0, 10)
+                        )}
                     </span>
                 </p>
             )}
@@ -83,8 +84,8 @@ const BulletinDetailSection = ({ bulletin = {} }) => {
                     <Image
                         src={bulletin.banner.url}
                         alt="image"
-                        width="160%"
-                        height="90%"
+                        width={bulletin.banner.width}
+                        height={bulletin.banner.height}
                         layout="responsive"
                         priority={true}
                     />

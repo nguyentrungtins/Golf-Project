@@ -3,24 +3,39 @@ import cloudinary from '../../../utils/cloudinary';
 import dbConnect from '../../../lib/dbConnect';
 import Bulletin from '../../../models/Bulletin';
 
+export const config = {
+    api: {
+        bodyParser: {
+            sizeLimit: '100mb', // Set desired value here
+        },
+    },
+};
+
 const uploadImage = async (bodyData) => {
     try {
-        // const response = await fetch(`http://localhost:3000/api/upload`, {
-        //     method: 'POST',
-        //     body: JSON.stringify(bodyData),
-        //     headers: {
-        //         'Content-type': 'application/json',
-        //     },
-        // });
-        // const result = await response.json();
-        // const url = await result.url;
-        // return url;
-
         const { src, options } = bodyData;
         const uploadResult = await cloudinary.uploader.upload(src, options);
-        return uploadResult.secure_url;
+        // console.log(uploadResult);
+        return {
+            url: uploadResult.secure_url,
+            width: uploadResult.width,
+            height: uploadResult.height,
+            public_id: uploadResult.public_id,
+        };
     } catch (error) {
         console.error(error);
+        return null;
+    }
+};
+
+const deleteImage = async (public_ids) => {
+    try {
+        await cloudinary.api.delete_resources(public_ids);
+        // console.log(deleteResult);
+        return true;
+    } catch (error) {
+        console.error(error);
+        return false;
     }
 };
 
@@ -65,7 +80,7 @@ export default async function handler(req, res) {
                 // IF BANNER HAS SRC PROPERTY -> BANNER CHANGED -> UPLOAD NEW BANNER
                 if (data.banner.src) {
                     // UPLOAD BANNER IMAGE
-                    const bannerUrl = await uploadImage({
+                    const uploadBannerRes = await uploadImage({
                         src: data.banner.src,
                         options: {
                             folder: 'bulletin',
@@ -74,7 +89,9 @@ export default async function handler(req, res) {
                         },
                     });
                     data.banner.src = null;
-                    data.banner.url = bannerUrl;
+                    data.banner.url = uploadBannerRes.url;
+                    data.banner.width = uploadBannerRes.width;
+                    data.banner.height = uploadBannerRes.height;
                 }
 
                 // CHECK ARTICLE IMAGES ARE CHANGED
@@ -82,7 +99,7 @@ export default async function handler(req, res) {
                     data.images.map(async (image) => {
                         // IF IMAGE HAS SRC PROPERTY -> NEW IMAGE -> UPLOAD NEW IMAGE
                         if (image.src) {
-                            const imageUrl = await uploadImage({
+                            const uploadImageRes = await uploadImage({
                                 src: image.src,
                                 options: {
                                     folder: 'bulletin',
@@ -92,15 +109,8 @@ export default async function handler(req, res) {
                             data.images.splice(data.images.indexOf(image), 1);
                             data.images.push({
                                 name: image.name,
-                                url: imageUrl,
+                                ...uploadImageRes,
                             });
-                            // data.images = [
-                            //     ...data.images,
-                            //     {
-                            //         name: image.name,
-                            //         url: imageUrl,
-                            //     },
-                            // ];
                         }
                     })
                 );
@@ -128,6 +138,36 @@ export default async function handler(req, res) {
 
         case 'DELETE':
             try {
+                const data = req.body;
+                if (
+                    !data.title ||
+                    data.title === '' ||
+                    !data.article ||
+                    data.article === '' ||
+                    !data.slug ||
+                    data.slug === ''
+                ) {
+                    return res.status(500).json({
+                        success: false,
+                        message: 'Dữ liệu không hợp lệ',
+                    });
+                }
+
+                // DELETE IMAGES
+                let image_public_ids = data.images.map(
+                    (image) => image.public_id
+                );
+
+                if (data.banner.url) {
+                    image_public_ids = [
+                        ...image_public_ids,
+                        data.banner.public_id,
+                    ];
+                }
+
+                await deleteImage(image_public_ids);
+
+                // DELETE BULLETIN
                 const deletedBulletin = await Bulletin.deleteOne({ _id: id });
                 if (!deletedBulletin) {
                     return res
