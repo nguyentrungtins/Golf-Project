@@ -466,9 +466,10 @@ const ProductCreateForm = () => {
                                 }}
                             >
                                 <div className={styles.imgList}>
-                                    {productImageSrc.map((img) => {
+                                    {productImageSrc.map((img, i) => {
                                         return (
                                             <img
+                                                key={i}
                                                 src={img.src}
                                                 className={styles.imgItem}
                                             />
