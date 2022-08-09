@@ -5,7 +5,7 @@ import { getSession } from 'next-auth/client';
 import Product from '../../../../models/Product';
 const productDetail = (props) => {
     const { product } = props;
-    console.log(product);
+    // console.log(product);
     return (
         <>
             <Navbar />

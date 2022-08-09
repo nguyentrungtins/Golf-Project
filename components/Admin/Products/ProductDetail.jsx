@@ -11,11 +11,6 @@ import { useRouter } from 'next/router';
 import ButtonToggle from '../../Button/ButtonToggle';
 import classnames from 'classnames';
 import { useState, useRef } from 'react';
-import {
-    randomString,
-    toLowerCaseNonAccentVietnamese,
-} from '../../../lib/functions';
-import Image from 'next/image';
 
 const ProductDetail = ({ product = null }) => {
     if (!product) {
@@ -43,7 +38,7 @@ const ProductDetail = ({ product = null }) => {
         img,
         createdAt,
     } = product;
-    console.log(product);
+    // console.log(product);
     let statusName;
     if (status == 1) {
         statusName = 'Còn hàng';

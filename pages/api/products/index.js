@@ -35,6 +35,7 @@ const handle = async (req, res) => {
             } catch (error) {
                 return res.status(400).json({ success: false });
             }
+            break;
         case 'POST':
             const {
                 name,
@@ -143,6 +144,10 @@ const handle = async (req, res) => {
                     message: 'Tạo sản phẩm mới thất bại',
                 });
             }
+            break;
+        default:
+            res.status(400).json({ success: false });
+            break;
     }
 };
 
