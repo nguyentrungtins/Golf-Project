@@ -5,7 +5,7 @@ import ProductItem from './ProductItem';
 import Link from 'next/link';
 import { BsPlusLg } from 'react-icons/bs';
 
-const ProductList = () => {
+const ProductList = ({ products = [] }) => {
     return (
         <div className={styles.wrapper}>
             <h2>Sản phẩm</h2>
@@ -26,7 +26,15 @@ const ProductList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <ProductItem />
+                    {products.length ? (
+                        products.map((product, index) => {
+                            return (
+                                <ProductItem product={product} key={index} />
+                            );
+                        })
+                    ) : (
+                        <h4>Không tìm thấy sản phẩm</h4>
+                    )}
                 </tbody>
             </table>
         </div>

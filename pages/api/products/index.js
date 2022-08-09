@@ -28,13 +28,13 @@ const handle = async (req, res) => {
     await dbConnect();
 
     switch (method) {
-        // case 'GET':
-        //     try {
-        //         const products = await Product.find({});
-        //         return res.status(200).json({ success: true, data: products });
-        //     } catch (error) {
-        //         return res.status(400).json({ success: false });
-        //     }
+        case 'GET':
+            try {
+                const products = await Product.find({});
+                return res.status(200).json({ success: true, data: products });
+            } catch (error) {
+                return res.status(400).json({ success: false });
+            }
         case 'POST':
             const {
                 name,
