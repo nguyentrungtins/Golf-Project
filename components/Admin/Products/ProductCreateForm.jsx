@@ -35,6 +35,7 @@ const ProductCreateForm = () => {
     const [productDescInput, setArticleInput] = useState('');
     const [productDescImages, setArticleImages] = useState([]);
     const [productImageSrc, setProductImageSrc] = useState([]);
+    const [productMainImageSrc, setProductMainImageSrc] = useState({});
     const [priceList, setPriceList] = useState({});
     const [tagList, setTagList] = useState([]);
 
@@ -216,6 +217,7 @@ const ProductCreateForm = () => {
             { techParameter: '', techParameterContent: '' },
         ]);
     };
+
     const handleOnChangeImgInput = (e) => {
         // console.log(file.size);
 
@@ -255,6 +257,38 @@ const ProductCreateForm = () => {
             }
         }
     };
+
+    const handleOnChangeMainImgInput = (e) => {
+        // console.log(file.size);
+
+        // CHECK FILE TYPE
+        setProductMainImageSrc({});
+        let file;
+        file = e.target.files[0];
+        if (file && file.type.includes('image')) {
+            // CHECK FILE SIZE (< 10MB)
+            if (file.size > 10 * 1024 * 1024) {
+                toast.warn(
+                    'Kích thước file vượt quá kích thước cho phép (< 10MB)'
+                );
+                return;
+            }
+            // SET IMAGE NAME
+            let date = new Date();
+            let imageName =
+                date.getDate() + date.getTime() + randomString() + file.name;
+            // READ FILE
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onloadend = () => {
+                setProductMainImageSrc({ name: imageName, src: reader.result });
+            };
+            reader.onerror = () => {
+                console.error('AHHHHHHHH!!');
+                setErrMsg('something went wrong!');
+            };
+        }
+    };
     const onSubmit = async (e) => {
         e.preventDefault();
         if (!productDescInput) {
@@ -279,6 +313,7 @@ const ProductCreateForm = () => {
             desc: productDescInput.trim(),
             descImg: productDescImages,
             techParameter: techParameterData,
+            mainImg: productMainImageSrc,
             img: productImageSrc,
             status: 1,
             tag: tagList,
@@ -472,8 +507,50 @@ const ProductCreateForm = () => {
                             </div>
                         </div>
                     </div>
+
                     <div className={styles.field}>
-                        <h3>Ảnh sản phẩm</h3>
+                        <h3>Ảnh sản phẩm (ảnh chính)</h3>
+                        <div className={styles.fieldGroup}>
+                            <div
+                                className={styles.product}
+                                style={{
+                                    backgroundImage: `url("${productImageSrc.src}")`,
+                                }}
+                            >
+                                <div className={styles.imgList}>
+                                    {productMainImageSrc && (
+                                        <img
+                                            src={productMainImageSrc.src}
+                                            className={styles.imgItem}
+                                        />
+                                    )}
+                                </div>
+                                <div className={styles.options}>
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        id="product-upload-main"
+                                        hidden
+                                        onChange={handleOnChangeMainImgInput}
+                                    />
+                                    <label
+                                        htmlFor="product-upload-main"
+                                        className={styles.btn}
+                                    >
+                                        <Button
+                                            forLabel
+                                            rightIcon={<BsUpload />}
+                                        >
+                                            Chọn ảnh
+                                        </Button>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={styles.field}>
+                        <h3>Ảnh sản phẩm (ảnh phụ)</h3>
                         <div className={styles.fieldGroup}>
                             <div
                                 className={styles.product}
