@@ -387,7 +387,10 @@ const ProductCreateForm = () => {
                                 <div className={styles.btnToggleWrapper}>
                                     {tagData.map(({ slug, name }) => {
                                         return (
-                                            <div onClick={btnTagHandler(slug)}>
+                                            <div
+                                                onClick={btnTagHandler(slug)}
+                                                key={slug}
+                                            >
                                                 <ButtonToggle name={name} />
                                             </div>
                                         );
