@@ -55,44 +55,95 @@ const SubLinkNav = ({ subLinkPosition, isOnTop }) => {
         subLinkItem = [
             {
                 name: 'Gậy golf',
-                subName: ['Gậy golf mới', 'Gậy golf cũ'],
-                url: '/products/',
+                subName: [
+                    {
+                        name: 'Gậy golf nam',
+                        url: '/san-pham/danh-muc/gay-golf-nam',
+                    },
+                    {
+                        name: 'Gậy golf nữ',
+                        url: '/san-pham/danh-muc/gay-golf-nu',
+                    },
+                ],
+                url: '/san-pham/danh-muc/gay-golf',
             },
             {
                 name: 'Thời trang',
                 subName: [
-                    'Áo golf nam',
-                    'Quần golf nam',
-                    'Áo golf nữ',
-                    'Quần golf nữ',
-                    'Váy golf nữ',
+                    {
+                        name: 'Áo golf nam',
+                        url: '/san-pham/danh-muc/ao-golf-nam',
+                    },
+                    {
+                        name: 'Áo golf nữ',
+                        url: '/san-pham/danh-muc/ao-golf-nu',
+                    },
+                    {
+                        name: 'Quần golf nam',
+                        url: '/san-pham/danh-muc/quan-golf-nam',
+                    },
+                    {
+                        name: 'Quần golf nữ',
+                        url: '/san-pham/danh-muc/quan-golf-nu',
+                    },
+                    {
+                        name: 'Váy golf nữ',
+                        url: '/san-pham/danh-muc/vay-golf-nu',
+                    },
                 ],
-                url: '/products/',
+                url: '/san-pham/danh-muc/thoi-trang',
             },
             {
                 name: 'Giày golf',
-                subName: ['Giày golf nam', 'Giày golf nữ'],
-                url: '/products/',
+                subName: [
+                    {
+                        name: 'Giày golf nam',
+                        url: '/san-pham/danh-muc/giay-golf-nam',
+                    },
+                    {
+                        name: 'Giày golf nữ',
+                        url: '/san-pham/danh-muc/giay-golf-nu',
+                    },
+                ],
+                url: '/san-pham/danh-muc/giay-golf',
             },
             {
                 name: 'Phụ kiện golf',
-                subName: ['Găng tay golf', 'Dù golf', 'Vớ golf'],
-                url: '/products/',
+                subName: [
+                    {
+                        name: 'Găng tay golf',
+                        url: '/san-pham/danh-muc/gang-tay-golf',
+                    },
+                    {
+                        name: 'Dù golf',
+                        url: '/san-pham/danh-muc/du-golf',
+                    },
+                    {
+                        name: 'Vớ golf',
+                        url: '/san-pham/danh-muc/vo-golf',
+                    },
+                ],
+                url: '/san-pham/danh-muc/phu-kien-golf',
             },
             {
                 name: 'Máy 3D golf',
                 subName: [],
-                url: '/products/',
+                url: '/san-pham/danh-muc/may-3d-golf',
             },
             {
                 name: 'Cigar',
                 subName: [],
-                url: '/products/',
+                url: '/san-pham/danh-muc/cigar',
             },
             {
                 name: 'Rượu vang',
                 subName: [],
-                url: '/products/',
+                url: '/san-pham/danh-muc/ruou-vang',
+            },
+            {
+                name: 'Khác',
+                subName: [],
+                url: '/san-pham/danh-muc/khac',
             },
         ];
     }

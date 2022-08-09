@@ -14,8 +14,8 @@ const SubLinkLevel2 = ({ name, subName, url }) => {
     if (subName.length > 0) {
         subLinkLV2 = subName.map((e) => {
             return (
-                <li key={e} className={styles.subLVItem}>
-                    {e}
+                <li key={e.name} className={styles.subLVItem}>
+                    <Link href={e.url}>{e.name}</Link>
                 </li>
             );
         });

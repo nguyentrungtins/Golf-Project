@@ -73,7 +73,7 @@ const Navbar = ({ isNavTrans = false }) => {
                     name={'Sản Phẩm'}
                     position={'two'}
                     isOnTop={isNavTrans ? positionOnTop : false}
-                    href={'/products'}
+                    href={'/san-pham'}
                 />
 
                 <NavLink
@@ -135,7 +135,7 @@ const Navbar = ({ isNavTrans = false }) => {
                         setHambergerToggle(false);
                     }}
                 >
-                    <Link href="/products?cat=test">
+                    <Link href="/san-pham">
                         <a>Sản Phẩm</a>
                     </Link>
                 </li>
@@ -155,7 +155,7 @@ const Navbar = ({ isNavTrans = false }) => {
                         setHambergerToggle(false);
                     }}
                 >
-                    <Link href="/products/sale">
+                    <Link href="/san-pham/khuyen-mai">
                         <a>Khuyến Mãi</a>
                     </Link>
                 </li>
