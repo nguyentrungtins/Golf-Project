@@ -1,5 +1,5 @@
 import BulletinSection from '../../components/Bulletin/BulletinSection.jsx';
-import NestedLayout from '../../components/Layouts/NestedLayout';
+import NestedLayout2 from '../../components/Layouts/NestedLayout2';
 import Layout from '../../components/Layouts/Layout';
 
 import dbConnect from '../../lib/dbConnect.js';
@@ -42,7 +42,7 @@ export default BulletinPage;
 BulletinPage.getLayout = function getLayout(page) {
     return (
         <Layout>
-            <NestedLayout>{page}</NestedLayout>
+            <NestedLayout2>{page}</NestedLayout2>
         </Layout>
     );
 };

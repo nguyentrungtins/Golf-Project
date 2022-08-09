@@ -135,7 +135,7 @@ const Navbar = ({ isNavTrans = false }) => {
                         setHambergerToggle(false);
                     }}
                 >
-                    <Link href="/products">
+                    <Link href="/products?cat=test">
                         <a>Sản Phẩm</a>
                     </Link>
                 </li>
