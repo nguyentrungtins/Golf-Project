@@ -35,12 +35,12 @@ const handle = async (req, res) => {
             } catch (error) {
                 return res.status(400).json({ success: false });
             }
-            break;
         case 'POST':
             const {
                 name,
                 tag,
                 brand,
+                mainImg,
                 img,
                 desc,
                 descImg,
@@ -89,6 +89,27 @@ const handle = async (req, res) => {
                     })
                 );
 
+                let newMainImages = {};
+
+                const uploadMainImageData = {
+                    src: mainImg.src,
+                    options: {
+                        folder: 'products',
+                        upload_preset: 'hdvpsezy',
+                        resource_type: 'image',
+                    },
+                };
+                const { public_id, url, width, height } = await uploadImage(
+                    uploadMainImageData
+                );
+                newMainImages = {
+                    name: mainImg.name,
+                    url,
+                    width,
+                    height,
+                    public_id,
+                };
+
                 let newDescImg = [];
                 await Promise.all(
                     descImg.map(async (image) => {
@@ -121,6 +142,7 @@ const handle = async (req, res) => {
                     tag: tag,
                     brand: brand.trim(),
                     price: price,
+                    mainImg: newMainImages,
                     img: newImages,
                     descImg: newDescImg,
                     desc: desc.trim(),
@@ -144,7 +166,6 @@ const handle = async (req, res) => {
                     message: 'Tạo sản phẩm mới thất bại',
                 });
             }
-            break;
         default:
             res.status(400).json({ success: false });
             break;

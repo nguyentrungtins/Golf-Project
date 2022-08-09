@@ -37,6 +37,7 @@ const ProductDetail = ({ product = null }) => {
         descImg,
         img,
         createdAt,
+        mainImg,
     } = product;
     // console.log(product);
     let statusName;
@@ -217,7 +218,21 @@ const ProductDetail = ({ product = null }) => {
                         </div>
                     </div>
                     <div className={styles.field}>
-                        <h3>Ảnh sản phẩm</h3>
+                        <h3>Ảnh sản phẩm (ảnh chính)</h3>
+                        <div className={styles.fieldGroup}>
+                            <div className={styles.product}>
+                                <div className={styles.imgList}>
+                                    <img
+                                        src={mainImg.url}
+                                        className={styles.imgItem}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={styles.field}>
+                        <h3>Ảnh sản phẩm (ảnh phụ)</h3>
                         <div className={styles.fieldGroup}>
                             <div className={styles.product}>
                                 <div className={styles.imgList}>
