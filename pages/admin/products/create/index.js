@@ -1,6 +1,7 @@
 import Navbar from '../../../../components/Layouts/Admin/Navbar';
 import { getSession } from 'next-auth/client';
 import ProductCreateForm from '../../../../components/Admin/Products/ProductCreateForm';
+
 const ProductCreate = () => {
     return (
         <>

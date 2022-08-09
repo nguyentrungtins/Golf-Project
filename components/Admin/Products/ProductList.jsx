@@ -5,7 +5,7 @@ import ProductItem from './ProductItem';
 import Link from 'next/link';
 import { BsPlusLg } from 'react-icons/bs';
 
-const ProductList = () => {
+const ProductList = ({ products = null }) => {
     return (
         <div className={styles.wrapper}>
             <h2>Sản phẩm</h2>
@@ -26,7 +26,15 @@ const ProductList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <ProductItem />
+                    {products ? (
+                        products.map((product, index) => {
+                            return (
+                                <ProductItem product={product} key={index} />
+                            );
+                        })
+                    ) : (
+                        <ProductItem />
+                    )}
                 </tbody>
             </table>
         </div>

@@ -2,87 +2,60 @@ import classnames from 'classnames';
 import styles from './ProductList.module.scss';
 import { AiOutlineEdit } from 'react-icons/ai';
 import { TbListDetails } from 'react-icons/tb';
-const ProductItem = () => {
+import Link from 'next/link';
+const ProductItem = ({ product = null }) => {
+    if (!product) {
+        return (
+            <tr>
+                <td>
+                    <h4>Không tồn tại sản phẩm nào</h4>
+                </td>
+            </tr>
+        );
+    }
+    const { name, tag, brand, price, status, _id } = product;
+    let statusName;
+    let statusStyle;
+    if (status == 1) {
+        statusName = 'Còn hàng';
+        statusStyle = classnames(styles.status, styles.status_paid);
+    } else if (status == 0) {
+        statusName = 'Hết hàng';
+        statusStyle = classnames(styles.status, styles.status_pending);
+    } else if (status == -1) {
+        statusName = 'Ngừng kinh doanh';
+        statusStyle = classnames(styles.status, styles.status_unpaid);
+    }
     return (
         <>
             <tr>
                 <td>
-                    <a href="#">INV__1001</a>
+                    <a href="#">{name}</a>
                 </td>
-                <td>Paragon</td>
-                <td>1/5/2021</td>
+
                 <td>
-                    <p
-                        className={classnames(
-                            styles.status,
-                            styles.status_unpaid
-                        )}
-                    >
-                        Unpaid
-                    </p>
+                    {tag.map((t, index) => {
+                        return <p key={index}>{t.name}</p>;
+                    })}
                 </td>
-                <td className={styles.amount}>520.18đ</td>
+                <td>{brand}</td>
+                <td>
+                    <p className={statusStyle}>{statusName}</p>
+                </td>
+                <td className={styles.amount}>{price.priceAfterSale} đ</td>
                 <td className={styles.edit}>
-                    <a>
-                        <TbListDetails size={25} />
-                    </a>
-                    <a>
-                        <AiOutlineEdit size={25} />
-                    </a>
+                    <Link href={`/admin/products/detail/${_id}`}>
+                        <a>
+                            <TbListDetails size={25} />
+                        </a>
+                    </Link>
+                    <Link href={`/admin/products/edit/${_id}`}>
+                        <a>
+                            <AiOutlineEdit size={25} />
+                        </a>
+                    </Link>
                 </td>
             </tr>
-            {/* <tr>
-                <td>
-                    <a href="#">INV__1002</a>
-                </td>
-                <td>Sonic</td>
-                <td>1/4/2021</td>
-                <td>
-                    <p
-                        className={classnames(
-                            styles.status,
-                            styles.status_paid
-                        )}
-                    >
-                        Paid
-                    </p>
-                </td>
-                <td className={styles.amount}>415.25đ</td>
-                <td className={styles.edit}>
-                    <a>
-                        <TbListDetails size={25} />
-                    </a>
-                    <a>
-                        <AiOutlineEdit size={25} />
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#">INV__1003</a>
-                </td>
-                <td>Innercircle</td>
-                <td>1/2/2021</td>
-                <td>
-                    <p
-                        className={classnames(
-                            styles.status,
-                            styles.status_pending
-                        )}
-                    >
-                        Pending
-                    </p>
-                </td>
-                <td className={styles.amount}>1324.84đ</td>
-                <td className={styles.edit}>
-                    <a>
-                        <TbListDetails size={25} />
-                    </a>
-                    <a>
-                        <AiOutlineEdit size={25} />
-                    </a>
-                </td>
-            </tr> */}
         </>
     );
 };
