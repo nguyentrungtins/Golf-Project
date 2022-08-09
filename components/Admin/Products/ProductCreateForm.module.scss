@@ -93,6 +93,9 @@
             border: none;
             font-size: large;
             color: rgba($color: #000000, $alpha: 0.7);
+            &:disabled {
+                background-color: #fff;
+            }
         }
         > .inputLabel {
             width: 25%;
@@ -101,6 +104,9 @@
             border: none;
             font-size: large;
             color: rgba($color: #000000, $alpha: 0.7);
+            &:disabled {
+                background-color: #fff;
+            }
         }
         &.textarea {
             height: 300px;
@@ -114,6 +120,9 @@
                 border: none;
                 outline: none;
                 font-size: large;
+                &:disabled {
+                    background-color: #fff;
+                }
             }
         }
 

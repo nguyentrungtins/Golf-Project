@@ -10,7 +10,8 @@ const adminIndex = (props) => {
     return (
         <>
             <Navbar />
-            <ProductList products={products} />
+            {products && <ProductList products={products} />}
+            {!products && <ProductList />}
         </>
     );
 };
@@ -32,7 +33,7 @@ export async function getServerSideProps(context) {
     if (result) {
         products = JSON.parse(JSON.stringify(result));
     } else {
-        products = [];
+        products = null;
     }
     return {
         props: { session, products },

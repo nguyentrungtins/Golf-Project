@@ -127,18 +127,31 @@ const ProductCreateForm = () => {
 
     // Danh muc san pham - tag
 
-    const btnTagHandler = (value) => () => {
-        // your logic
-        if (tagList.includes(value)) {
-            const newList = tagList.filter((tag) => {
-                return tag != value;
-            });
-            setTagList(newList);
-            console.log('remove: ', tagList);
-        } else {
-            setTagList((prev) => [...prev, value]);
-            console.log('add: ', tagList);
+    const btnTagHandler = (slug, name) => () => {
+        if (tagList.length == 0) {
+            setTagList([{ slug: slug, name: name }]);
         }
+        for (let i = 0; i < tagList.length; i++) {
+            if (tagList[i].slug === slug) {
+                const newList = tagList.filter((tag) => {
+                    return tag.slug != slug;
+                });
+                setTagList(newList);
+                break;
+            } else {
+                setTagList((prev) => [...prev, { slug: slug, name: name }]);
+            }
+        }
+        // if (tagList.includes(slug)) {
+        //     const newList = tagList.filter((tag) => {
+        //         return tag != slug;
+        //     });
+        //     setTagList(newList);
+        //     console.log('remove: ', tagList);
+        // } else {
+        //     setTagList((prev) => [...prev, slug]);
+        //     console.log('add: ', tagList);
+        // }
     };
 
     // Mo ta san pham
@@ -388,7 +401,10 @@ const ProductCreateForm = () => {
                                     {tagData.map(({ slug, name }) => {
                                         return (
                                             <div
-                                                onClick={btnTagHandler(slug)}
+                                                onClick={btnTagHandler(
+                                                    slug,
+                                                    name
+                                                )}
                                                 key={slug}
                                             >
                                                 <ButtonToggle name={name} />
