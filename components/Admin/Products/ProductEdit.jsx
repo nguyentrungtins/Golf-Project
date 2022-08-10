@@ -12,19 +12,6 @@ import {
     toLowerCaseNonAccentVietnamese,
 } from '../../../lib/functions';
 const ProductEdit = ({ product = null }) => {
-    if (!product) {
-        return (
-            <div className={styles.wrapper}>
-                <div className={styles.container}>
-                    <Link href="/admin/products">
-                        <Button leftIcon={<IoIosArrowBack />}>Trở về</Button>
-                    </Link>
-
-                    <h2>Khong tim thay san pham</h2>
-                </div>
-            </div>
-        );
-    }
     const {
         name,
         brand,
@@ -260,6 +247,19 @@ const ProductEdit = ({ product = null }) => {
             });
         }
     };
+    if (!product) {
+        return (
+            <div className={styles.wrapper}>
+                <div className={styles.container}>
+                    <Link href="/admin/products">
+                        <Button leftIcon={<IoIosArrowBack />}>Trở về</Button>
+                    </Link>
+
+                    <h2>Khong tim thay san pham</h2>
+                </div>
+            </div>
+        );
+    }
     return (
         <div className={styles.wrapper}>
             <div className={styles.container}>
