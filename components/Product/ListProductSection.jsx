@@ -6,10 +6,10 @@ import { ImSortAmountDesc, ImSortAmountAsc } from 'react-icons/im';
 import { TbDiscount } from 'react-icons/tb';
 import { BsChevronDown } from 'react-icons/bs';
 
-const ListProductSection = ({ products = [], useSlug = false }) => {
+const ListProductSection = ({ products = [], useSlug = false, title = '' }) => {
     return (
         <div className={styles.wrapper}>
-            <h3>Sản phẩm</h3>
+            <h3>{title || 'Tất cả sản phẩm'}</h3>
             {/* BUTTONS */}
             <div className={styles.btns}>
                 <Button

@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import styles from './AdminCreateNewBulletinSection.module.scss';
 import Button from '../../Button';
 import { BsUpload } from 'react-icons/bs';
+import { FaRegHandPointRight } from 'react-icons/fa';
 import {
     randomString,
     toLowerCaseNonAccentVietnamese,
@@ -172,6 +173,7 @@ const AdminCreateNewBulletinSection = () => {
 
     return (
         <div className={styles.wrapper}>
+            {/* BANNER */}
             <div
                 className={styles.banner}
                 style={{ backgroundImage: `url("${bannerImageSrc.src}")` }}
@@ -190,7 +192,9 @@ const AdminCreateNewBulletinSection = () => {
                 </label>
             </div>
 
+            {/* CONTENT */}
             <div className={styles.content}>
+                {/* TITLE */}
                 <textarea
                     type="text"
                     className={styles.title}
@@ -198,6 +202,35 @@ const AdminCreateNewBulletinSection = () => {
                     value={titleInput}
                     onChange={(e) => setTitleInput(e.target.value)}
                 ></textarea>
+
+                {/* NOTE */}
+                <div className={styles.note}>
+                    <h3>Hướng dẫn phần nội dung tin tức</h3>
+                    <ul>
+                        <li>
+                            <FaRegHandPointRight className={styles.icon} />
+                            Muốn chèn ảnh, hãy nhấn nút Chèn ảnh bên dưới.
+                        </li>
+                        <li>
+                            <FaRegHandPointRight className={styles.icon} />
+                            Muốn thêm các tiêu đề nổi bật cho nội dung, hãy sử
+                            dụng cú pháp ###[nội dung tiêu đề].{' '}
+                            <b>
+                                Lưu ý kích thước của tiêu đề sẽ giảm dần theo số
+                                lượng ký tự # từ 1 đến 6.
+                            </b>{' '}
+                            Ví dụ #Heading sẽ có kích thước lớn nhất và
+                            ######Heading sẽ có kích thước nhỏ nhất.
+                        </li>
+                        <li>
+                            <FaRegHandPointRight className={styles.icon} />
+                            Khi thêm tiêu đề mới phải xuống dòng mới. Không được
+                            ghi trên cùng một dòng với các nội dung khác.
+                        </li>
+                    </ul>
+                </div>
+
+                {/* ARTICLE */}
                 <textarea
                     ref={textArticleRef}
                     type="text"
