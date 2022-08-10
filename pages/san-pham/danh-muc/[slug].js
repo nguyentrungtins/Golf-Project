@@ -5,6 +5,89 @@ import Layout from '../../../components/Layouts/Layout';
 import dbConnect from '../../../lib/dbConnect';
 import Product from '../../../models/Product';
 
+const tags = [
+    {
+        name: 'Gậy golf nam',
+        slug: 'gay-golf-nam',
+    },
+    {
+        name: 'Gậy golf nữ',
+        slug: 'gay-golf-nu',
+    },
+    {
+        name: 'Gậy golf',
+        slug: 'gay-golf',
+    },
+    {
+        name: 'Áo golf nam',
+        slug: 'ao-golf-nam',
+    },
+    {
+        name: 'Áo golf nữ',
+        slug: 'ao-golf-nu',
+    },
+    {
+        name: 'Quần golf nam',
+        slug: 'quan-golf-nam',
+    },
+    {
+        name: 'Quần golf nữ',
+        slug: 'quan-golf-nu',
+    },
+    {
+        name: 'Váy golf nữ',
+        slug: 'vay-golf-nu',
+    },
+    {
+        name: 'Thời trang',
+        slug: 'thoi-trang',
+    },
+    {
+        name: 'Giày golf nam',
+        slug: 'giay-golf-nam',
+    },
+    {
+        name: 'Giày golf nữ',
+        slug: 'giay-golf-nu',
+    },
+    {
+        name: 'Giày golf',
+        slug: 'giay-golf',
+    },
+    {
+        name: 'Găng tay golf',
+        slug: 'gang-tay-golf',
+    },
+    {
+        name: 'Dù golf',
+        slug: 'du-golf',
+    },
+    {
+        name: 'Vớ golf',
+        slug: 'vo-golf',
+    },
+    {
+        name: 'Phụ kiện golf',
+        slug: 'phu-kien-golf',
+    },
+    {
+        name: 'Máy 3d golf',
+        slug: 'may-3d-golf',
+    },
+    {
+        name: 'cigar',
+        slug: 'cigar',
+    },
+    {
+        name: 'Rượu vang',
+        slug: 'ruou-vang',
+    },
+    {
+        name: 'Khác',
+        slug: 'khac',
+    },
+];
+
 const getProductsBySlug = async (slug) => {
     await dbConnect();
     const products = await Product.find({ 'tag.slug': slug });
@@ -12,32 +95,10 @@ const getProductsBySlug = async (slug) => {
 };
 
 export const getStaticPaths = () => {
-    const slugs = [
-        'gay-golf-nam',
-        'gay-golf-nu',
-        'gay-golf',
-        'ao-golf-nam',
-        'ao-golf-nu',
-        'quan-golf-nam',
-        'quan-golf-nu',
-        'vay-golf-nu',
-        'thoi-trang',
-        'giay-golf-nam',
-        'giay-golf-nu',
-        'giay-golf',
-        'gang-tay-golf',
-        'du-golf',
-        'vo-golf',
-        'phu-kien-golf',
-        'may-3d-golf',
-        'cigar',
-        'ruou-vang',
-        'khac',
-    ];
     return {
-        paths: slugs.map((slug) => ({
+        paths: tags.map((tag) => ({
             params: {
-                slug,
+                slug: tag.slug,
             },
         })),
         fallback: true,
@@ -65,14 +126,21 @@ export const getStaticProps = async (context) => {
                     Number(new Date(b.updatedAt)) -
                     Number(new Date(a.updatedAt))
             ),
+            slug,
         },
     };
 };
 
-const ProductsByTagPage = ({ products = {} }) => {
+const ProductsByTagPage = ({ products = {}, slug = '' }) => {
+    const currentTag = tags.find((tag) => tag.slug === slug);
+
     return (
         <>
-            <ListProductSection products={products} useSlug />
+            <ListProductSection
+                products={products}
+                title={currentTag.name}
+                useSlug
+            />
         </>
     );
 };

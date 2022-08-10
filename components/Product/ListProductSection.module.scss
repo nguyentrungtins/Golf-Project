@@ -4,7 +4,7 @@
     @include breakpoint(sm) {
         width: 100%;
         padding-top: calc(
-            var(--header-navbar-height) + var(--margin-standard-sm)
+            var(--header-navbar-height) + var(--margin-standard-sm) / 2
         );
     }
 
@@ -12,7 +12,7 @@
         width: var(--width-wrapper);
         margin: 0 auto;
         padding-top: calc(
-            var(--header-navbar-height) + var(--margin-standard-lg)
+            var(--header-navbar-height) + var(--margin-standard-lg) / 2
         );
     }
 
@@ -44,6 +44,12 @@
     @include breakpoint(lg) {
         padding: 0;
     }
+}
+
+.noProdMessage {
+    margin-bottom: 2rem;
+    font-weight: bold;
+    font-style: italic;
 }
 
 .row {
