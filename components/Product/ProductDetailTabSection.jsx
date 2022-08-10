@@ -113,9 +113,9 @@ const ProductDetailTabSection = ({ product = [] }) => {
                 >
                     <table border="1">
                         <tbody>
-                            {techParameter.map((parameter) => {
+                            {techParameter.map((parameter, index) => {
                                 return (
-                                    <tr>
+                                    <tr key={index}>
                                         <th>{parameter.title}</th>
                                         <td>{parameter.body}</td>
                                     </tr>
