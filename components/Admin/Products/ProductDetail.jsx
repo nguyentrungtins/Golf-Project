@@ -13,6 +13,25 @@ import classnames from 'classnames';
 import { useState, useRef } from 'react';
 
 const ProductDetail = ({ product = null }) => {
+    const [techParameterList, setTechParameterList] = useState([
+        { techParameter: '', techParameterContent: '' },
+    ]);
+
+    const router = useRouter();
+
+    const textArticleRef = useRef();
+    const loadingToast = useRef();
+    const productName = name;
+    const productBrand = brand;
+    // const productOriginalPrice = price.originalPrice;
+    // const productSale = price.sale;
+    // const finalPrice = price.priceAfterSale;
+    // const [price, setPrice] = useState(0);
+    const [productDescInput, setArticleInput] = useState('');
+    const [productDescImages, setArticleImages] = useState([]);
+    const [productImageSrc, setProductImageSrc] = useState([]);
+    // const [priceList, setPriceList] = useState({});
+    const [tagList, setTagList] = useState([]);
     if (!product) {
         return (
             <div className={styles.wrapper}>
@@ -48,26 +67,6 @@ const ProductDetail = ({ product = null }) => {
     } else if (status == -1) {
         statusName = 'Ngừng kinh doanh';
     }
-
-    const [techParameterList, setTechParameterList] = useState([
-        { techParameter: '', techParameterContent: '' },
-    ]);
-
-    const router = useRouter();
-
-    const textArticleRef = useRef();
-    const loadingToast = useRef();
-    const productName = name;
-    const productBrand = brand;
-    // const productOriginalPrice = price.originalPrice;
-    // const productSale = price.sale;
-    // const finalPrice = price.priceAfterSale;
-    // const [price, setPrice] = useState(0);
-    const [productDescInput, setArticleInput] = useState('');
-    const [productDescImages, setArticleImages] = useState([]);
-    const [productImageSrc, setProductImageSrc] = useState([]);
-    // const [priceList, setPriceList] = useState({});
-    const [tagList, setTagList] = useState([]);
 
     // Tag data
 
