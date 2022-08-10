@@ -47,6 +47,7 @@ const handle = async (req, res) => {
                 techParameter,
                 price,
                 status,
+                slug,
             } = body;
             if (
                 !name ||
@@ -148,6 +149,7 @@ const handle = async (req, res) => {
                     desc: desc.trim(),
                     techParameter: techParameter,
                     status: status,
+                    slug: slug,
                 };
 
                 // console.log('>>> Data: ', data);

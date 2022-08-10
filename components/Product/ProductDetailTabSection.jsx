@@ -1,7 +1,62 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styles from './ProductDetailTabSection.module.scss';
 import classnames from 'classnames';
-const ProductDetailTabSection = () => {
+import { BsChevronCompactDown, BsChevronCompactUp } from 'react-icons/bs';
+const ProductDetailTabSection = ({ product = [] }) => {
+    const { desc, descImg, techParameter } = product;
+    const [showMore, setShowMore] = useState(false);
+    const articleRef = useRef();
+
+    const techParameterStyle = classnames(
+        styles.article,
+        showMore ? styles.click : ''
+    );
+
+    const showClickHandler = () => {
+        setShowMore(!showMore);
+    };
+    // SET CONTENT OF ARTICLE
+    useEffect(() => {
+        let articleContent = '';
+        if (desc) {
+            const splitArticle = desc.split('\n').filter((item) => item !== '');
+            splitArticle.forEach((item) => {
+                // CHECK HEADING
+                if (item[0] === '#') {
+                    let count = 1;
+                    while (item[count] === '#') {
+                        count += 1;
+                    }
+
+                    articleContent += `
+                        <h${count}>${item.slice(count, item.length)}</h${count}>
+                    `;
+                }
+                // CHECK IMAGE
+                else if (item.startsWith('!Image')) {
+                    const imageName = item.slice(7, item.length - 1);
+
+                    const image = product.descImg.find(
+                        (item) => item.name === imageName
+                    );
+                    if (image) {
+                        articleContent += `
+                            <div>
+                                <img
+                                    src=${image.url}
+                                    alt="image"
+                                />
+                            </div>
+                        `;
+                    }
+                } else {
+                    articleContent += `<p>${item}</p>`;
+                }
+            });
+
+            articleRef.current.innerHTML = articleContent;
+        }
+    }, [product]);
     const [activedTab, setActivedTab] = useState(1);
 
     const handleClick = (event) => {
@@ -35,40 +90,20 @@ const ProductDetailTabSection = () => {
 
                 {/* CONTENT */}
                 <div className={contentStyles}>
-                    <h4>Tổng quan về bộ gậy golf fullset Callaway Reva Lady</h4>
-                    <p>
-                        Nhắc tới Callaway chắc hẳn người chơi golf sẽ nghĩ ngay
-                        đến thương hiệu gắn liền với những bộ gậy golf chuyên
-                        nghiệp, hiệu suất cao cùng mức giá vô cùng “bình dân”.
-                        Xuất phát từ Mỹ – nơi có nền công nghiệp cũng như khoa
-                        học kỹ thuật hàng đầu, Callaway có thể tạo nên sự tin
-                        tưởng rằng những sản phẩm của mình đều sở hữu rất nhiều
-                        lợi thế về công nghệ.
-                    </p>
-                    <p>
-                        Trong suốt hơn 40 năm qua, Callaway đã không ngừng cải
-                        tiến và nâng cấp các thế hệ sản phẩm gậy golf của mình
-                        nhằm thu hút thêm người dùng cũng như nâng cao trải
-                        nghiệm. Đặc biệt, bên cạnh chú trọng tới công nghệ, hiệu
-                        suất, “ông lớn” ngành dụng cụ golf còn tập trung vào
-                        thiết kế để những bộ gậy trở nên sang trọng, bắt mắt
-                        hơn. Qua đó trở thành lựa chọn được đông đảo golfer
-                        chuyên nghiệp lẫn nghiệp dư chọn lựa song hành trên mỗi
-                        giải đấu.
-                    </p>
-                    <div className={styles.separate}></div>
-                    <h4>
-                        Những đặc trưng nổi bật trên fullset Callaway Reva
-                        Ladies
-                    </h4>
-                    <p>
-                        Bộ fullset Callaway Reva Ladies là lựa chọn dành cho các
-                        tay golf nữ chuộng sự cao cấp, mỗi cây gậy sẽ góp phần
-                        tạo nên sự tỏa sáng về hiệu suất lẫn phong cách riêng
-                        của các golfer trên sân. Bên cạnh đó, ở thế hệ Callaway
-                        Reva Ladies, hãng có những cải tiến, nâng cấp đáng kể để
-                        trở nên hoàn thiện hơn.
-                    </p>
+                    <div className={techParameterStyle} ref={articleRef}></div>
+                    <span
+                        className={showMore ? styles.click : ''}
+                        onClick={showClickHandler}
+                    >
+                        {!showMore ? 'Xem Thêm' : 'Thu gọn'}
+
+                        {!showMore ? (
+                            <BsChevronCompactDown />
+                        ) : (
+                            <BsChevronCompactUp />
+                        )}
+                    </span>
+                    {/* <div className={styles.opacity}></div> */}
                 </div>
                 <div
                     className={[
@@ -78,40 +113,14 @@ const ProductDetailTabSection = () => {
                 >
                     <table border="1">
                         <tbody>
-                            <tr>
-                                <th>Tên sản phẩm</th>
-                                <td>Callaway Reva Ladies</td>
-                            </tr>
-                            <tr>
-                                <th>Thương hiệu</th>
-                                <td>Callaway</td>
-                            </tr>
-                            <tr>
-                                <th>Dòng gậy</th>
-                                <td>Fullset</td>
-                            </tr>
-                            <tr>
-                                <th>Đối tượng</th>
-                                <td>Nữ</td>
-                            </tr>
-                            <tr>
-                                <th>Head Material</th>
-                                <td>Titanium, Stainnless Steel</td>
-                            </tr>
-                            <tr>
-                                <th>Shaft</th>
-                                <td>Callaway Original Carbon (L)</td>
-                            </tr>
-                            <tr>
-                                <th>Balance</th>
-                                <td>C1/C2/C4/C5</td>
-                            </tr>
-                            <tr>
-                                <th>Club Weight</th>
-                                <td>
-                                    275g, 297g, 321g, 351g, 357g, 364g, 368g
-                                </td>
-                            </tr>
+                            {techParameter.map((parameter) => {
+                                return (
+                                    <tr>
+                                        <th>{parameter.title}</th>
+                                        <td>{parameter.body}</td>
+                                    </tr>
+                                );
+                            })}
                         </tbody>
                     </table>
                 </div>

@@ -8,7 +8,8 @@ import { BiArrowBack } from 'react-icons/bi';
 import styles from './ProductDetailHeaderIntroSection.module.scss';
 import Button from '../Button';
 
-const ProductDetailHeaderIntroSection = () => {
+const ProductDetailHeaderIntroSection = ({ product = null }) => {
+    const { name, price } = product;
     const data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
     const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
@@ -61,7 +62,7 @@ const ProductDetailHeaderIntroSection = () => {
 
                 {/* CONTENT */}
                 <div className={styles.content}>
-                    <h2>iPhone 13 Pro Max</h2>
+                    <h2>{name}</h2>
 
                     {/* PRICE */}
                     <div className={styles.price}>
@@ -70,13 +71,13 @@ const ProductDetailHeaderIntroSection = () => {
                                 {new Intl.NumberFormat('vi-VN', {
                                     style: 'currency',
                                     currency: 'VND',
-                                }).format(10000000)}
+                                }).format(price.priceAfterSale)}
                             </span>
                             <span className={styles.oldPrice}>
                                 {new Intl.NumberFormat('vi-VN', {
                                     style: 'currency',
                                     currency: 'VND',
-                                }).format(10000000)}
+                                }).format(price.originalPrice)}
                             </span>
                         </div>
                         <p>

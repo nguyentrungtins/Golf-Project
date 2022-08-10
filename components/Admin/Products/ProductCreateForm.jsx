@@ -291,6 +291,15 @@ const ProductCreateForm = () => {
     };
     const onSubmit = async (e) => {
         e.preventDefault();
+        // CREATE SLUG
+        let slug =
+            productName.current.value.split(' ').join('-') +
+            '-' +
+            randomString();
+        slug = toLowerCaseNonAccentVietnamese(slug).replace(
+            /[^0-9a-zA-Z\-]/g,
+            ''
+        );
         if (!productDescInput) {
             toast.warn('Vui lòng nhập nội dung tin');
             return;
@@ -317,6 +326,7 @@ const ProductCreateForm = () => {
             img: productImageSrc,
             status: 1,
             tag: tagList,
+            slug: slug,
         };
         console.log(data);
 

@@ -7,7 +7,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import classnames from 'classnames';
 import { useState, useRef } from 'react';
-
+import {
+    randomString,
+    toLowerCaseNonAccentVietnamese,
+} from '../../../lib/functions';
 const ProductEdit = ({ product = null }) => {
     if (!product) {
         return (
@@ -187,13 +190,20 @@ const ProductEdit = ({ product = null }) => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        if (!productDescInput) {
+
+        if (!productDescInput || !productName || !productBrand) {
             toast.warn('Vui lòng nhập đầy đủ nội dung sản phẩm');
             return;
         }
 
         console.log('pass validate');
 
+        // CREATE SLUG
+        let slug = nameValue.split(' ').join('-') + '-' + randomString();
+        slug = toLowerCaseNonAccentVietnamese(slug).replace(
+            /[^0-9a-zA-Z\-]/g,
+            ''
+        );
         // ADD LOADING TOAST FOR HANDLE CALL API
         loadingToast.current = toast.info('Đang sửa thông tin sản phẩm', {
             autoClose: false,
@@ -212,6 +222,7 @@ const ProductEdit = ({ product = null }) => {
             img: img,
             status: statusValue,
             tag: tag,
+            slug: slug,
         };
 
         const res = await fetch(`/api/products/edit/${_id}`, {

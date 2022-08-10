@@ -6,7 +6,7 @@ import { ImSortAmountDesc, ImSortAmountAsc } from 'react-icons/im';
 import { TbDiscount } from 'react-icons/tb';
 import { BsChevronDown } from 'react-icons/bs';
 
-const ListProductSection = ({ products = [], useSlug = false }) => {
+const ListProductSection = ({ products = [] }) => {
     return (
         <div className={styles.wrapper}>
             <h3>Sản phẩm</h3>
@@ -29,11 +29,7 @@ const ListProductSection = ({ products = [], useSlug = false }) => {
                 {products.map((product) => (
                     <Link
                         key={product._id.toString()}
-                        href={
-                            useSlug
-                                ? `/san-pham/${product.name.toString()}`
-                                : `/san-pham/${product._id.toString()}`
-                        }
+                        href={`/san-pham/${product.slug.toString()}`}
                     >
                         <div className={styles.col}>
                             <div className={styles.sliderItem}>

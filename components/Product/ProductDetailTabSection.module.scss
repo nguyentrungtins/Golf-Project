@@ -44,23 +44,93 @@
     .content {
         display: none;
         padding: 2rem;
+
+        transition: height 500ms ease;
+        background-color: #fff;
+        box-shadow: 0 1px 2px 0 rgb(60 64 67 / 10%),
+            0 2px 6px 2px rgb(60 64 67 / 15%);
+        border-radius: 8px;
         &.active {
             display: block;
+            position: relative;
+            overflow: hidden;
         }
-
-        h4 {
-            font-size: 1rem;
-            font-weight: 600;
+        > span {
+            display: block;
+            position: absolute;
+            display: flex;
+            bottom: 0;
+            align-items: center;
+            justify-content: center;
+            height: 30px;
+            border-radius: 0 0 8px 8px;
+            // border-radius: 8px;
+            // margin: 0 30% 0 30%;
+            // background-color: #fff;
+            left: 0;
+            right: 0;
+            font-size: 15px;
+            cursor: pointer;
             color: var(--text-color);
-            line-height: 1.6;
-            margin-bottom: 0.5rem;
+            font-weight: 500;
+            > svg {
+                margin-left: 10px;
+            }
         }
+        > .article {
+            height: 300px;
+            overflow: hidden;
+            transition: all 500ms ease;
+            img {
+                width: 100%;
+                height: auto;
+            }
+            &::before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                height: 60px;
+                background: linear-gradient(
+                    180deg,
+                    hsla(0, 0%, 100%, 0),
+                    hsla(0, 0%, 100%, 0.91) 50%,
+                    #fff 55%
+                );
 
-        p {
-            font-size: 0.875rem;
-            color: var(--text-color);
-            line-height: 1.6;
-            word-spacing: 1px;
+                left: 0;
+                right: 0;
+                transition: opactiy 500ms ease, visibility 500ms ease;
+            }
+            &.click {
+                height: auto;
+                transition: all 500ms ease;
+            }
+            > h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-size: 1rem;
+                font-weight: 600;
+                color: var(--text-color);
+                line-height: 1.6;
+                margin-bottom: 0.5rem;
+            }
+            > h1 {
+                font-size: 1.125rem;
+                font-weight: 600;
+                color: var(--text-color);
+                line-height: 1.6;
+                margin-bottom: 0.5rem;
+            }
+
+            p {
+                font-size: 0.975rem;
+                color: var(--text-color);
+                line-height: 1.6;
+                word-spacing: 1px;
+            }
         }
 
         .separate {

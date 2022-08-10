@@ -4,12 +4,24 @@ import ProductDetailHeaderIntroSection from './ProductDetailHeaderIntroSection';
 import ProductDetailTabSection from './ProductDetailTabSection';
 import ProductsSliderSection from './ProductsSliderSection';
 
-const ProductDetailSection = () => {
+const ProductDetailSection = ({ product = null }) => {
+    if (!product) {
+        return (
+            <div className={styles.container}>
+                <div className={styles.wrapper}>
+                    <h3>
+                        Không tồn tại sản phẩm này hoặc sản phẩm đã ngưng kinh
+                        doanh
+                    </h3>
+                </div>
+            </div>
+        );
+    }
     return (
         <div className={styles.container}>
             <div className={styles.wrapper}>
-                <ProductDetailHeaderIntroSection />
-                <ProductDetailTabSection />
+                <ProductDetailHeaderIntroSection product={product} />
+                <ProductDetailTabSection product={product} />
                 <h3>Sản phẩm tương tự</h3>
                 <ProductsSliderSection />
             </div>

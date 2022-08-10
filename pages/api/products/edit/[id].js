@@ -44,10 +44,13 @@ const handle = async (req, res) => {
                 techParameter,
                 price,
                 status,
+                slug,
             } = body;
             if (
                 !name ||
                 name.trim() === '' ||
+                !slug ||
+                slug.trim() === '' ||
                 !brand ||
                 !tag ||
                 img.src === ''
@@ -69,6 +72,7 @@ const handle = async (req, res) => {
                     desc: desc,
                     techParameter: techParameter,
                     status: parseInt(status),
+                    slug: slug,
                 };
 
                 // console.log('>>> Data: ', data);
