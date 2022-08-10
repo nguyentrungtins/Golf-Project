@@ -13,6 +13,19 @@ import classnames from 'classnames';
 import { useState, useRef } from 'react';
 
 const ProductDetail = ({ product = null }) => {
+    const {
+        name,
+        brand,
+        tag,
+        status,
+        techParameter,
+        price,
+        desc,
+        descImg,
+        img,
+        createdAt,
+        mainImg,
+    } = product;
     const [techParameterList, setTechParameterList] = useState([
         { techParameter: '', techParameterContent: '' },
     ]);
@@ -45,19 +58,7 @@ const ProductDetail = ({ product = null }) => {
             </div>
         );
     }
-    const {
-        name,
-        brand,
-        tag,
-        status,
-        techParameter,
-        price,
-        desc,
-        descImg,
-        img,
-        createdAt,
-        mainImg,
-    } = product;
+
     // console.log(product);
     let statusName;
     if (status == 1) {
