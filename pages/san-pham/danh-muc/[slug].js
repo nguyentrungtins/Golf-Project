@@ -106,19 +106,19 @@ export const getStaticPaths = () => {
 };
 
 export const getStaticProps = async (context) => {
-    const slug = context.params.slug;
+    const slug = context.params.slug.trim();
 
     // CHECK SLUG IS UNDEFINED OR NOT
-    if (slug === 'undefined' || slug === 'null') {
+    if (slug === 'undefined' || slug === 'null' || slug === '') {
         // console.log('>>> go here');
         return {
             props: {
-                products: {},
+                products: [],
             },
         };
     }
 
-    const products = await getProductsBySlug(slug.trim());
+    const products = await getProductsBySlug(slug);
     return {
         props: {
             products: products.sort(
@@ -128,17 +128,18 @@ export const getStaticProps = async (context) => {
             ),
             slug,
         },
+        revalidate: 3600,
     };
 };
 
-const ProductsByTagPage = ({ products = {}, slug = '' }) => {
+const ProductsByTagPage = ({ products = [], slug = '' }) => {
     const currentTag = tags.find((tag) => tag.slug === slug);
 
     return (
         <>
             <ListProductSection
                 products={products}
-                title={currentTag.name}
+                title={currentTag && currentTag.name}
                 useSlug
             />
         </>

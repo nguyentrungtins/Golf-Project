@@ -8,7 +8,7 @@ import { BiArrowBack } from 'react-icons/bi';
 import styles from './ProductDetailHeaderIntroSection.module.scss';
 import Button from '../Button';
 
-const ProductDetailHeaderIntroSection = ({ product = null }) => {
+const ProductDetailHeaderIntroSection = ({ product = {} }) => {
     const { name, price } = product;
     const data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -43,20 +43,23 @@ const ProductDetailHeaderIntroSection = ({ product = null }) => {
                 {/* IMAGE */}
                 <div className={styles.images}>
                     <Slider {...settings} className={styles.slider}>
-                        {data.map((item, index) => {
-                            return (
-                                <div key={index}>
-                                    <Image
-                                        src="/images/products/1.png"
-                                        alt="Product Detail Section Image"
-                                        width={800}
-                                        height={800}
-                                        layout="responsive"
-                                        priority={true}
-                                    />
-                                </div>
-                            );
-                        })}
+                        {product.img &&
+                            product.img.map((image) => {
+                                return (
+                                    <div
+                                        key={image.url}
+                                        className={styles.test}
+                                    >
+                                        <Image
+                                            src={image.url}
+                                            alt={image.name}
+                                            width={800}
+                                            height={800}
+                                            layout="responsive"
+                                        />
+                                    </div>
+                                );
+                            })}
                     </Slider>
                 </div>
 
@@ -68,16 +71,18 @@ const ProductDetailHeaderIntroSection = ({ product = null }) => {
                     <div className={styles.price}>
                         <div className={styles.quantity}>
                             <span className={styles.currPrice}>
-                                {new Intl.NumberFormat('vi-VN', {
-                                    style: 'currency',
-                                    currency: 'VND',
-                                }).format(price.priceAfterSale)}
+                                {price &&
+                                    new Intl.NumberFormat('vi-VN', {
+                                        style: 'currency',
+                                        currency: 'VND',
+                                    }).format(price.priceAfterSale)}
                             </span>
                             <span className={styles.oldPrice}>
-                                {new Intl.NumberFormat('vi-VN', {
-                                    style: 'currency',
-                                    currency: 'VND',
-                                }).format(price.originalPrice)}
+                                {price &&
+                                    new Intl.NumberFormat('vi-VN', {
+                                        style: 'currency',
+                                        currency: 'VND',
+                                    }).format(price.originalPrice)}
                             </span>
                         </div>
                         <p>

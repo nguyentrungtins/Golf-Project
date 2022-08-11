@@ -2,7 +2,8 @@ import { useState, useRef, useEffect } from 'react';
 import styles from './ProductDetailTabSection.module.scss';
 import classnames from 'classnames';
 import { BsChevronCompactDown, BsChevronCompactUp } from 'react-icons/bs';
-const ProductDetailTabSection = ({ product = [] }) => {
+
+const ProductDetailTabSection = ({ product = {} }) => {
     const { desc, descImg, techParameter } = product;
     const [showMore, setShowMore] = useState(false);
     const articleRef = useRef();
@@ -56,7 +57,7 @@ const ProductDetailTabSection = ({ product = [] }) => {
 
             articleRef.current.innerHTML = articleContent;
         }
-    }, [product]);
+    }, [desc, product]);
     const [activedTab, setActivedTab] = useState(1);
 
     const handleClick = (event) => {
@@ -113,14 +114,15 @@ const ProductDetailTabSection = ({ product = [] }) => {
                 >
                     <table border="1">
                         <tbody>
-                            {techParameter.map((parameter, index) => {
-                                return (
-                                    <tr key={index}>
-                                        <th>{parameter.title}</th>
-                                        <td>{parameter.body}</td>
-                                    </tr>
-                                );
-                            })}
+                            {techParameter &&
+                                techParameter.map((parameter, index) => {
+                                    return (
+                                        <tr key={index}>
+                                            <th>{parameter.title}</th>
+                                            <td>{parameter.body}</td>
+                                        </tr>
+                                    );
+                                })}
                         </tbody>
                     </table>
                 </div>

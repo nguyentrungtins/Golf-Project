@@ -37,7 +37,7 @@ const ListProductSection = ({ products = [], useSlug = false, title = '' }) => {
                                 key={product._id.toString()}
                                 href={
                                     useSlug
-                                        ? `/san-pham/${product.name.toString()}`
+                                        ? `/san-pham/${product.slug.toString()}`
                                         : `/san-pham/${product._id.toString()}`
                                 }
                             >

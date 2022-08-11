@@ -18,15 +18,6 @@ const getAllProducts = async () => {
     return JSON.parse(JSON.stringify(products));
 };
 
-const ProductDetailPage = (props) => {
-    const { product } = props;
-    return (
-        <>
-            <ProductDetailSection product={product} />
-        </>
-    );
-};
-
 export async function getStaticPaths() {
     const products = await getAllProducts();
     return {
@@ -39,28 +30,43 @@ export async function getStaticPaths() {
     };
 }
 export const getStaticProps = async (context) => {
-    const slug = context.params.slug;
-    console.log('tin ne>>', slug);
-    let product;
+    const slug = context.params.slug.trim();
+    // CHECK SLUG IS UNDEFINED OR NOT
+    if (slug === 'undefined' || slug === 'null' || slug === '') {
+        // console.log('>>> go here');
+        return {
+            props: {
+                products: [],
+            },
+        };
+    }
+
     try {
         await dbConnect();
 
-        const result = await Product.findOne({ slug: slug });
+        const result = await Product.findOne({ slug });
         if (!result) {
             console.error('>>> Can not find any product with slug provided');
             return;
         }
-        product = JSON.parse(JSON.stringify(result));
+        const product = JSON.parse(JSON.stringify(result));
+        return {
+            props: {
+                product,
+            },
+            revalidate: 3600,
+        };
     } catch (error) {
         console.error(error);
     }
+};
 
-    return {
-        props: {
-            product: product,
-        },
-        revalidate: 3600,
-    };
+const ProductDetailPage = ({ product = {} }) => {
+    return (
+        <>
+            <ProductDetailSection product={product} />
+        </>
+    );
 };
 
 export default ProductDetailPage;
