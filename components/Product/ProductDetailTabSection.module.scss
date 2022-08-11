@@ -84,6 +84,13 @@
             img {
                 width: 100%;
                 height: auto;
+
+                @include breakpoint(sm) {
+                    margin: 0;
+                }
+                @include breakpoint(lg) {
+                    margin: 50px 70px 50px 70px;
+                }
             }
             &::before {
                 content: '';

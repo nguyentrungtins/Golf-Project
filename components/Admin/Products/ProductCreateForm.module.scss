@@ -181,6 +181,29 @@
         will-change: color, background-color;
     }
 }
+
+.btnDelete {
+    width: 100%;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    height: 50px;
+    border-radius: 8px;
+    margin-top: 30px;
+    font-size: large;
+    // border: 0.063rem solid rgba(0, 0, 0, 0.3);
+    background-color: #a26363;
+    color: var(--white-color);
+
+    &:hover {
+        color: var(--white-color);
+        background-color: #a57676;
+        cursor: pointer;
+        transition: all ease-in-out 0.3s;
+        will-change: color, background-color;
+    }
+}
+
 .imgList {
     display: flex;
     gap: 10px;
