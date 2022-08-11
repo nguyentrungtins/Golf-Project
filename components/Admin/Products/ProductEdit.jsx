@@ -23,6 +23,7 @@ const ProductEdit = ({ product = null }) => {
         descImg,
         img,
         createdAt,
+        mainImg,
         _id,
     } = product;
     const [techParameterList, setTechParameterList] = useState([
@@ -174,7 +175,55 @@ const ProductEdit = ({ product = null }) => {
         //     console.log('add: ', tagList);
         // }
     };
+    const onDeleteClick = async (e) => {
+        // ADD LOADING TOAST FOR HANDLE CALL API
+        loadingToast.current = toast.info('Đang xóa sản phẩm', {
+            autoClose: false,
+            closeOnClick: false,
+        });
 
+        const data = {
+            id: _id,
+            descImg: descImg,
+            img: img,
+            mainImg: mainImg,
+        };
+
+        const res = await fetch(`/api/products/edit/${_id}`, {
+            method: 'DELETE',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-type': 'application/json',
+            },
+        });
+
+        // GET RESULT FROM API
+        const result = await res.json();
+        console.log(result);
+        if (result.success) {
+            // router.push('/admin/bulletin');
+
+            // SHOW SUCCESS TOAST
+            toast.update(loadingToast.current, {
+                render: result.message,
+                type: toast.TYPE.SUCCESS,
+                autoClose: 5000,
+                closeOnClick: true,
+                pauseOnHover: true,
+                onClose: () => router.push('/admin/products'),
+            });
+            // toast.success(result.message);
+        } else {
+            // SHOW ERROR TOAST
+            toast.update(loadingToast.current, {
+                render: result.message,
+                type: toast.TYPE.ERROR,
+                autoClose: 5000,
+                closeOnClick: true,
+                pauseOnHover: true,
+            });
+        }
+    };
     const onSubmit = async (e) => {
         e.preventDefault();
 
@@ -210,6 +259,7 @@ const ProductEdit = ({ product = null }) => {
             status: statusValue,
             tag: tag,
             slug: slug,
+            mainImg: mainImg,
         };
 
         const res = await fetch(`/api/products/edit/${_id}`, {
@@ -335,7 +385,6 @@ const ProductEdit = ({ product = null }) => {
                             </div>
                         </div>
                     </div>
-
                     <div className={styles.field}>
                         <h3>Giá </h3>
                         <div className={styles.fieldGroup}>
@@ -395,10 +444,17 @@ const ProductEdit = ({ product = null }) => {
                             </div>
                         </div>
                     </div>
-
                     <button type="submit" className={styles.btnSubmit}>
                         Sửa sản phẩm
                     </button>
+                    <button
+                        type="button"
+                        className={styles.btnDelete}
+                        onClick={onDeleteClick}
+                    >
+                        Xóa sản phẩm
+                    </button>
+
                     <ToastContainer
                         position="bottom-right"
                         theme="colored"
