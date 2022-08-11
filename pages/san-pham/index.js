@@ -12,7 +12,7 @@ const getAllProducts = async (tag) => {
 };
 
 export const getStaticProps = async (context) => {
-    console.log('>>> Context: ', context.query);
+    // console.log('>>> Context: ', context.query);
     const products = await getAllProducts('gay-golf-nu');
     return {
         props: {

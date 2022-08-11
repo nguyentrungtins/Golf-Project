@@ -35,7 +35,11 @@ const ListProductSection = ({ products = [], useSlug = false, title = '' }) => {
                         {products.map((product) => (
                             <Link
                                 key={product._id.toString()}
-                                href={`/san-pham/${product.slug.toString()}`}
+                                href={
+                                    useSlug
+                                        ? `/san-pham/${product.slug.toString()}`
+                                        : `/san-pham/${product._id.toString()}`
+                                }
                             >
                                 <div className={styles.col}>
                                     <div className={styles.sliderItem}>
