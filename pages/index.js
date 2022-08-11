@@ -9,13 +9,41 @@ import CourseSection from '../components/Home/CourseSection.jsx';
 import Layout from '../components/Layouts/Layout';
 import NestedLayout from '../components/Layouts/NestedLayout.jsx';
 
-export default function Home() {
+import dbConnect from '../lib/dbConnect';
+import Product from '../models/Product';
+
+const getDiscountProducts = async () => {
+    await dbConnect();
+    const products = await Product.find({
+        'price.sale': { $gt: 0 },
+    });
+    return JSON.parse(JSON.stringify(products));
+};
+
+export const getStaticProps = async () => {
+    try {
+        const discountProducts = await getDiscountProducts();
+
+        return {
+            props: {
+                discountProducts: discountProducts.sort(
+                    (a, b) => parseInt(b.price.sale) - parseInt(a.price.sale)
+                ),
+            },
+            revalidate: 3600,
+        };
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+export default function Home({ discountProducts = [] }) {
     return (
         <>
             <HomeSection />
             <AboutUsSection />
             <ServicesSection />
-            <BestSellersSection />
+            <BestSellersSection discountProducts={discountProducts} />
             <CourseSection />
             <Golf3dSection />
             <BookSection />

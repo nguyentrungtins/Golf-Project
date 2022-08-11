@@ -1,12 +1,13 @@
 import Slider from 'react-slick';
 import Image from 'next/image';
+import Link from 'next/link';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 
 import styles from './ProductsSliderSection.module.scss';
 
 const data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-const ProductsSliderSection = () => {
+const ProductsSliderSection = ({ products = [] }) => {
     const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
         <BsChevronLeft {...props} className={styles.prevIcon} />
     );
@@ -53,41 +54,56 @@ const ProductsSliderSection = () => {
     return (
         <div className={styles.wrapper}>
             <Slider {...settings} className={styles.slider}>
-                {data.map((item, index) => {
+                {products.map((product) => {
                     return (
-                        <div className={styles.item} key={index}>
-                            <div className={styles.imgWrap}>
-                                <Image
-                                    src="/images/home/best-sellers/1.png"
-                                    alt="Image Product"
-                                    width={218}
-                                    height={202}
-                                    layout="responsive"
-                                />
-                            </div>
-
-                            <div className={styles.info}>
-                                <p className={styles.name}>Driver SiM2</p>
-                                <p className={styles.desc}>Taylor made</p>
-                                <div className={styles.price}>
-                                    <span className={styles.currPrice}>
-                                        {new Intl.NumberFormat('vi-VN', {
-                                            style: 'currency',
-                                            currency: 'VND',
-                                        }).format(10000000)}
-                                    </span>
-                                    <span className={styles.oldPrice}>
-                                        {new Intl.NumberFormat('vi-VN', {
-                                            style: 'currency',
-                                            currency: 'VND',
-                                        }).format(10000000)}
-                                    </span>
+                        <Link
+                            key={product._id.toString()}
+                            href={`/san-pham/${product.slug.toString()}`}
+                        >
+                            <div className={styles.item}>
+                                <div className={styles.imgWrap}>
+                                    <Image
+                                        src={product.mainImg.url}
+                                        alt="product.mainImg.name"
+                                        width={218}
+                                        height={202}
+                                        layout="responsive"
+                                    />
                                 </div>
-                                <span className={styles.discount}>
-                                    Giảm 10%
-                                </span>
+
+                                <div className={styles.info}>
+                                    <p className={styles.name}>
+                                        {product.name}
+                                    </p>
+                                    <p className={styles.desc}>
+                                        {product.brand}
+                                    </p>
+                                    <div className={styles.price}>
+                                        <span className={styles.currPrice}>
+                                            {new Intl.NumberFormat('vi-VN', {
+                                                style: 'currency',
+                                                currency: 'VND',
+                                            }).format(
+                                                product.price.priceAfterSale
+                                            )}
+                                        </span>
+                                        <span className={styles.oldPrice}>
+                                            {new Intl.NumberFormat('vi-VN', {
+                                                style: 'currency',
+                                                currency: 'VND',
+                                            }).format(
+                                                product.price.originalPrice
+                                            )}
+                                        </span>
+                                    </div>
+                                    {parseInt(product.price.sale) > 0 && (
+                                        <span className={styles.discount}>
+                                            Giảm {product.price.sale}%
+                                        </span>
+                                    )}
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     );
                 })}
             </Slider>

@@ -45,8 +45,8 @@ const ListProductSection = ({ products = [], useSlug = false, title = '' }) => {
                                     <div className={styles.sliderItem}>
                                         <div className={styles.imgWrap}>
                                             <Image
-                                                src="/images/home/best-sellers/1.png"
-                                                alt="Image Product"
+                                                src={product.mainImg.url}
+                                                alt="product.mainImg.name"
                                                 width={218}
                                                 height={202}
                                                 layout="responsive"

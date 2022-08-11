@@ -4,7 +4,7 @@ import styles from './BestSellersSection.module.scss';
 import Button from '../Button';
 import ProductsSliderSection from '../Product/ProductsSliderSection';
 
-const BestSellers = () => {
+const BestSellers = ({ discountProducts = [] }) => {
     return (
         <div className={styles.container}>
             {/* HEADER */}
@@ -30,7 +30,7 @@ const BestSellers = () => {
             </div>
 
             {/* PRODUCTS */}
-            <ProductsSliderSection />
+            <ProductsSliderSection products={discountProducts} />
 
             {/* BUTTON */}
             <div className={styles.btnShopNow}>

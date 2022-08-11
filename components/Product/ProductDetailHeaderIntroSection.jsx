@@ -43,13 +43,21 @@ const ProductDetailHeaderIntroSection = ({ product = {} }) => {
                 {/* IMAGE */}
                 <div className={styles.images}>
                     <Slider {...settings} className={styles.slider}>
+                        <div>
+                            {product.mainImg && (
+                                <Image
+                                    src={product.mainImg.url}
+                                    alt={product.mainImg.name}
+                                    width={800}
+                                    height={800}
+                                    layout="responsive"
+                                />
+                            )}
+                        </div>
                         {product.img &&
                             product.img.map((image) => {
                                 return (
-                                    <div
-                                        key={image.url}
-                                        className={styles.test}
-                                    >
+                                    <div key={image.url}>
                                         <Image
                                             src={image.url}
                                             alt={image.name}

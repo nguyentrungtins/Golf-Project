@@ -4,7 +4,7 @@ import ProductDetailHeaderIntroSection from './ProductDetailHeaderIntroSection';
 import ProductDetailTabSection from './ProductDetailTabSection';
 import ProductsSliderSection from './ProductsSliderSection';
 
-const ProductDetailSection = ({ product = {} }) => {
+const ProductDetailSection = ({ product = {}, similarProducts = [] }) => {
     if (!product) {
         return (
             <div className={styles.container}>
@@ -23,7 +23,7 @@ const ProductDetailSection = ({ product = {} }) => {
                 <ProductDetailHeaderIntroSection product={product} />
                 <ProductDetailTabSection product={product} />
                 <h3>Sản phẩm tương tự</h3>
-                <ProductsSliderSection />
+                <ProductsSliderSection products={similarProducts} />
             </div>
         </div>
     );

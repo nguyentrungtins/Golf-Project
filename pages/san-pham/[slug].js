@@ -1,21 +1,30 @@
 import ProductDetailSection from '../../components/Product/ProductDetailSection.jsx';
 import NestedLayout2 from '../../components/Layouts/NestedLayout2.jsx';
 import Layout from '../../components/Layouts/Layout.jsx';
-// import { getAllProductSlugs } from '../../lib/product-helpers.js';
 
 import dbConnect from '../../lib/dbConnect';
 import Product from '../../models/Product';
 
-// const getProductBySlug = async (slug) => {
-//     await dbConnect();
-//     const product = await Product.findOne({ slug: slug });
-//     return JSON.parse(JSON.stringify(product));
-// };
+const getSimilarProducts = async (product = {}) => {
+    await dbConnect();
+    const options = ['gay-golf', 'gay-golf-nam'];
+
+    const similarProducts = await Product.find({
+        'tag.slug': { $in: options },
+    });
+    return JSON.parse(JSON.stringify(similarProducts));
+};
 
 const getAllProducts = async () => {
     await dbConnect();
     const products = await Product.find({});
     return JSON.parse(JSON.stringify(products));
+};
+
+const getProductBySlug = async (slug) => {
+    await dbConnect();
+    const product = await Product.findOne({ slug });
+    return JSON.parse(JSON.stringify(product));
 };
 
 export async function getStaticPaths() {
@@ -29,30 +38,32 @@ export async function getStaticPaths() {
         fallback: true,
     };
 }
+
 export const getStaticProps = async (context) => {
     const slug = context.params.slug.trim();
     // CHECK SLUG IS UNDEFINED OR NOT
     if (slug === 'undefined' || slug === 'null' || slug === '') {
         // console.log('>>> go here');
         return {
-            props: {
-                products: [],
-            },
+            props: {},
         };
     }
 
     try {
-        await dbConnect();
-
-        const result = await Product.findOne({ slug });
-        if (!result) {
+        const product = await getProductBySlug(slug);
+        if (!product) {
             console.error('>>> Can not find any product with slug provided');
-            return;
+            return {
+                props: {},
+            };
         }
-        const product = JSON.parse(JSON.stringify(result));
+
+        const similarProducts = await getSimilarProducts(product);
+
         return {
             props: {
                 product,
+                similarProducts: similarProducts,
             },
             revalidate: 3600,
         };
@@ -61,10 +72,13 @@ export const getStaticProps = async (context) => {
     }
 };
 
-const ProductDetailPage = ({ product = {} }) => {
+const ProductDetailPage = ({ product = {}, similarProducts = [] }) => {
     return (
         <>
-            <ProductDetailSection product={product} />
+            <ProductDetailSection
+                product={product}
+                similarProducts={similarProducts}
+            />
         </>
     );
 };
