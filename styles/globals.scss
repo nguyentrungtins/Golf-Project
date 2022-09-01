@@ -3,9 +3,9 @@
 
 :root {
     --text-color: #161823;
-    --white-color: #fff;
+    --white-color: #ececec;
     --red-color: #c81123;
-    --primary-green-color: #00463b;
+    --primary-green-color: #222c2b;
 
     --header-navbar-height: 6rem;
     --margin-standard-sm: 5rem;
@@ -34,6 +34,7 @@ body {
     font-family: 'Montserrat', serif;
     transition: 0.5s;
     font-size: 100%;
+    background-color: var(--white-color);
 }
 
 html::-webkit-scrollbar {

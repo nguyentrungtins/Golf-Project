@@ -1,7 +1,7 @@
 @import '../../styles/mixin';
 
 .sec {
-    background-color: #00463b;
+    background-color: var(--primary-green-color);
     padding-left: 10%;
     display: flex;
     margin-bottom: 50px;
