@@ -12,7 +12,7 @@ const HomeSection = () => {
             <div className={styles.scrollDown}>
                 <p>Scroll Down</p>
                 <div>
-                    <Image src={scrolldown} alt="Logo Image" />
+                    <Image priority="true" src={scrolldown} alt="Logo Image" />
                 </div>
             </div>
         </div>

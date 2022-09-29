@@ -87,6 +87,7 @@ const Navbar = ({ isNavTrans = false }) => {
                     <Link href="/">
                         <div className={styles.logo}>
                             <Image
+                                priority="true"
                                 src={Logo}
                                 alt="Logo Image"
                                 width={58}
