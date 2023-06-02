@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora&family=Merriweather:wght@300;400;700&family=Montserrat:wght@400;500;600;700&display=swap");
+:root {
+  --text-color: #161823;
+  --white-color: #fff;
+  --red-color: #c81123;
+  --primary-green-color: #00463b;
+  --header-navbar-height: 6rem;
+  --margin-standard-sm: 5rem;
+  --margin-standard-lg: 6.25rem;
+  --width-wrapper: 80%;
+  --margin-bottom-title-subtitle: 0.4rem;
+  --title-font-size-sm: 2.5rem;
+  --title-font-size: 2.875rem;
+  --title-font-weight: 100;
+  --title-font-weight-semiBold: 400;
+  --title-font-weight-bold: 500;
+  --title-font-weight-extraBold: 700;
+  --lora: "Lora", serif;
+  --mont: "Montserrat", sans-serif;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Montserrat", serif;
+  transition: 0.5s;
+  font-size: 100%;
+}
+
+html::-webkit-scrollbar {
+  width: 7px;
+  background: rgb(136, 136, 136);
+}
+
+html::-webkit-scrollbar-track {
+  background: rgb(179, 177, 177);
+  border-radius: 10px;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: rgb(112, 112, 112);
+  height: 96px;
+  border-radius: 10px;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: rgb(77, 77, 77);
+  border-radius: 10px;
+}
+
+html::-webkit-scrollbar-thumb:active {
+  background: rgb(68, 68, 68);
+  border-radius: 10px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  text-indent: 0;
+  list-style-type: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.spinner-wrapper {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.spinner {
+  position: absolute;
+  height: 60px;
+  width: 60px;
+  animation: rotation 0.6s infinite linear;
+  border-left: 4px solid rgba(204, 204, 204, 0.15);
+  border-right: 4px solid rgba(204, 204, 204, 0.15);
+  border-bottom: 4px solid rgba(204, 204, 204, 0.15);
+  border-top: 4px solid #e0e0e0;
+  border-radius: 100%;
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}/*# sourceMappingURL=globals.css.map */
