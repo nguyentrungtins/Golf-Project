@@ -36,6 +36,11 @@ export async function getStaticPaths() {
             { params: { slug: 'golf-3d' } },
             { params: { slug: 'booking-golf' } },
             { params: { slug: 'tour-golf' } },
+            { params: { slug: 'thi-cong-san-tap' } },
+            { params: { slug: 'thi-cong-green-golf' } },
+            { params: { slug: 'thi-cong-phong-3d' } },
+            { params: { slug: 'dao-tao-va-cung-cap-candy' } },
+            { params: { slug: 'bao-hiem-hio' } },
         ],
         fallback: false,
     };
